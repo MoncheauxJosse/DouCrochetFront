@@ -1,0 +1,21 @@
+@import url(./base/base.css);
+
+@import url(./components/component.css);
+@import url(./components/btn.css);
+@import url(./components/input.css);
+
+@tailwind utilities;
+
+
+
+
+/* ANIMATION CSS */
+.anim-delay-100{
+    animation-delay: 0.1s;
+}
+.anim-delay-300{
+    animation-delay: 0.3s;
+}
+.anim-delay-600{
+    animation-delay: 0.6s;
+}
