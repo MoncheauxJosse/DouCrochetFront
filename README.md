@@ -45,14 +45,18 @@ Si le pb persiste et devient chiant, il faut simplement supprimer la ligne dans 
 
 In the project directory, you can run:
 
-### `npm run dev`
+### `yarn install`
+
+Install the dependencies of the project
+
+### `yarn run dev`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 
-### `npm build`
+### `yarn build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
