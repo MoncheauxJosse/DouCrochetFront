@@ -26,20 +26,17 @@ It has:
 
 ## Known Bugs
 
-### JIT
-
-
-~~*le mode [JIT](https://tailwindcss.com/docs/just-in-time-mode) est activé dans tailwind.config.
-Celui-ci est toujours en preview, donc peut bugguer un peu. Un des bugs étant qu'il ne prend pas bien en compte l'utilisation de certains className de tailwindd quand on les utilise.
-Ex: bg-red-500, et pourtant le background reste blanc.
-Si ça arrive, il faut aller dans le fichier tailwind.config, fait une modification (par exemple un retour à la ligne) et enregistrer pour relancer tailwind comme il faut.
-Si le pb persiste et devient chiant, il faut simplement supprimer la ligne dans ce même fichier pour ne plus avoir JIT.*~~
-
-**Résolu grace à Vite**
-
 
 ---
 ---
+
+## CHECKS
+
+- (peter) **React-router-dom**: 5 ➡️ 6
+  - 5.3.3
+  - 6.3.0
+
+
 
 ## Available Scripts
 
