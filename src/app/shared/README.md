@@ -6,7 +6,7 @@ Ce dossier permet de regrouper des fichiers partager dans l'application.
 
 ## Dossier Component
 
-Ce dossier regroupe les petis composants de l'application, tel que les PrivateRoute, ou des boutons de retour arrière, etc...
+Ce dossier regroupe les petis composants ui fortement réutilisable de l'application (comme une petite bibliothèque), tel qu'un loader, ou des boutons de retour arrière, etc...
 
 ---
 

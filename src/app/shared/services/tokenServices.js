@@ -38,17 +38,26 @@ export function removeToken() {
  * @return {object} payload of the token
  * @author Peter Mollet
  */
-export function getPayloadToken() {
-    return decodeToken();
+export function getPayloadToken(token) {
+    return jwt_decode(token);
 }
 
 /**
- * Decode the jwt token to get all the visible part (header and payload)
+ * To check if the current user is authenticated
+ * Check the token, and it's validity
  *
- * @returns {object} the decoded token
+ * @return {boolean} true if user is authenticated
  * @author Peter Mollet
  */
-function decodeToken() {
-    const token = getToken();
-    return jwt_decode(token);
+export function isTokenValid(token) {
+    try {
+        const payload = getPayloadToken(token);
+        const roles = payload.auth.split(',');
+        const expirationDate = payload.exp;
+        const login = payload.sub;
+        const dateNow = new Date();
+        return token && roles.length > 0 && login && expirationDate < dateNow.getTime();
+    } catch {
+        return false;
+    }
 }

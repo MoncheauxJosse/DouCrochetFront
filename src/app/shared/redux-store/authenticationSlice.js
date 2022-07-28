@@ -1,14 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { isAuthenticated } from '../../shared/services/accountServices';
-import { setToken } from './../../shared/services/tokenServices';
+import {
+    getPayloadToken,
+    isTokenValid,
+    setToken,
+} from './../../shared/services/tokenServices';
 
 /**
- * initial state: is logged check if the user is already authenticated when openning the Application
+ * initial state: {
+ *  - isAuthenticated:  check if the user is already authenticated when openning the Application
+ *  - token: the token of the user
+ *  - user: the user data
+ * }
  * @author Peter Mollet
  */
 const initialState = {
-    isLogged: isAuthenticated(),
+    isAuthenticated: false,
+    token: null,
+    user: null,
 };
 
 export const authenticationSlice = createSlice({
@@ -16,19 +25,35 @@ export const authenticationSlice = createSlice({
     initialState,
     reducers: {
         signIn: (state, action) => {
+            const token = action.payload;
+            state.token = token;
+            const claims = getPayloadToken(token);
+            const user = {
+                username: claims.sub,
+                roles: claims.auth.split(','),
+            };
+            state.user = user;
+            state.isAuthenticated = isTokenValid(token);
             setToken(action.payload);
-            state.isLogged = true;
         },
         signOut: (state) => {
             localStorage.clear();
             sessionStorage.clear();
-            state.isLogged = false;
+            state.isAuthenticated = false;
         },
     },
 });
 
 export const { signIn, signOut } = authenticationSlice.actions;
 
-export const selectIsLogged = (state) => state.auth.isLogged;
+export const selectIsLogged = (state) => state.auth.isAuthenticated;
+export const selectUser = (state) => state.auth.user;
+export const selectToken = (state) => state.auth.token;
+export const selectHasRole = (state, roles) => {
+    if (!roles || roles.length === 0) return true;
+    const user = state.auth.user;
+    if (!user) return false;
+    return user.roles.some((role) => roles.includes(role));
+};
 
 export default authenticationSlice.reducer;

@@ -1,14 +1,13 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes as RoutesContainer } from 'react-router-dom';
 
-import { PrivateRoute } from '../shared/components/utils-components/PrivateRoute';
 import { ROLE_ADMIN } from '../shared/constants/rolesConstant';
-import * as URL from '../shared/constants/urls/urlConstants';
-import { customHistory } from '../shared/services/historyServices';
+import * as URL from '../shared/constants/urls/urlFrontEnd';
 import AdminHomeView from '../views/AdminHomeView';
 import HomeView from '../views/HomeView';
 import LoginView from '../views/LoginView';
 import ListView from './../views/ListView';
+import { PrivateRoute } from './PrivateRoute';
 
 /**
  * Routes of the application
@@ -18,16 +17,26 @@ import ListView from './../views/ListView';
  */
 const Routes = () => {
     return (
-        <Switch history={customHistory}>
-            <PrivateRoute exact path={URL.URL_HOME} component={HomeView} />
-            <PrivateRoute
-                path={URL.URL_ADMIN_HOME}
-                component={AdminHomeView}
-                roles={[ROLE_ADMIN]}
+        <RoutesContainer>
+            <Route
+                path={URL.URL_HOME}
+                element={
+                    <PrivateRoute>
+                        <HomeView />
+                    </PrivateRoute>
+                }
             />
-            <Route path={URL.URL_LOGIN} component={LoginView} />
-            <Route path={URL.URL_LIST} component={ListView} />
-        </Switch>
+            <Route
+                path={URL.URL_ADMIN_HOME}
+                element={
+                    <PrivateRoute roles={[ROLE_ADMIN]}>
+                        <AdminHomeView />
+                    </PrivateRoute>
+                }
+            />
+            <Route path={URL.URL_LOGIN} element={<LoginView />} />
+            <Route path={URL.URL_LIST} element={<ListView />} />
+        </RoutesContainer>
     );
 };
 

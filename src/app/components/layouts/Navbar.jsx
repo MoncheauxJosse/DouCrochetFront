@@ -8,7 +8,7 @@ import {
     URL_HOME,
     URL_LOGIN,
     URL_REGISTER,
-} from './../../shared/constants/urls/urlConstants';
+} from '../../shared/constants/urls/urlFrontEnd';
 import { selectIsLogged, signOut } from './../../shared/redux-store/authenticationSlice';
 
 const Navbar = () => {
