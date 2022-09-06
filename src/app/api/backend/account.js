@@ -1,4 +1,4 @@
-import { URL_BACK_AUTHENTICATE } from './../../shared/constants/urls/urlBackEnd';
+import { URL_BACK_AUTHENTICATE } from '../../constants/urls/urlBackEnd';
 import apiBackEnd from './api.Backend';
 
 export function authenticate(values) {

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Routes as RoutesContainer } from 'react-router-dom';
 
-import { ROLE_ADMIN } from '../shared/constants/rolesConstant';
-import * as URL from '../shared/constants/urls/urlFrontEnd';
+import { ROLE_ADMIN } from '../constants/rolesConstant';
+import * as URL from '../constants/urls/urlFrontEnd';
 import AdminHomeView from '../views/AdminHomeView';
 import HomeView from '../views/HomeView';
 import LoginView from '../views/LoginView';

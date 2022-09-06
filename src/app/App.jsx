@@ -5,10 +5,10 @@ import { ToastContainer } from 'react-toastify';
 
 import IdleTimerCustom from './components/account/IdleTimerCustom';
 import Navbar from './components/layouts/Navbar';
+import Loader from './components/lib/utils-components/Loader';
+import { selectIsLogged, signIn } from './redux-store/authenticationSlice';
 import Routes from './routes/Routes';
-import Loader from './shared/components/utils-components/Loader';
-import { selectIsLogged, signIn } from './shared/redux-store/authenticationSlice';
-import { getToken } from './shared/services/tokenServices';
+import { getToken } from './services/tokenServices';
 
 const contextClass = {
     success: 'bg-green-600',
@@ -40,10 +40,10 @@ const App = () => {
 
     return (
         <BrowserRouter>
-            <div className="h-full flex flex-col bg-gray-100 cursor-default">
+            <div className="flex h-full cursor-default flex-col bg-gray-100">
                 {isLogged && <IdleTimerCustom />}
                 <Navbar />
-                <main className="grow mt-24">
+                <main className="mt-24 grow">
                     <Routes />
                 </main>
                 <ToastContainer

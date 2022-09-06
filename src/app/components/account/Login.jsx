@@ -5,12 +5,12 @@ import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
-import Input from '../../shared/components/form-and-error-components/Input';
-import { URL_HOME } from '../../shared/constants/urls/urlFrontEnd';
-import { signIn } from '../../shared/redux-store/authenticationSlice';
+import { URL_HOME } from '../../constants/urls/urlFrontEnd';
+import { signIn } from '../../redux-store/authenticationSlice';
+import ErrorMessSmall from '../lib/form-and-error-components/ErrorMessSmall';
+import Input from '../lib/form-and-error-components/Input';
+import { Checkbox } from '../lib/form-and-error-components/InputChoices';
 import { authenticate } from './../../api/backend/account';
-import ErrorMessSmall from './../../shared/components/form-and-error-components/ErrorMessSmall';
-import { Checkbox } from './../../shared/components/form-and-error-components/InputChoices';
 
 /**
  * Component Form Login
@@ -40,7 +40,7 @@ const FormLogin = ({ submit, errorLog }) => {
             validationSchema={schemaFormLogin}
         >
             <Form className="mt-8 space-y-6">
-                <div className="rounded-md shadow-sm -space-y-px">
+                <div className="-space-y-px rounded-md shadow-sm">
                     <Field
                         type="text"
                         name="username"
@@ -70,7 +70,7 @@ const FormLogin = ({ submit, errorLog }) => {
                     />
                     <div className="text-sm">
                         <Link to="/forgot-password">
-                            <span className="font-medium text-primary-dark hover:text-primary cursor-pointer">
+                            <span className="cursor-pointer font-medium text-primary-dark hover:text-primary">
                                 Forgot your password?
                             </span>
                         </Link>
@@ -80,9 +80,9 @@ const FormLogin = ({ submit, errorLog }) => {
                 <div>
                     <button
                         type="submit"
-                        className="group relative btn btn-primary w-full"
+                        className="btn btn-primary group relative w-full"
                     >
-                        <span className="absolute left-0 inset-y-0 flex items-center pl-3">
+                        <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                             <LockClosedIcon
                                 className="h-5 w-5 text-primary-dark group-hover:text-primary-light"
                                 aria-hidden="true"
@@ -128,11 +128,11 @@ const Login = () => {
     };
 
     return (
-        <div className="bg-white p-4 rounded-md shadow max-w-md w-full space-y-8 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-md space-y-8 rounded-md bg-white p-4 py-12 px-4 shadow sm:px-6 lg:px-8">
             <div>
                 <div className="flex justify-center">
                     <img
-                        className="h-12 w-auto sm:h-10 cursor-pointer"
+                        className="h-12 w-auto cursor-pointer sm:h-10"
                         src="https://insy2s.com/insy2s/images/Logo-insy2s-INLINE-2021.svg"
                         alt=""
                         width={200}

@@ -35,7 +35,7 @@ const Input = ({
             {!noError && (
                 <ErrorMessage
                     name={field.name}
-                    className={`text-xs text-red-500 absolute bottom-0 ${
+                    className={`absolute bottom-0 text-xs text-red-500 ${
                         errorRight ? 'right-0' : 'left-0'
                     }`}
                     component="small"

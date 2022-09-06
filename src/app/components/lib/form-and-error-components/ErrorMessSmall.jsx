@@ -14,7 +14,8 @@ const ErrorMessSmall = ({ message, right, left, middle }) => {
         <small
             className={`text-red-500
                 ${right && 'float-right'} 
-                ${left && 'float-left'}`}>
+                ${left && 'float-left'}`}
+        >
             {message}
         </small>
     );

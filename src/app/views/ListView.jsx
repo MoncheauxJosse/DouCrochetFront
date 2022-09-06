@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import SimpleList from '../shared/components/container/SimpleList';
+import SimpleList from '../components/lib/container/SimpleList';
 
 const dataBackEnd = [
     {
@@ -72,7 +72,7 @@ const EditBtn = () => {
 const Name = ({ person }) => {
     return (
         <div className="flex items-center">
-            <div className="flex-shrink-0 h-10 w-10">
+            <div className="h-10 w-10 flex-shrink-0">
                 <img className="h-10 w-10 rounded-full" src={person.image} alt="" />
             </div>
             <div className="ml-4">
@@ -95,7 +95,7 @@ const Title = ({ person }) => {
 const Active = ({ isActive }) => {
     return (
         <span
-            className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+            className={`inline-flex rounded-full px-2 text-xs font-semibold leading-5 
 			${isActive ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}
         >
             {isActive ? 'Active' : 'Inactive'}

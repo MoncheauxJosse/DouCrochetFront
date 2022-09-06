@@ -2,8 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
 
-import { URL_HOME, URL_LOGIN } from '../shared/constants/urls/urlFrontEnd';
-import { selectHasRole, selectIsLogged } from '../shared/redux-store/authenticationSlice';
+import { URL_HOME, URL_LOGIN } from '../constants/urls/urlFrontEnd';
+import { selectHasRole, selectIsLogged } from '../redux-store/authenticationSlice';
 
 /**
  * Component PriveRoute

@@ -1,10 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import {
-    getPayloadToken,
-    isTokenValid,
-    setToken,
-} from './../../shared/services/tokenServices';
+import { getPayloadToken, isTokenValid, setToken } from './..//services/tokenServices';
 
 /**
  * initial state: {

@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { URL_HOME } from '../shared/constants/urls/urlFrontEnd';
+import { URL_HOME } from '../constants/urls/urlFrontEnd';
 import Login from './../components/account/Login';
-import { selectIsLogged } from './../shared/redux-store/authenticationSlice';
+import { selectIsLogged } from './../redux-store/authenticationSlice';
 
 /**
  * View/Page Login
@@ -20,7 +20,7 @@ const LoginView = () => {
     }, []);
 
     return (
-        <div className="flex items-center justify-center h-full">
+        <div className="flex h-full items-center justify-center">
             <Login className="" />
         </div>
     );

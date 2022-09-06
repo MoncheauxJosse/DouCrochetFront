@@ -98,7 +98,7 @@ export const RadioGroup = ({
             <ErrorMessage
                 name={name}
                 component="small"
-                className="text-xs text-red-500 absolute"
+                className="absolute text-xs text-red-500"
             />
         </div>
     );
@@ -131,7 +131,7 @@ export const CheckboxGroup = ({
             <ErrorMessage
                 name={name}
                 component="small"
-                className="text-xs text-red-500 absolute"
+                className="absolute text-xs text-red-500"
             />
         </div>
     );

@@ -4,8 +4,8 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { URL_HOME } from '../../shared/constants/urls/urlFrontEnd';
-import { signOut } from '../../shared/redux-store/authenticationSlice';
+import { URL_HOME } from '../../constants/urls/urlFrontEnd';
+import { signOut } from '../../redux-store/authenticationSlice';
 
 /**
  * Component to automatically handle deconnection after a certain time
