@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SimpleList = ({ data: { column, rows } }) => {
+const Table = ({ data: { column, rows } }) => {
     return (
         <div className="flex flex-col">
             <div className="overflow-x-auto">
@@ -17,7 +17,7 @@ const SimpleList = ({ data: { column, rows } }) => {
     );
 };
 
-export default SimpleList;
+export default Table;
 
 const THeader = ({ column }) => {
     return (

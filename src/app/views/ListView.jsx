@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import SimpleList from '../components/lib/container/SimpleList';
+import Table from '../components/lib/container/Table';
 
 const dataBackEnd = [
     {
@@ -43,7 +43,7 @@ const ListView = () => {
 
     return (
         <div className="">
-            <SimpleList
+            <Table
                 data={{
                     column: [
                         { name: 'Name' },
@@ -55,6 +55,8 @@ const ListView = () => {
                     rows: people,
                 }}
             />
+
+            <Example />
         </div>
     );
 };
@@ -102,3 +104,45 @@ const Active = ({ isActive }) => {
         </span>
     );
 };
+
+const people = [
+    {
+        name: 'Calvin Hawkins',
+        email: 'calvin.hawkins@example.com',
+        image: 'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+        name: 'Kristen Ramos',
+        email: 'kristen.ramos@example.com',
+        image: 'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+        name: 'Ted Fox',
+        email: 'ted.fox@example.com',
+        image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+];
+
+function Example() {
+    return (
+        <div className="mt-3 ml-7 w-fit rounded-xl border border-gray-300 bg-white px-3 shadow">
+            <ul className="divide-y divide-gray-200">
+                {people.map((person) => (
+                    <li key={person.email} className="flex py-4">
+                        <img
+                            className="h-10 w-10 rounded-full"
+                            src={person.image}
+                            alt=""
+                        />
+                        <div className="ml-3">
+                            <p className="text-sm font-medium text-gray-900">
+                                {person.name}
+                            </p>
+                            <p className="text-sm text-gray-500">{person.email}</p>
+                        </div>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+}
