@@ -1,0 +1,3 @@
+# Dossier Lib
+
+Sert à y mettre tout les composants génériques et utilitaire de l'application. Donc des composants facilement réutilisable, sans logique métier. Comme des buttons, des inputs, des cards, des modals, etc...
