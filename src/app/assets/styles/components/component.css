@@ -1,19 +1,17 @@
 @tailwind components;
 
 @layer components {
-
-    #root{
-        @apply h-full
+    #root {
+        @apply h-screen;
     }
 
     /* LINKS */
     .link {
-        @apply text-base font-medium text-gray-500 cursor-pointer hover:text-primary;
+        @apply cursor-pointer text-base font-medium text-gray-500 hover:text-primary;
     }
 
     /* GEOMETRY */
-    .point{
-        @apply w-4 h-4 p-2 mt-2 rounded-full;
+    .point {
+        @apply mt-2 h-4 w-4 rounded-full p-2;
     }
-    
 }

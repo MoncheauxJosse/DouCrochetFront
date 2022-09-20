@@ -40,10 +40,10 @@ const App = () => {
 
     return (
         <BrowserRouter>
-            <div className="flex h-full cursor-default flex-col bg-gray-100">
+            <div className="flex h-screen cursor-default flex-col bg-gray-100">
                 {isLogged && <IdleTimerCustom />}
                 <Navbar />
-                <main className="mt-24 grow">
+                <main className="mt-24 flex h-full flex-col overflow-y-auto">
                     <Routes />
                 </main>
                 <ToastContainer

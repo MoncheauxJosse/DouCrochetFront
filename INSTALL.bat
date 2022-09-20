@@ -1,1 +1,1 @@
-cmd /k yarn install
+cmd /k yarn
