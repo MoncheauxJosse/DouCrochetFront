@@ -18,23 +18,15 @@
         "react-router-dom": "^6.3.0",
         "react-toastify": "^9.0.7",
         "redux": "^4.2.0",
+        "redux-persist": "^6.0.0",
+        "redux-thunk": "^2.4.1",
         "yup": "^0.32.11"
     },
     "scripts": {
+        "start": "vite",
         "dev": "vite",
         "build": "vite build",
-        "serve": "vite preview",
-        "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --quiet --fix --ignore-path ./.gitignore",
-        "lint:format": "prettier  --loglevel warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" ",
-        "lint-staged": "lint-staged --config lint-staged.js",
-        "husky-install": "husky install",
-        "prepare": "husky install"
-    },
-    "eslintConfig": {
-        "extends": [
-            "react-app",
-            "react-app/jest"
-        ]
+        "serve": "vite preview"
     },
     "browserslist": {
         "production": [
@@ -51,27 +43,9 @@
     "devDependencies": {
         "@vitejs/plugin-react": "^2.1.0",
         "autoprefixer": "^10.4.7",
-        "eslint": "^8.20.0",
-        "eslint-config-prettier": "^8.5.0",
-        "eslint-plugin-import": "^2.26.0",
-        "eslint-plugin-jsx-a11y": "^6.6.1",
-        "eslint-plugin-prettier": "^4.2.1",
-        "eslint-plugin-react": "^7.30.1",
-        "eslint-plugin-simple-import-sort": "^7.0.0",
-        "husky": "^8.0.1",
         "lint-staged": "^13.0.3",
         "postcss": "^8.4.14",
-        "prettier": "^2.7.1",
-        "prettier-plugin-tailwindcss": "^0.1.13",
         "tailwindcss": "^3.1.6",
         "vite": "^3.0.3"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
-    },
-    "lint-staged": {
-        "*.{js,jsx}": "eslint"
     }
 }

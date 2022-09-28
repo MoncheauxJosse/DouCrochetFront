@@ -50,46 +50,6 @@ It has:
 
 
 
-## CODE CHECKING
-
-⚠️ **Important** ⚠️
-
-The project is configure to have code checking and pre commit check.
-
-We using two code checkers
-
-- Eslint
-- Prettier
-
-The full list of checking can be read in files: `.eslintrc.js`, `.prettierrc.js`, `prettier.config.js`.
-
-There are things like:
-
-- max number of characters on one line
-- width of tabulation
-- indentation check
-- comma at the end of a line
-- imports order
-- etc...
-
-
-
-To help see the errors in your code, you'll need to install two extensions: `eslint` and `prettier`. You'll then see the error in red in your code.
-
-Important ! You don't need to fix every error manually. Your IDE can do this for you ! You only need to set `Prettier - Code formatter` as your Default Formatter (File > Preferences > Settings > *search for Default Formatter*) in your settings. Then check `Format On Save` in your settings. 
-
-Then most of the error will correct themselves automatically when you save. For the other ones, you can do it manually or try `put you cursor above it (no clicking !) > Quick Fix > Fix all `.
-
-
-
-To be sure that no error can be push in the repository, we added `husky`. Which is a tool that will run a scan of your code for every file committed, and check your code with the help of eslint and prettier. If there is an error, it will prevent the commit.
-
-
-
-*tl;dr*: if your code is not written in the correct way, you will not be able to push it on the repository
-
-
-
 ## IDE
 
 IDE suggested: `VSCode`

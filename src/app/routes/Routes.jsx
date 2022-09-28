@@ -6,7 +6,6 @@ import * as URL from '../constants/urls/urlFrontEnd';
 import AdminHomeView from '../views/AdminHomeView';
 import HomeView from '../views/HomeView';
 import LoginView from '../views/LoginView';
-import ListView from './../views/ListView';
 import { PrivateRoute } from './PrivateRoute';
 
 /**
@@ -35,7 +34,6 @@ const Routes = () => {
                 }
             />
             <Route path={URL.URL_LOGIN} element={<LoginView />} />
-            <Route path={URL.URL_LIST} element={<ListView />} />
         </RoutesContainer>
     );
 };
