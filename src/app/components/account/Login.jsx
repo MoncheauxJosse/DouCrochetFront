@@ -24,12 +24,12 @@ import { authenticate } from './../../api/backend/account';
  */
 const FormLogin = ({ submit, errorLog }) => {
     const defaulValuesLogin = {
-        username: '',
+        email: '',
         password: '',
         rememberMe: false,
     };
     const schemaFormLogin = Yup.object().shape({
-        username: Yup.string().required('Required input'),
+        email: Yup.string().required('Required input'),
         password: Yup.string().required('Required input'),
     });
 
@@ -43,9 +43,9 @@ const FormLogin = ({ submit, errorLog }) => {
                 <div className="-space-y-px rounded-md shadow-sm">
                     <Field
                         type="text"
-                        name="username"
-                        placeholder="Login"
-                        autoComplete="username"
+                        name="email"
+                        placeholder="Email"
+                        autoComplete="email"
                         component={Input}
                         className="rounded-none rounded-t-md"
                         noError
@@ -53,7 +53,7 @@ const FormLogin = ({ submit, errorLog }) => {
                     <Field
                         type="password"
                         name="password"
-                        placeholder="Password"
+                        placeholder="Mot de passe"
                         autoComplete="current-password"
                         component={Input}
                         className="rounded-none rounded-b-md"
@@ -64,14 +64,14 @@ const FormLogin = ({ submit, errorLog }) => {
                 <div className="flex items-center justify-between">
                     <Field
                         name="rememberMe"
-                        label="Remember me"
+                        label="Se souvenir de moi"
                         component={Checkbox}
                         value={true}
                     />
                     <div className="text-sm">
                         <Link to="/forgot-password">
                             <span className="cursor-pointer font-medium text-primary-dark hover:text-primary">
-                                Forgot your password?
+                                Mot de passe oublié ?
                             </span>
                         </Link>
                     </div>
@@ -88,11 +88,11 @@ const FormLogin = ({ submit, errorLog }) => {
                                 aria-hidden="true"
                             />
                         </span>
-                        Sign in
+                        Se connecter
                     </button>
                 </div>
                 {errorLog && (
-                    <ErrorMessSmall middle message="Login/Password incorrect(s)" />
+                    <ErrorMessSmall middle message="Email ou mot de passe incorrect(s)" />
                 )}
             </Form>
         </Formik>
@@ -117,10 +117,13 @@ const Login = () => {
     const navigate = useNavigate();
 
     const handleLogin = (values) => {
+        console.log(values)
         authenticate(values)
+
             .then((res) => {
-                if (res.status === 200 && res.data.id_token) {
-                    dispatch(signIn(res.data.id_token));
+                console.log(res)
+                if (res.status === 200 && res.data.token) {
+                    dispatch(signIn(res.data.token));
                     navigate(URL_HOME);
                 }
             })
@@ -140,12 +143,12 @@ const Login = () => {
                     />
                 </div>
                 <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-800">
-                    Sign in to your account
+                    Se connecter
                 </h2>
             </div>
 
             <hr />
-            <FormLogin errorLog={errorLog} submit={handleLogin} />
+            <FormLogin errorLog={errorLog} submit={handleLogin}/>
         </div>
     );
 };
