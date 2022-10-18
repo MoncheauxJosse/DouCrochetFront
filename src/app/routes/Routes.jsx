@@ -28,9 +28,9 @@ const Routes = () => {
             <Route
                 path={URL.URL_ADMIN_HOME}
                 element={
-                    <PrivateRoute roles={[ROLE_ADMIN]}>
+                    
                         <AdminHomeView />
-                    </PrivateRoute>
+                    
                 }
             />
             <Route path={URL.URL_LOGIN} element={<LoginView />} />
