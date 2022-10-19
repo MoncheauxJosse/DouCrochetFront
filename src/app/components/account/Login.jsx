@@ -11,6 +11,7 @@ import ErrorMessSmall from '../lib/form-and-error-components/ErrorMessSmall';
 import Input from '../lib/form-and-error-components/Input';
 import { Checkbox } from '../lib/form-and-error-components/InputChoices';
 import { authenticate } from './../../api/backend/account';
+import '../../css/login.css';
 
 /**
  * Component Form Login
@@ -70,7 +71,7 @@ const FormLogin = ({ submit, errorLog }) => {
                     />
                     <div className="text-sm">
                         <Link to="/forgot-password">
-                            <span className="cursor-pointer font-medium text-primary-dark hover:text-primary">
+                            <span className="cursor-pointer font-medium ">
                                 Mot de passe oublié ?
                             </span>
                         </Link>
@@ -80,11 +81,11 @@ const FormLogin = ({ submit, errorLog }) => {
                 <div>
                     <button
                         type="submit"
-                        className="btn btn-primary group relative w-full"
+                        className="connect-button bg-light-yellow text-dark-pink btn group relative w-full"
                     >
                         <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                             <LockClosedIcon
-                                className="h-5 w-5 text-primary-dark group-hover:text-primary-light"
+                                className="locker text-dark-pink h-5 w-5"
                                 aria-hidden="true"
                             />
                         </span>
@@ -131,9 +132,9 @@ const Login = () => {
     };
 
     return (
-        <div className="w-full max-w-md space-y-8 rounded-md bg-white p-4 py-12 px-4 shadow sm:px-6 lg:px-8">
+        <div className="connect-form w-full max-w-md space-y-8 rounded-md bg-dark-pink p-4 py-12 px-4 shadow sm:px-6 lg:px-8">
             <div>
-                <div className="flex justify-center">
+                {/* <div className="flex justify-center">
                     <img
                         className="h-12 w-auto cursor-pointer sm:h-10"
                         src="https://insy2s.com/insy2s/images/Logo-insy2s-INLINE-2021.svg"
@@ -141,8 +142,8 @@ const Login = () => {
                         width={200}
                         height={60}
                     />
-                </div>
-                <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-800">
+                </div> */}
+                <h2 className="connect-title mt-6 text-center text-3xl font-extrabold text-gray-800">
                     Se connecter
                 </h2>
             </div>
