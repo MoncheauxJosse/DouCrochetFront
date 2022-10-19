@@ -20,9 +20,9 @@ const Routes = () => {
             <Route
                 path={URL.URL_HOME}
                 element={
-                    <PrivateRoute>
+                    // <PrivateRoute>
                         <HomeView />
-                    </PrivateRoute>
+                    // </PrivateRoute>
                 }
             />
             <Route
@@ -34,6 +34,7 @@ const Routes = () => {
                 }
             />
             <Route path={URL.URL_LOGIN} element={<LoginView />} />
+            <Route path={URL.URL_HOME} element={<HomeView />} />
         </RoutesContainer>
     );
 };
