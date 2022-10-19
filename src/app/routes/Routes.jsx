@@ -7,6 +7,7 @@ import AdminHomeView from '../views/AdminHomeView';
 import HomeView from '../views/HomeView';
 import LoginView from '../views/LoginView';
 import { PrivateRoute } from './PrivateRoute';
+import FormProduct from '../views/FormulaireProduct';
 
 /**
  * Routes of the application
@@ -20,9 +21,9 @@ const Routes = () => {
             <Route
                 path={URL.URL_HOME}
                 element={
-                    <PrivateRoute>
+                    //<PrivateRoute>
                         <HomeView />
-                    </PrivateRoute>
+                    //</PrivateRoute>
                 }
             />
             <Route
@@ -34,6 +35,7 @@ const Routes = () => {
                 }
             />
             <Route path={URL.URL_LOGIN} element={<LoginView />} />
+            <Route path={URL.URL_CREATE_PRODUCT} element={<FormProduct />} />
         </RoutesContainer>
     );
 };
