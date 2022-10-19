@@ -117,6 +117,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     const handleLogin = (values) => {
+         console.log("handlelogin")
         authenticate(values)
             .then((res) => {
                 if (res.status === 200 && res.data.id_token) {
@@ -144,7 +145,7 @@ const Login = () => {
                 </h2>
             </div>
 
-            <hr />
+            <hr/>
             <FormLogin errorLog={errorLog} submit={handleLogin} />
         </div>
     );
