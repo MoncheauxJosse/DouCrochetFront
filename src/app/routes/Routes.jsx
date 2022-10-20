@@ -8,22 +8,15 @@ import HomeView from '../views/HomeView';
 import LoginView from '../views/LoginView';
 import ProductsView from '../views/ProductsView';
 import { PrivateRoute } from './PrivateRoute';
+import RegisterView from '../views/RegistrerView';
 
-/**
- * Routes of the application
- * with public and private route
- *
- * @author Peter Mollet
- */
 const Routes = () => {
     return (
         <RoutesContainer>
             <Route
                 path={URL.URL_HOME}
                 element={
-                    <PrivateRoute>
                         <HomeView />
-                    </PrivateRoute>
                 }
             />
             <Route
@@ -36,6 +29,8 @@ const Routes = () => {
             />
             <Route path={URL.URL_PRODUCTS} element={<ProductsView />} />
             <Route path={URL.URL_LOGIN} element={<LoginView />} />
+            <Route path={URL.URL_HOME} element={<HomeView />} />
+            <Route path={URL.URL_REGISTER} element={<RegisterView/>}/>
         </RoutesContainer>
     );
 };
