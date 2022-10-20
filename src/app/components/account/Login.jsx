@@ -14,14 +14,10 @@ import { authenticate } from './../../api/backend/account';
 import '../../css/login.css';
 
 /**
- * Component Form Login
- * Use Formik to create the Form
- *
  * @param {function} submit: submit Function
  * @param {object} initialValues: the initial values of the form
  * @param {boolean} errorLog: to display or not the message of login/mdp not valid
  * @param {object} validationSchema: validation's schema of the form
- * @author Peter Mollet
  */
 const FormLogin = ({ submit, errorLog }) => {
     const defaulValuesLogin = {
@@ -100,18 +96,6 @@ const FormLogin = ({ submit, errorLog }) => {
     );
 };
 
-/**
- * Component Login
- *
- * will need in props:
- *  - Submit Function
- *  - errorLog boolean
- *  - validationSchema
- *
- * See above for information
- *
- * @author Peter Mollet
- */
 const Login = () => {
     const [errorLog, setErrorLog] = useState(false);
     const dispatch = useDispatch();
@@ -119,6 +103,7 @@ const Login = () => {
 
     const handleLogin = (values) => {
         console.log(values)
+         console.log("handlelogin")
         authenticate(values)
 
             .then((res) => {
@@ -134,22 +119,12 @@ const Login = () => {
     return (
         <div className="connect-form w-full max-w-md space-y-8 rounded-md bg-light-pink p-4 py-12 px-4 shadow sm:px-6 lg:px-8">
             <div>
-                {/* <div className="flex justify-center">
-                    <img
-                        className="h-12 w-auto cursor-pointer sm:h-10"
-                        src="https://insy2s.com/insy2s/images/Logo-insy2s-INLINE-2021.svg"
-                        alt=""
-                        width={200}
-                        height={60}
-                    />
-                </div> */}
                 <h2 className="connect-title mt-6 text-center text-3xl font-extrabold text-gray-800">
                     Se connecter
                 </h2>
             </div>
-
-            <hr />
-            <FormLogin errorLog={errorLog} submit={handleLogin}/>
+            <hr/>
+            <FormLogin errorLog={errorLog} submit={handleLogin} />
         </div>
     );
 };
