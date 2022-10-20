@@ -3,21 +3,23 @@ import { getAll } from "../api/backend/users";
 // import { getAll } from '../../app/api/backend/users';
 
 const UsersView = () => {
-  const [allUsers, setUsers] = useState([]);
+  const [users, setUsers] = useState([]);
   const [loader, setloader] = useState({ state: false });
 
   useEffect(() => {
     // const fetchData = async () => {
-      const usersData = getAll();
-      setUsers(usersData);
-      console.log(usersData);
+       getAll().then(userdata =>{
+
+        setUsers(userdata.data);
+        console.log(userdata);
+      });
     // };
 
     // fetchData();
     setloader({state:true}) 
   }, []);
 
-  console.log(allUsers.data);
+  console.log(users);
 
   if (loader.state == false) {
     console.log(loader.sta)
@@ -42,11 +44,14 @@ const UsersView = () => {
         </tr>
       </thead>
       <tbody className="bg-white">
-        <tr>
-          <td className="border-b border-gray-200 ...">Johne Doe</td>
-          <td className="border-b border-gray-200 ...">Johne.Doe@gmail.com</td>
-          <td className="border-b border-gray-200 ...">Client</td>
+          {users.map(user =>(
+        <tr key = {user._id}>
+            
+          <td className="border-b border-gray-200 ...">{user.firstname +" " + user.lastname}</td>
+          <td className="border-b border-gray-200 ...">{user.email}</td>
+          <td className="border-b border-gray-200 ...">{user.role.role}</td>
         </tr>
+          ))}
       </tbody>
     </table>
   );
@@ -54,3 +59,4 @@ const UsersView = () => {
 }
 
 export default UsersView;
+
