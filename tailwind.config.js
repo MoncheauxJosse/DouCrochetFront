@@ -13,6 +13,9 @@ module.exports = {
                     DEFAULT: '#ed7410',
                     dark: '#bf5d0d',
                 },
+                'pink-light': '#eca7a7',
+                'pink-dark': '#ed8179',
+                'beige-light': '#fff6e5'
             },
         },
     },

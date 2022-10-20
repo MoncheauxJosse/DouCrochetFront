@@ -4,7 +4,10 @@ import { URL_HOME } from "../constants/urls/urlFrontEnd";
 const RegisterView = ()=>{
 
     return (
-        <Register/>
+        <div class="flex justify-center bg-beige-light">
+
+            <Register/>
+        </div>
     )
 }
 export default RegisterView;

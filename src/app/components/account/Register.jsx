@@ -22,7 +22,7 @@ import * as Yup from 'yup';
 
 const FormRegister = ({ submit, errorLog }) => {
     const defaulValuesLogin = {
-        firsname: '',
+        firstname: '',
         lastname:'',
         birthdate:'',
         telephone:'',
@@ -37,7 +37,7 @@ const FormRegister = ({ submit, errorLog }) => {
         rememberMe: false,
     };
  const schemaFormLogin = Yup.object().shape({
-        firsname: Yup.string().required('Required input'),
+    firstname: Yup.string().required('Required input'),
         lastname: Yup.string().required('Required input'),
         birthdate: Yup.string().required('Required input'),
         telephone: Yup.string().required('Required input'),
@@ -56,154 +56,150 @@ const FormRegister = ({ submit, errorLog }) => {
         onSubmit={submit}
         validationSchema={schemaFormLogin}
         >
-            <Form className="mt-8 space-y-6 w-96">
-                <div className="-space-y-px rounded-md shadow-sm">
-                    <div className="flex flex-row">
+            <Form className="mt-8 space-y-6 w-96 rounded-md bg-pink-light flex justify-center pt-4 pb-4">
+                <div className="w-80 ">
+                    <div className="shadow-sm">
+                        <div className="flex flex-row">
+                            <Field
+                                type="text"
+                                name="firstname"
+                                placeholder="firstname"
+                                autoComplete="firstname"
+                                component={Input}
+                                className="rounded-md"
+                                noError
+                            />
+                            <Field
+                                type="text"
+                                name="lastname"
+                                placeholder="lastname"
+                                autoComplete="lastname"
+                                component={Input}
+                                className="rounded-md"
+                                noError
+                            />
+                        </div>
+                            <Field
+                                type="text"
+                                name="birthdate"
+                                placeholder="birthdate"
+                                autoComplete="birthdate"
+                                component={Input}
+                                className="rounded-md"
+                                noError
+                            />
+                            <Field
+                                type="text"
+                                name="telephone"
+                                placeholder="telephone"
+                                autoComplete="telephone"
+                                component={Input}
+                                className="rounded-md"
+                                noError
+                            />
+                    </div>
+                    <div class="pt-4">
                         <Field
                             type="text"
-                            name="firsname"
-                            placeholder="firsname"
-                            autoComplete="firstname"
+                            name="email"
+                            placeholder="email"
+                            autoComplete="email"
                             component={Input}
-                            className="rounded-none rounded-t-md"
+                            className="rounded-md"
+                            noError
+                        />
+                        <Field
+                            type="password"
+                            name="password"
+                            placeholder="password"
+                            autoComplete="password"
+                            component={Input}
+                            className="rounded-md"
+                            noError
+                        />
+                        <Field
+                            type="password"
+                            name="Confirmpassword"
+                            placeholder="confirm your Password"
+                            autoComplete="current-password"
+                            component={Input}
+                            className="rounded-md"
+                            noError
+                        />
+                    </div>
+                    <div class="pt-4">
+                        <Field
+                            type="text"
+                            name="country"
+                            placeholder="country"
+                            autoComplete="country"
+                            component={Input}
+                            className="rounded-md"
                             noError
                         />
                         <Field
                             type="text"
-                            name="lastname"
-                            placeholder="lastname"
-                            autoComplete="lastname"
+                            name="cityCode"
+                            placeholder="cityCode"
+                            autoComplete="cityCode"
                             component={Input}
-                            className="rounded-none rounded-t-md"
+                            className="rounded-md"
+                            noError
+                        />
+                        <Field
+                            type="text"
+                            name="number"
+                            placeholder="number"
+                            autoComplete="number"
+                            component={Input}
+                            className="rounded-b-md"
+                            noError
+                        />
+                        <Field
+                            type="text"
+                            name="street"
+                            placeholder="street"
+                            autoComplete="street"
+                            component={Input}
+                            className="rounded-md"
+                            noError
+                        />
+                        <Field
+                            type="text"
+                            name="city"
+                            placeholder="city"
+                            autoComplete="city"
+                            component={Input}
+                            className="rounded-md"
                             noError
                         />
                     </div>
-                    <Field
-                        type="text"
-                        name="birthdate"
-                        placeholder="birthdate"
-                        autoComplete="birthdate"
-                        component={Input}
-                        className="rounded-none rounded-t-md"
-                        noError
-                    />
-                    <Field
-                        type="text"
-                        name="telephone"
-                        placeholder="telephone"
-                        autoComplete="telephone"
-                        component={Input}
-                        className="rounded-none rounded-t-md"
-                        noError
-                    />
-                </div>
-                <div>
-                    <Field
-                        type="text"
-                        name="email"
-                        placeholder="email"
-                        autoComplete="email"
-                        component={Input}
-                        className="rounded-none rounded-t-md"
-                        noError
-                    />
-                    <Field
-                        type="password"
-                        name="password"
-                        placeholder="password"
-                        autoComplete="password"
-                        component={Input}
-                        className="rounded-none rounded-t-md"
-                        noError
-                    />
-                    <Field
-                        type="password"
-                        name="Confirmpassword"
-                        placeholder="confirm your Password"
-                        autoComplete="current-password"
-                        component={Input}
-                        className="rounded-none rounded-b-md"
-                        noError
-                    />
-                </div>
-                <div>
-                    <Field
-                        type="text"
-                        name="country"
-                        placeholder="country"
-                        autoComplete="country"
-                        component={Input}
-                        className="rounded-none rounded-b-md"
-                        noError
-                    />
-                    <Field
-                        type="text"
-                        name="cityCode"
-                        placeholder="cityCode"
-                        autoComplete="cityCode"
-                        component={Input}
-                        className="rounded-none rounded-b-md"
-                        noError
-                    />
-                    <Field
-                        type="text"
-                        name="number"
-                        placeholder="number"
-                        autoComplete="number"
-                        component={Input}
-                        className="rounded-none rounded-b-md"
-                        noError
-                    />
-                    <Field
-                        type="text"
-                        name="street"
-                        placeholder="street"
-                        autoComplete="street"
-                        component={Input}
-                        className="rounded-none rounded-b-md"
-                        noError
-                    />
-                    <Field
-                        type="text"
-                        name="city"
-                        placeholder="city"
-                        autoComplete="city"
-                        component={Input}
-                        className="rounded-none rounded-b-md"
-                        noError
-                    />
-                </div>
-
-                <div className="flex items-center justify-between">
-                    <div className="text-sm">
-                        <Link to="/forgot-password">
-                            <span className="cursor-pointer font-medium text-primary-dark hover:text-primary">
-                                Forgot your password?
-                            </span>
-                        </Link>
+                    <div>
+                        <button
+                            type="submit"
+                            className="btn bg-beige-light text-pink-dark group relative w-full mt-4"
+                        >
+                            Register
+                        </button>
                     </div>
+                    {errorLog && (
+                        <ErrorMessSmall middle message="incorrect(s)" />
+                    )}
                 </div>
-                <div>
-                    <button
-                        type="submit"
-                        className="btn btn-primary group relative w-full"
-                    >
-                        Register
-                    </button>
-                </div>
-                {errorLog && (
-                    <ErrorMessSmall middle message="incorrect(s)" />
-                )}
             </Form>
         </Formik>
     );
 };
 
-const Register = (values) => {
-    const handleRegister=()=>{
+const Register = () => {
+    const navigate = useNavigate();
+    const handleRegister=(values)=>{
       console.log("handleregister")
-      register(values)
 
+      register(values)
+    //   if(values){
+    //       navigate(URL_HOME);
+    //   }
     };
 
     
