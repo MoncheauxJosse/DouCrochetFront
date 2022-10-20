@@ -6,22 +6,6 @@ import * as Yup from 'yup'
 
 const FormProduct = () =>{
 
-
-    const validationForm = () =>
- Yup.object({
-    name: Yup.string()
-   .min(1, "Minimum 1 caractére")
-   .required("champs requis"),
-   description: Yup.string()
-   .min(10, "minimum 10 caractéres")
-   .required("champs requis"),
-   quantity: Yup.number()
-   .min(1, "minimum 1")
-   .required("champs requis"),
-   price: Yup.number()
-   .min(1, "minimum 1")
-   .required("champs requis")
- })
   
       const formik = useFormik({
           initialValues: {
@@ -37,24 +21,6 @@ const FormProduct = () =>{
   
               postProduct(formik.values)
             }, 
-            /*validationSchema: Yup.object().shape({
-
-              name: Yup.string()
-                      .label('name')
-                      .required(),
-              price:Yup.number()
-              .min(1, 'erreur das le prix')
-              .required(),
-              description: Yup.string()
-              .label('description')
-              .required(),
-              quantity : Yup.number()
-              .min(15, 'erreur dans la quantité')
-              .required(),
-              image: Yup.string()
-              .label('image')
-              .required()
-            }),*/
         }
           ); 
         
