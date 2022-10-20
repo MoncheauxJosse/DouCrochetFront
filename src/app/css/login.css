@@ -1,0 +1,4 @@
+.connect-button:hover{
+    box-shadow: inset 0px 0px 8px 0px #ed8179;
+    border: 1px solid #ed8179;
+}

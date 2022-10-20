@@ -11,25 +11,22 @@ import ErrorMessSmall from '../lib/form-and-error-components/ErrorMessSmall';
 import Input from '../lib/form-and-error-components/Input';
 import { Checkbox } from '../lib/form-and-error-components/InputChoices';
 import { authenticate } from './../../api/backend/account';
+import '../../css/login.css';
 
 /**
- * Component Form Login
- * Use Formik to create the Form
- *
  * @param {function} submit: submit Function
  * @param {object} initialValues: the initial values of the form
  * @param {boolean} errorLog: to display or not the message of login/mdp not valid
  * @param {object} validationSchema: validation's schema of the form
- * @author Peter Mollet
  */
 const FormLogin = ({ submit, errorLog }) => {
     const defaulValuesLogin = {
-        username: '',
+        email: '',
         password: '',
         rememberMe: false,
     };
     const schemaFormLogin = Yup.object().shape({
-        username: Yup.string().required('Required input'),
+        email: Yup.string().required('Required input'),
         password: Yup.string().required('Required input'),
     });
 
@@ -43,9 +40,9 @@ const FormLogin = ({ submit, errorLog }) => {
                 <div className="-space-y-px rounded-md shadow-sm">
                     <Field
                         type="text"
-                        name="username"
-                        placeholder="Login"
-                        autoComplete="username"
+                        name="email"
+                        placeholder="Email"
+                        autoComplete="email"
                         component={Input}
                         className="rounded-none rounded-t-md"
                         noError
@@ -53,7 +50,7 @@ const FormLogin = ({ submit, errorLog }) => {
                     <Field
                         type="password"
                         name="password"
-                        placeholder="Password"
+                        placeholder="Mot de passe"
                         autoComplete="current-password"
                         component={Input}
                         className="rounded-none rounded-b-md"
@@ -64,14 +61,14 @@ const FormLogin = ({ submit, errorLog }) => {
                 <div className="flex items-center justify-between">
                     <Field
                         name="rememberMe"
-                        label="Remember me"
+                        label="Se souvenir de moi"
                         component={Checkbox}
                         value={true}
                     />
                     <div className="text-sm">
                         <Link to="/forgot-password">
-                            <span className="cursor-pointer font-medium text-primary-dark hover:text-primary">
-                                Forgot your password?
+                            <span className="cursor-pointer font-medium ">
+                                Mot de passe oublié ?
                             </span>
                         </Link>
                     </div>
@@ -80,47 +77,39 @@ const FormLogin = ({ submit, errorLog }) => {
                 <div>
                     <button
                         type="submit"
-                        className="btn btn-primary group relative w-full"
+                        className="connect-button bg-light-yellow text-dark-pink btn group relative w-full"
                     >
                         <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                             <LockClosedIcon
-                                className="h-5 w-5 text-primary-dark group-hover:text-primary-light"
+                                className="locker text-dark-pink h-5 w-5"
                                 aria-hidden="true"
                             />
                         </span>
-                        Sign in
+                        Se connecter
                     </button>
                 </div>
                 {errorLog && (
-                    <ErrorMessSmall middle message="Login/Password incorrect(s)" />
+                    <ErrorMessSmall middle message="Email ou mot de passe incorrect(s)" />
                 )}
             </Form>
         </Formik>
     );
 };
 
-/**
- * Component Login
- *
- * will need in props:
- *  - Submit Function
- *  - errorLog boolean
- *  - validationSchema
- *
- * See above for information
- *
- * @author Peter Mollet
- */
 const Login = () => {
     const [errorLog, setErrorLog] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleLogin = (values) => {
+        console.log(values)
+         console.log("handlelogin")
         authenticate(values)
+
             .then((res) => {
-                if (res.status === 200 && res.data.id_token) {
-                    dispatch(signIn(res.data.id_token));
+                console.log(res)
+                if (res.status === 200 && res.data.token) {
+                    dispatch(signIn(res.data.token));
                     navigate(URL_HOME);
                 }
             })
@@ -128,23 +117,13 @@ const Login = () => {
     };
 
     return (
-        <div className="w-full max-w-md space-y-8 rounded-md bg-black p-4 py-12 px-4 shadow sm:px-6 lg:px-8">
+        <div className="connect-form w-full max-w-md space-y-8 rounded-md bg-light-pink p-4 py-12 px-4 shadow sm:px-6 lg:px-8">
             <div>
-                <div className="flex justify-center">
-                    <img
-                        className="h-12 w-auto cursor-pointer sm:h-10"
-                        src="https://insy2s.com/insy2s/images/Logo-insy2s-INLINE-2021.svg"
-                        alt=""
-                        width={200}
-                        height={60}
-                    />
-                </div>
-                <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-800">
-                    Sign in to your account
+                <h2 className="connect-title mt-6 text-center text-3xl font-extrabold text-gray-800">
+                    Se connecter
                 </h2>
             </div>
-
-            <hr />
+            <hr/>
             <FormLogin errorLog={errorLog} submit={handleLogin} />
         </div>
     );
