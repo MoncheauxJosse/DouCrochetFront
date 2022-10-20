@@ -132,7 +132,7 @@ const Login = () => {
     };
 
     return (
-        <div className="connect-form w-full max-w-md space-y-8 rounded-md bg-dark-pink p-4 py-12 px-4 shadow sm:px-6 lg:px-8">
+        <div className="connect-form w-full max-w-md space-y-8 rounded-md bg-light-pink p-4 py-12 px-4 shadow sm:px-6 lg:px-8">
             <div>
                 {/* <div className="flex justify-center">
                     <img
