@@ -1,5 +1,5 @@
 module.exports = {
-    content: ['./src/**/*.{js,jsx,ts,tsx}', './index.html'],
+    content: ['./src/**/*.{js,jsx,ts,tsx}'],
     theme: {
         extend: {
             colors: {
@@ -13,9 +13,9 @@ module.exports = {
                     DEFAULT: '#ed7410',
                     dark: '#bf5d0d',
                 },
-                'pink-light': '#eca7a7',
-                'pink-dark': '#ed8179',
-                'beige-light': '#fff6e5'
+                'light-pink': '#eca7a7',
+                'dark-pink': '#ed8179',
+                'light-yellow': '#fff5e4'
             },
         },
     },

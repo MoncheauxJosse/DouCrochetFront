@@ -13,6 +13,8 @@ const apiBackEnd = axios.create({
 });
 export default apiBackEnd;
 
+
+
 /**
  * Interceptor of request to automatically put the JWTToken in the header
  *
