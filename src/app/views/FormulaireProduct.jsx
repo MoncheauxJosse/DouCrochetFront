@@ -8,16 +8,29 @@ const FormProduct = () =>{
 
   
       const formik = useFormik({
+
           initialValues: {
-            
-                name: "",
-                price: 0,
-                description: "",
-                quantity: 1,
-                image: '',
-                
+            name:"",
+            price:1,
+            description:"",
+            quantity: 1,
+            image:""
           },
+
           onSubmit: values => {
+
+
+            console.log(formik.values)
+
+            /*const form = {
+              name: formik.values.name,
+              price: formik.values.price,
+              description: formik.values.description,
+              quantity: formik.values.quantity,
+              image: formik.values.image
+            }*/
+
+            console.log(formik.values)
   
               postProduct(formik.values)
             }, 
@@ -27,7 +40,7 @@ const FormProduct = () =>{
 
         useEffect(() => {
 
-            console.log(formik.values)
+            //console.log(formik.values)
      
           },[formik]);
 

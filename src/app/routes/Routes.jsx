@@ -4,7 +4,7 @@ import RegisterView from '../views/RegistrerView';
 import { ROLE_ADMIN } from '../constants/rolesConstant';
 import * as URL from '../constants/urls/urlFrontEnd';
 import AdminHomeView from '../views/AdminHomeView';
-import FormProduct from '../views/FormulaireProduct';
+import FormProductView from '../views/FormulaireProductView';
 import HomeView from '../views/HomeView';
 import LoginView from '../views/LoginView';
 import ProductsView from '../views/ProductsView';
@@ -31,7 +31,7 @@ const Routes = () => {
                 }
             />
             <Route path={URL.URL_LOGIN} element={<LoginView/>}/>
-            <Route path={URL.URL_CREATE_PRODUCT} element={<FormProduct/>}/>
+            <Route path={URL.URL_CREATE_PRODUCT} element={<FormProductView/>}/>
             <Route path={URL.URL_HOME} element={<HomeView/>}/>
             
             

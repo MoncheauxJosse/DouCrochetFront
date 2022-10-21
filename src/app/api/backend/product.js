@@ -7,7 +7,6 @@ export function getAll() {
 }
 
 export const postProduct = async (product)=>{
-
-    console.log(product)
+    
     return apiBackEnd.post(URL_BACK_CREATE_PRODUCT,product);
 }
