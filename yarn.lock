@@ -731,11 +731,6 @@
   "resolved" "https://registry.npmjs.org/emoji-regex/-/emoji-regex-9.2.2.tgz"
   "version" "9.2.2"
 
-"esbuild-windows-64@0.14.50":
-  "integrity" "sha512-r/qE5Ex3w1jjGv/JlpPoWB365ldkppUlnizhMxJgojp907ZF1PgLTuW207kgzZcSCXyquL9qJkMsY+MRtaZ5yQ=="
-  "resolved" "https://registry.npmjs.org/esbuild-windows-64/-/esbuild-windows-64-0.14.50.tgz"
-  "version" "0.14.50"
-
 "esbuild@^0.14.47":
   "integrity" "sha512-SbC3k35Ih2IC6trhbMYW7hYeGdjPKf9atTKwBUHqMCYFZZ9z8zhuvfnZihsnJypl74FjiAKjBRqFkBkAd0rS/w=="
   "resolved" "https://registry.npmjs.org/esbuild/-/esbuild-0.14.50.tgz"
