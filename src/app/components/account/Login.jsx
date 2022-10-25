@@ -100,21 +100,23 @@ const Login = () => {
     const [errorLog, setErrorLog] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
+    
     const handleLogin = (values) => {
         console.log(values)
-         console.log("handlelogin")
+        console.log("handlelogin")
         authenticate(values)
-
-            .then((res) => {
-                console.log(res)
-                if (res.status === 200 && res.data.token) {
-                    dispatch(signIn(res.data.token));
-                    navigate(URL_HOME);
-                }
-            })
-            .catch(() => setErrorLog(true));
+        
+        .then((res) => {
+            console.log(res)
+            console.log("passe then")
+            if (res.status === 200 && res.data.token) {
+                dispatch(signIn(res.data.token));
+                navigate(URL_HOME);
+            }
+        })
+        .catch(() => setErrorLog(true));
     };
+    console.log(errorLog)
 
     return (
         <div className="connect-form w-full max-w-md space-y-8 rounded-md bg-light-pink p-4 py-12 px-4 shadow sm:px-6 lg:px-8">
