@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
 
 import { URL_HOME, URL_LOGIN } from '../constants/urls/urlFrontEnd';
-import { selectIsLogged } from '../redux-store/authenticationSlice';
+import { selectHasRole,selectIsLogged } from '../redux-store/authenticationSlice';
 
 /**
  * Component PriveRoute
@@ -15,10 +15,19 @@ import { selectIsLogged } from '../redux-store/authenticationSlice';
  *          <PrivateRoute path={URL_ADMIN_HOME} element={AdminHomeView} roles={[ROLE_ADMIN]} />
  * @author Peter Mollet
  */
+
+
+// recuper le role et verifie celui-ci . 
+//  <PrivateRoute path={URL_ADMIN_HOME} element={AdminHomeView} roles={[ROLE_ADMIN]} /> ????
 export const PrivateRoute = ({ children, roles }) => {
+
+    console.log("sa passe dans le private")
     const location = useLocation();
     const isAuthenticated = useSelector(selectIsLogged);
-    // const hasRole = useSelector((state) => selectHasRole(state, roles));
+
+    //passe le role dans selectHasrole ( authenticationSlice.js)
+    const hasRole = useSelector((state) => selectHasRole(state, roles));
+
     if (!isAuthenticated)
         return <Navigate replace to={URL_LOGIN} state={{ from: location }} />;
 
@@ -26,3 +35,4 @@ export const PrivateRoute = ({ children, roles }) => {
 
     return children;
 };
+

@@ -107,8 +107,11 @@ const Login = () => {
         authenticate(values)
 
             .then((res) => {
-                console.log(res)
+                console.log("ligne 110 Login")
+                console.log(res.data.token)
                 if (res.status === 200 && res.data.token) {
+
+                    //token passe ici !!!!
                     dispatch(signIn(res.data.token));
                     navigate(URL_HOME);
                 }

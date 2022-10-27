@@ -1,2 +1,4 @@
-export const ROLE_ADMIN = 'ROLE_ADMIN';
-export const ROLE_USER = 'ROLE_USER';
+export const ROLE_ADMIN = 'admin';
+export const ROLE_COMMERCIAL = 'commercial';
+export const ROLE_USER = 'client';
+

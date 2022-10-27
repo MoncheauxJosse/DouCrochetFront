@@ -1,12 +1,12 @@
-import React, {useEffect} from 'react'
+import React, {useEffect,useState} from 'react'
 import { useFormik } from 'formik';
 import { postProduct } from '../api/backend/product';
+import jwt from 'jwt-decode'
 import * as Yup from 'yup'
 
 
 const FormProduct = () =>{
-
-  
+ 
       const formik= useFormik({
 
           initialValues: {
@@ -35,13 +35,27 @@ const FormProduct = () =>{
         }
           ); 
 
-          console.log(formik.errors)
+
         
 
         useEffect(() => {
 
-            //console.log(formik.values)
-     
+
+          // recupere le storege
+          const recupeStorage = localStorage.getItem("persist:root")
+          // parse le storage recuperer pour avoir la donné "auth"
+          const ParseStorage = JSON.parse(recupeStorage);
+          // parse la donné auth pour recuper par la suite le token
+          const ParseAuth = JSON.parse(ParseStorage.auth)
+          // appel le token
+           const token = ParseAuth.token
+            // lance le decode pour recuperer l objet envoyé
+            const infoToken =jwt(token)
+            //lit les donné dans le token decodé
+
+            console.log(infoToken)
+
+          
           },[formik]);
 
           return (
