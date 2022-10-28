@@ -9,7 +9,7 @@ import { selectIsLogged, signOut } from './../../redux-store/authenticationSlice
 
 const Navbar = () => {
     return (
-        <Disclosure as="nav" className="fixed top-0 z-50 w-full bg-white shadow-md">
+        <Disclosure as="nav" className="fixed top-0 z-50 w-full bg-light-pink shadow-md">
             {({ open }) => (
                 <>
                     <div className="mx-auto max-w-7xl px-4 sm:px-6">
@@ -91,7 +91,7 @@ const ConnectionBtn = () => {
                     <div className="link">Sign in</div>
                 </Link>
                 <Link to={URL_REGISTER}>
-                    <button className="btn btn-green">Sign up</button>
+                    <button className="btn bg-light-yellow">Sign up</button>
                 </Link>
             </div>
         );

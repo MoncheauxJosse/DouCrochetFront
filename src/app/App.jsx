@@ -40,7 +40,7 @@ const App = () => {
 
     return (
         <BrowserRouter>
-            <div className="flex h-screen cursor-default flex-col bg-gray-100">
+            <div className="flex h-screen cursor-default flex-col bg-light-yellow">
                 {isLogged && <IdleTimerCustom />}
                 <Navbar />
                 <main className="mt-24 flex h-full flex-col overflow-y-auto bg-beige-light">
