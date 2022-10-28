@@ -52,28 +52,7 @@ const ProductsView = () => {
           );
         })}
       </div>
-        // <div class="p-10 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 bg-light-yellow h-max">
-        //   {products.data?.map((product) => {
-        //     return (
-        //       <div class="" key={product._id}>
-        //         <div class="">
-        //           <a href="#" class="group">
-        //             <div class="aspect-w-1 aspect-h-1 w-80 overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
-        //               <img
-        //                 src={product.image}
-        //                 alt=""
-        //                 class="h-full w-full object-cover object-center group-hover:opacity-75"
-        //               />
-        //             </div>
-        //             <h3 class="mt-4 text-sm text-gray-700">{product.description}</h3>
-        //             <p class="mt-1 text-lg font-medium text-gray-900">{product.name}</p>
-        //             <p class="mt-1 text-lg font-medium text-gray-900">{product.price}€</p>
-        //           </a>
-        //         </div>
-        //       </div>
-        //     );
-        //   })}
-        // </div>
+        
     );
   }
 };
