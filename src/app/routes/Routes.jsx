@@ -29,8 +29,10 @@ const Routes = () => {
                  element={
                     <PrivateRoute roles={[ROLE_ADMIN,ROLE_COMMERCIAL]}>
                         <FormProductView/>
-                    </PrivateRoute>}/>
-            <Route path={URL.URL_PRODUCTS} element={ <ProductsView />}/>
+                    </PrivateRoute>}
+                
+            />
+            <Route path={URL.URL_PRODUCTS} element={ <ProductsView /> }/>
             <Route path={URL.URL_LOGIN} element={<LoginView/>}/>
             <Route path={URL.URL_HOME} element={<HomeView/>}/>
             <Route path={URL.URL_USERS} element={<UsersView />} />
