@@ -17,17 +17,13 @@ const Routes = () => {
             <Route
                 path={URL.URL_HOME}
                 element={
-                    <PrivateRoute>
                         <HomeView />
-                    </PrivateRoute>
                 }
             />
             <Route
                 path={URL.URL_ADMIN_HOME}
                 element={
-                    
-                        <AdminHomeView />
-                    
+                        <UsersView />
                 }
             />
             <Route path={URL.URL_LOGIN} element={<LoginView/>}/>

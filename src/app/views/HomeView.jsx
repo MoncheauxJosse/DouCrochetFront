@@ -12,7 +12,7 @@ const HomeView = () => {
     return (
         <div>
             <p className="font-extrabold text-primary">HOME</p>
-            <p className="font-extrabold text-primary">DASHBOARS</p>
+            <p className="font-extrabold text-primary">DASHBOARDS</p>
 
             {/* {isAdmin && (
                 <button
