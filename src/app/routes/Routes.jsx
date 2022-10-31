@@ -15,15 +15,6 @@ const Routes = () => {
     return (
         <RoutesContainer>
             <Route path={URL.URL_HOME} element={<HomeView />} />
-
-            <Route
-                path={URL.URL_ADMIN_HOME}
-                element={
-                    
-                        <AdminHomeView />
-                    
-                }
-            />
             <Route
                  path={URL.URL_CREATE_PRODUCT} 
                  element={
@@ -32,10 +23,17 @@ const Routes = () => {
                     </PrivateRoute>}
                 
             />
+            <Route
+                 path={URL.URL_ADMIN_HOME} 
+                 element={
+                    <PrivateRoute roles={[ROLE_ADMIN]}>
+                        <UsersView />
+                    </PrivateRoute>
+                    }
+            />
             <Route path={URL.URL_PRODUCTS} element={ <ProductsView /> }/>
             <Route path={URL.URL_LOGIN} element={<LoginView/>}/>
             <Route path={URL.URL_HOME} element={<HomeView/>}/>
-            <Route path={URL.URL_USERS} element={<UsersView />} />
             <Route path={URL.URL_REGISTER} element={<RegisterView/>}/>
 
             
