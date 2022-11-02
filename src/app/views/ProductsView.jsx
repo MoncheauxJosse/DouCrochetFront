@@ -29,7 +29,9 @@ const ProductsView = () => {
     console.log(products.data)
 
     return(
-      <div></div>
+      <div>
+        <navLink ><button>test</button></navLink>
+      </div>
   //       {products.map(product =>(
   //       <div key = {product._id}>
           

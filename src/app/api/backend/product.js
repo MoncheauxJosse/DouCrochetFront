@@ -11,3 +11,7 @@ export const postProduct = async (product)=>{
     console.log(product)
     return apiBackEnd.post(URL_BACK_CREATE_PRODUCT,product);
 }
+
+export const detailProduct = async () => {
+    return apiBackEnd.get()
+}

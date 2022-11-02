@@ -6,3 +6,4 @@ export const URL_LIST = '/simple-list';
 export const URL_CREATE_PRODUCT = '/formulaire-produit';
 export const URL_USERS = '/users';
 export const URL_PRODUCTS = '/products';
+export const URL_PRODUCT = '/products/detail/'

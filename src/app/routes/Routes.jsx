@@ -10,6 +10,7 @@ import LoginView from '../views/LoginView';
 import ProductsView from '../views/ProductsView';
 import { PrivateRoute } from './PrivateRoute';
 import UsersView from '../views/UsersView';
+import DetailProductView from '../views/DetailsProductsView';
 
 const Routes = () => {
     return (
@@ -17,9 +18,9 @@ const Routes = () => {
             <Route
                 path={URL.URL_HOME}
                 element={
-                    <PrivateRoute>
+                    // <PrivateRoute>
                         <HomeView />
-                    </PrivateRoute>
+                    // </PrivateRoute>
                 }
             />
             <Route
@@ -37,6 +38,7 @@ const Routes = () => {
             
             <Route path={URL.URL_USERS} element={<UsersView />} />
             <Route path={URL.URL_PRODUCTS} element={<ProductsView />} />
+            <Route path={URL.URL_PRODUCT} element={<DetailProductView />} />
             <Route path={URL.URL_REGISTER} element={<RegisterView/>}/>
         </RoutesContainer>
     );
