@@ -261,9 +261,9 @@ const Register = () => {
       register(values).then(
         
       )
-    //   if(values){
-    //       navigate(URL_HOME);
-    //   }
+    if(values){
+          navigate(URL_HOME);
+    }
     };
 
     

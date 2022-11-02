@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAll } from "../api/backend/users";
-// import { getAll } from '../../app/api/backend/users';
+import { anonymizeUser, getAll } from "../api/backend/users";
 
 const UsersView = () => {
   const [users, setUsers] = useState([]);
@@ -27,6 +26,9 @@ const UsersView = () => {
   } 
   else if (loader.state == true) {
  
+  const deleteUser = (id) => {
+    anonymizeUser(id) 
+  }
 
   return (
     <table className="border-separate border-spacing-0">
@@ -45,12 +47,13 @@ const UsersView = () => {
       </thead>
       <tbody className="bg-white">
           {users.map(user =>(
-        <tr key = {user._id}>
-            
-          <td className="border-b border-gray-200 ...">{user.firstname +" " + user.lastname}</td>
-          <td className="border-b border-gray-200 ...">{user.email}</td>
-          <td className="border-b border-gray-200 ...">{user.role.role}</td>
-        </tr>
+        <><tr key={user._id}>
+            <td className="text-center border-b border-gray-200 ...">{user.firstname + " " + user.lastname}</td>
+            <td className="text-center border-b border-gray-200 ...">{user.email}</td>
+            <td className="text-center border-b border-gray-200 ...">{user.role.role}</td>
+            <td><button onClick={() => deleteUser(user._id)} className="delete-button border-b bg-red-500 rounded-md p-3">Supprimer</button></td>
+          </tr>
+        </>
           ))}
       </tbody>
     </table>

@@ -1,67 +1,164 @@
-import React from 'react';
-// import { useSelector } from 'react-redux';
+import React,{useState,useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getAll,getAllNouveau } from "../api/backend/product";
 
-// import { ROLE_ADMIN } from '../constants/rolesConstant';
-// import { URL_ADMIN_HOME } from '../constants/urls/urlFrontEnd';
-// import { selectHasRole } from '../redux-store/authenticationSlice';
+import  '../css/carroucel.css'
 
 const HomeView = () => {
-    // const isAdmin = useSelector((state) => selectHasRole(state, ROLE_ADMIN));
-    const navigate = useNavigate();
-    return (
-        <div>
 
-            <p className="font-extrabold text-primary">HOME</p>
-            <p className="font-extrabold text-primary">DASHBOARS</p>
+    const [products, setProducts] = useState({data:[]}); 
+    const [productsPopulaire, setProductsPopulaire] = useState({data:[]}); 
+
+    const [slideIndex, setSlideIndex] = useState(5)
+    const [afficheFin, setAfficheFin] = useState(5)
+    const [afficheDebut, setAfficheDebut] = useState(0)
+
+
+    const [slideIndexPopulaire, setSlideIndexPopulaire] = useState(5)
+    const [afficheFinPopulaire, setAfficheFinPopulaire] = useState(5)
+    const [afficheDebutPopulaire, setAfficheDebutPopulaire] = useState(0)
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchData = async () => {
+          const productsData = await getAll();
+          setProductsPopulaire(productsData);
+         
+          const productsNouveauxData = await getAllNouveau();
+          setProducts(productsNouveauxData);
+         
+         
+        };
+    
+        fetchData();
+        
+      },[]);
+
+
+      //caroucel populaire
+      const nextSlidePopulaire = () => {
+
+        console.log("sa passe")
+        console.log("le slide index "+slideIndexPopulaire)
+        
+        if(slideIndexPopulaire !== productsPopulaire.data.length){
+
+            console.log("longuer tableaux "+productsPopulaire.data.length)
+            setProductsPopulaire(productsPopulaire)
+            setSlideIndexPopulaire(slideIndexPopulaire + 1)
+            setAfficheFinPopulaire(afficheFinPopulaire +1)
+            setAfficheDebutPopulaire(afficheDebutPopulaire +1)
+
+        } 
+        else if (slideIndexPopulaire === productsPopulaire.data.length){
+
+            console.log("slide a la fin")
+            setProductsPopulaire(productsPopulaire)
+            setSlideIndexPopulaire(5)
+            setAfficheFinPopulaire(5)
+            setAfficheDebutPopulaire(0)
+            
+        }
+    }
+
+    const prevSlidePopulaire = () => {
+           
+        console.log("en arriere !")
+
+        if(slideIndexPopulaire !== 5){
+            setProductsPopulaire(productsPopulaire)
+            setSlideIndexPopulaire(slideIndexPopulaire - 1)
+            setAfficheFinPopulaire(afficheFinPopulaire -1)
+            setAfficheDebutPopulaire(afficheDebutPopulaire -1)
+        }
+        else if (slideIndexPopulaire === 1){
+            setProductsPopulaire(productsPopulaire)
+            setSlideIndexPopulaire(productsPopulaire.length)
+        }
+    }
+
+
+    // Nouveauté
+    const nextSlide = () => {
+        
+        if(slideIndex !== products.data.length){
+
+            setProducts(products)
+            setSlideIndex(slideIndex + 1)
+            setAfficheFin(afficheFin +1)
+            setAfficheDebut(afficheDebut +1)
+
+        } 
+        else if (slideIndex === products.data.length){
+
+            console.log("slide a la fin")
+            setProducts(products)
+            setSlideIndex(5)
+            setAfficheFin(5)
+            setAfficheDebut(0)
+            
+        }
+    }
+
+    const prevSlide = () => {
+           
+        console.log("en arriere !")
+
+        if(slideIndex !== 5){
+            setProducts(products)
+            setSlideIndex(slideIndex - 1)
+            setAfficheFin(afficheFin -1)
+            setAfficheDebut(afficheDebut -1)
+        }
+        else if (slideIndex === 1){
+            setProducts(products)
+            setSlideIndex(products.length)
+        }
+    }
+    return (
+        <div className="text-center">
+            <h2 className='font-bold text-light-pink text-xl mt-4'>Nouveautés</h2>
+        <div className="caroucel">
+            <button className="left" onClick={prevSlide}> {"<"} </button>
 
             
-<div id="default-carousel" class="relative" data-carousel="slide">
+            {products.data?.map((obj, index) => {
 
-    <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+                if( index<afficheFin && index>=afficheDebut ){ 
+                    {console.log(products.data[index].image                        )}
+                    return (
+                    <div id={index} className="m-2 h-90 rounded overflow-hidden shadow-xl bg-light-pink hover:scale-150 duration-200">
+                        <img src={products.data[index].image} className="w-80 m-auto rounded" alt={"img"+(index)} /> 
+                    </div>
+                             )
+                    }       
+               
+            })}
+            <button  className="right" onClick={nextSlide} >{">"}</button>
+           
+        </div>
 
-        <div class="duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-0 z-20" data-carousel-item="">
-            <span class="absolute text-2xl font-semibold text-white -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 sm:text-3xl dark:text-gray-800">First Slide</span>
-            <img src="https://picsum.photos/id/237/200/" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..."/>
-        </div>
-      
-        <div class="duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-full z-10" data-carousel-item="">
-            <img src="https://picsum.photos/id/236/200/" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..."/>
-        </div>
-   
-        <div class="duration-700 ease-in-out absolute inset-0 transition-all transform -translate-x-full z-10" data-carousel-item="">
-            <img src="https://picsum.photos/id/235/200/" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..."/>
-        </div>
-    </div>
-  
-    <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
-        <button type="button" class="w-3 h-3 rounded-full bg-white dark:bg-gray-800" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
-        <button type="button" class="w-3 h-3 rounded-full bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
-        <button type="button" class="w-3 h-3 rounded-full bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
-    </div>
- 
-    <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev="next">
-        <span class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg aria-hidden="true" class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-            <span class="sr-only">Previous</span>
-        </span>
-    </button>
-    <button type="button" class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next="">
-        <span class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg aria-hidden="true" class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-            <span class="sr-only">Next</span>
-        </span>
-    </button>
-</div>
+        <h2 className='font-bold text-light-pink text-xl mt-6'>Populaires</h2>
+        <div className="caroucel">
+            <button className="left" onClick={prevSlidePopulaire}> {"<"} </button>
 
-            {/* {isAdmin && (
-                <button
-                    className="btn btn-primary"
-                    onClick={() => navigate(URL_ADMIN_HOME)}
-                >
-                    Admin
-                </button>
-            )} */}
+            
+            {productsPopulaire.data?.map((obj, index) => {
+
+                if( index<afficheFinPopulaire && index>=afficheDebutPopulaire ){ 
+                    {console.log(productsPopulaire.data[index].image                        )}
+                    return (
+                    <div id={index} className="m-2 h-90 rounded overflow-hidden shadow-xl bg-light-pink hover:scale-150 duration-200">
+                        <img src={productsPopulaire.data[index].image} className="w-80 m-auto rounded" alt={"img"+(index)} /> 
+                    </div>
+                             )
+                    }       
+               
+            })}
+            <button  className="right" onClick={nextSlidePopulaire} >{">"}</button>
+           
+        </div>
         </div>
     );
 };

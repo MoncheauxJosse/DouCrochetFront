@@ -52,9 +52,7 @@ export function getPayloadToken(token) {
 export function isTokenValid(token) {
     try {
         const payload = getPayloadToken(token);
-        // const roles = payload.auth.split(',');
         const expirationDate = payload.exp;
-        // const login = payload.sub;
         const dateNow = new Date();
         return token && expirationDate < dateNow.getTime();
     } catch {

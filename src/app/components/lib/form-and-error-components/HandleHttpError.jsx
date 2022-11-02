@@ -8,7 +8,7 @@ const errorToastMessage = (error) => (
                 <>
                     Erreur dans : {error.response.request.responseURL}
                     <br />
-                    {error.response.status} : {error.response.statusText})
+                    {error.response.status} : {error.response.statusText}
                 </>
             ) : (
                 <>{error.response.data.message}</>
