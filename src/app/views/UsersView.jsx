@@ -29,16 +29,18 @@ const UsersView = () => {
  
 
   return (
-    <table className="border-separate border-spacing-0">
+    <table class="min-w-full border text-center">
+      
       <thead className="bg-gray-50">
         <tr>
-          <th className="sticky top-0 z-10 border-b border-gray-300 ...">
+        
+        <th scope="col" class="text-sm font-medium text-black-900 px-6 py-4 border-r bg-blue-700">
             Name
           </th>
-          <th className="sticky top-0 z-10 border-b border-gray-300 ...">
+          <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 border-r">
             Email
           </th>
-          <th className="sticky top-0 z-10 border-b border-gray-300 ...">
+          <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 border-r bg-dark-pink">
             Role
           </th>
         </tr>
@@ -46,10 +48,10 @@ const UsersView = () => {
       <tbody className="bg-white">
           {users.map(user =>(
         <tr key = {user._id}>
-            
-          <td className="border-b border-gray-200 ...">{user.firstname +" " + user.lastname}</td>
-          <td className="border-b border-gray-200 ...">{user.email}</td>
-          <td className="border-b border-gray-200 ...">{user.role.role}</td>
+             
+          <td className="border-b border-black-200 ... bg-blue-700">{user.firstname +" " + user.lastname}</td>
+          <td className="border-b border-black-200 ... ">{user.email}</td>
+          <td className="border-b border-black-200 ... bg-dark-pink">{user.role.role}</td>
         </tr>
           ))}
       </tbody>
