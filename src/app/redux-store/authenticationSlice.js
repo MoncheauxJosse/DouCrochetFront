@@ -47,7 +47,7 @@ export const authenticationSlice = createSlice({
 export const { signIn, signOut } = authenticationSlice.actions;
 
 export const selectIsLogged = (state) => state.auth.isAuthenticated;
-// export const selectUser = (state) => state.auth.user;
+export const selectUser = (state) => state.auth.user;
 export const selectToken = (state) => state.auth.token;
 
 

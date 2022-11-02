@@ -20,8 +20,6 @@ import { selectHasRole,selectIsLogged } from '../redux-store/authenticationSlice
 // recuper le role et verifie celui-ci . 
 //  <PrivateRoute path={URL_ADMIN_HOME} element={AdminHomeView} roles={[ROLE_ADMIN]} /> ????
 export const PrivateRoute = ({ children, roles }) => {
-
-    console.log("sa passe dans le private")
     const location = useLocation();
     const isAuthenticated = useSelector(selectIsLogged);
 

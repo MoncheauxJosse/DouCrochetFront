@@ -1,5 +1,5 @@
 import { LockClosedIcon } from '@heroicons/react/solid';
-import { Field, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -26,8 +26,8 @@ const FormLogin = ({ submit, errorLog }) => {
         rememberMe: false,
     };
     const schemaFormLogin = Yup.object().shape({
-        email: Yup.string().required('Required input'),
-        password: Yup.string().required('Required input'),
+        email: Yup.string().required('Email obligatoire'),
+        password: Yup.string().required('Mot de passe obligatoire'),
     });
 
     return (
@@ -47,6 +47,11 @@ const FormLogin = ({ submit, errorLog }) => {
                         className="rounded-none rounded-t-md"
                         noError
                     />
+                    <ErrorMessage
+                        name="email"
+                        component="small"
+                        className="text-danger text-red-500"
+                    />
                     <Field
                         type="password"
                         name="password"
@@ -55,6 +60,11 @@ const FormLogin = ({ submit, errorLog }) => {
                         component={Input}
                         className="rounded-none rounded-b-md"
                         noError
+                    />
+                    <ErrorMessage
+                        name="password"
+                        component="small"
+                        className="text-danger text-red-500"
                     />
                 </div>
 
@@ -88,9 +98,9 @@ const FormLogin = ({ submit, errorLog }) => {
                         Se connecter
                     </button>
                 </div>
-                {errorLog && (
+                {errorLog ? (
                     <ErrorMessSmall middle message="Email ou mot de passe incorrect(s)" />
-                )}
+                ): ''}
             </Form>
         </Formik>
     );
@@ -102,22 +112,17 @@ const Login = () => {
     const navigate = useNavigate();
 
     const handleLogin = (values) => {
-        console.log(values)
-         console.log("handlelogin")
         authenticate(values)
-
             .then((res) => {
-                console.log("ligne 110 Login")
-                console.log(res.data.token)
                 if (res.status === 200 && res.data.token) {
-
                     //token passe ici !!!!
                     dispatch(signIn(res.data.token));
                     navigate(URL_HOME);
                 }
             })
-            .catch(() => setErrorLog(true));
+            setErrorLog(true);
     };
+
 
     return (
         <div className="connect-form w-full max-w-md space-y-8 rounded-md bg-light-pink p-4 py-12 px-4 shadow sm:px-6 lg:px-8">
