@@ -1,0 +1,30 @@
+.caroucel {
+    display: flex;
+    padding: 0 100px; 
+    bottom:0;
+    height: 250px;
+    max-height: 250px;
+
+  }
+
+  .left {
+ 
+    color:pink;
+    right: 60px;
+    position: relative;
+    font-size: 400%;
+    /*transform: scale(2, 0.5)*/
+    z-index: 4;
+
+    
+    
+  }
+
+  .right {
+    color:pink;
+    font-size: 400%;
+    border: none;
+   /* transform: scale(2, 0.5) deforme le bloc */
+   z-index: 5;
+
+  }

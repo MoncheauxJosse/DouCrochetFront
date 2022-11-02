@@ -1,12 +1,12 @@
 import '../../css/Register.css'
-import { Field, Form, Formik } from 'formik';
+import { Field, Form, Formik, ErrorMessage } from 'formik';
 import Input from '../lib/form-and-error-components/Input';
 import { Link, useNavigate } from 'react-router-dom';
 
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { register } from './../../api/backend/account';
-import { URL_HOME } from '../../constants/urls/urlFrontEnd';
+import { URL_LOGIN } from '../../constants/urls/urlFrontEnd';
 import * as Yup from 'yup';
 
 /**
@@ -36,19 +36,19 @@ const FormRegister = ({ submit, errorLog }) => {
         city:'',
         rememberMe: false,
     };
- const schemaFormLogin = Yup.object().shape({
-    firstname: Yup.string().required('Required input'),
-        lastname: Yup.string().required('Required input'),
-        birthdate: Yup.string().required('Required input'),
-        telephone: Yup.string().required('Required input'),
-        password: Yup.string().required('Required input'),
-        Confirmpassword: Yup.string().required('Required input'),
-        email: Yup.string().required('Required input'),
-        country: Yup.string().required('Required input'),
-        cityCode: Yup.string().required('Required input'),
-        number: Yup.string().required('Required input'),
-        street: Yup.string().required('Required input'),
-        city: Yup.string().required('Required input'),
+const schemaFormLogin = Yup.object().shape({
+        firstname: Yup.string().min(2, "Prénom trop court").max(30, "Prénom trop long").required('Prénom obligatoire'),
+        lastname: Yup.string().min(2, "Nom trop court").max(30, "Nom trop long").required('Nom obligatoire'),
+        birthdate: Yup.date().min('01-01-1900','Date de naissance invalide').max(new Date, 'Date de naissance invalide').required('Date obligatoire'),
+        telephone: Yup.number().required('Telephone obligatoire'),
+        password: Yup.string().min(8, 'minimum 8 caractères').required('Mot de passe obligatoire'),
+        confirmPassword: Yup.string().min(8, 'minimum 8 caractères').required('Mot de passe obligatoire'),
+        email: Yup.string().email('email invalide').required('e-mail obligatoire'),
+        country: Yup.string().required('Pays obligatoire'),
+        cityCode: Yup.number().max(999999, "Maximum 6 chiffres").typeError("Le code postal doit être un nombre").required('Code postal obligatoire'),
+        number: Yup.string().required('Numéro de rue obligatoire'),
+        street: Yup.string().required('Rue obligatoire'),
+        city: Yup.string().required('Ville obligatoire'),
     });
     return (
         <Formik
@@ -56,130 +56,193 @@ const FormRegister = ({ submit, errorLog }) => {
         onSubmit={submit}
         validationSchema={schemaFormLogin}
         >
-            <Form className="mt-8 space-y-6 w-96 rounded-md bg-pink-light flex justify-center pt-4 pb-4">
+            <Form className="mt-8 space-y-6 w-96 rounded-md bg-light-pink flex justify-center pt-8 pb-8">
                 <div className="w-80 ">
                     <div className="shadow-sm">
-                        <div className="flex flex-row">
+                        <div className="">
                             <Field
                                 type="text"
                                 name="firstname"
-                                placeholder="firstname"
+                                placeholder="Prenom"
                                 autoComplete="firstname"
                                 component={Input}
                                 className="rounded-md"
                                 noError
                             />
+                            <ErrorMessage
+                                name="firstname"
+                                component="small"
+                                className="text-red-500"
+                            />
                             <Field
                                 type="text"
                                 name="lastname"
-                                placeholder="lastname"
+                                placeholder="Nom"
                                 autoComplete="lastname"
                                 component={Input}
                                 className="rounded-md"
                                 noError
                             />
+                            <ErrorMessage
+                                name="lastname"
+                                component="small"
+                                className="text-red-500"
+                            />
                         </div>
                             <Field
-                                type="text"
+                                type="date"
                                 name="birthdate"
-                                placeholder="birthdate"
+                                placeholder="Date de naissance"
                                 autoComplete="birthdate"
                                 component={Input}
                                 className="rounded-md"
                                 noError
                             />
+                            <ErrorMessage
+                                name="birthdate"
+                                component="small"
+                                className="text-red-500"
+                            />
                             <Field
                                 type="text"
                                 name="telephone"
-                                placeholder="telephone"
+                                placeholder="télephone"
                                 autoComplete="telephone"
                                 component={Input}
                                 className="rounded-md"
                                 noError
                             />
-                    </div>
-                    <div class="pt-4">
+                            <ErrorMessage
+                                name="telephone"
+                                component="small"
+                                className="text-red-500"
+                            />
                         <Field
-                            type="text"
+                            type="email"
                             name="email"
-                            placeholder="email"
+                            placeholder="e-mail"
                             autoComplete="email"
                             component={Input}
                             className="rounded-md"
                             noError
                         />
+                        <ErrorMessage
+                                name="email"
+                                component="small"
+                                className="text-red-500"
+                            />
+                    </div>
+                    <div class="pt-4">
                         <Field
                             type="password"
                             name="password"
-                            placeholder="password"
+                            placeholder="Mot de passe"
                             autoComplete="password"
                             component={Input}
                             className="rounded-md"
                             noError
                         />
+                        <ErrorMessage
+                                name="password"
+                                component="small"
+                                className="text-red-500"
+                            />
                         <Field
                             type="password"
-                            name="Confirmpassword"
-                            placeholder="confirm your Password"
+                            name="confirmPassword"
+                            placeholder="confirmer votre mot de passe"
                             autoComplete="current-password"
                             component={Input}
                             className="rounded-md"
                             noError
                         />
+                        <ErrorMessage
+                            name="confirmPassword"
+                            component="small"
+                            className="text-red-500"/>
                     </div>
                     <div class="pt-4">
                         <Field
                             type="text"
                             name="country"
-                            placeholder="country"
+                            placeholder="Pays"
                             autoComplete="country"
                             component={Input}
                             className="rounded-md"
                             noError
                         />
+                        <ErrorMessage
+                                name="country"
+                                component="small"
+                                className="text-red-500"
+                                message="Utiliser que des chiffres"
+                        />
                         <Field
                             type="text"
                             name="cityCode"
-                            placeholder="cityCode"
+                            placeholder="Code Postal"
                             autoComplete="cityCode"
                             component={Input}
                             className="rounded-md"
-                            noError
+                        />
+                        <ErrorMessage
+                                name="cityCode"
+                                component="small"
+                                className="text-red-500"
+                                message="Utiliser que des chiffres"
                         />
                         <Field
                             type="text"
                             name="number"
-                            placeholder="number"
+                            placeholder="Numéro de rue"
                             autoComplete="number"
                             component={Input}
                             className="rounded-b-md"
                             noError
                         />
+                                    <ErrorMessage
+                                name="number"
+                                component="small"
+                                className="text-red-500"
+                                message="Utiliser que des chiffres"
+                        />
                         <Field
                             type="text"
                             name="street"
-                            placeholder="street"
+                            placeholder="Rue"
                             autoComplete="street"
                             component={Input}
                             className="rounded-md"
                             noError
                         />
+                        <ErrorMessage
+                                name="street"
+                                component="small"
+                                className="text-red-500"
+                                message="Utiliser que des chiffres"
+                        />
                         <Field
                             type="text"
                             name="city"
-                            placeholder="city"
+                            placeholder="Ville"
                             autoComplete="city"
                             component={Input}
                             className="rounded-md"
                             noError
                         />
+                        <ErrorMessage
+                                name="city"
+                                component="small"
+                                className="text-red-500"
+                                message="Utiliser que des chiffres"
+                        />
                     </div>
                     <div>
                         <button
                             type="submit"
-                            className="btn bg-beige-light text-pink-dark group relative w-full mt-4"
+                            className="btn bg-light-yellow text-dark-pink group relative w-full mt-4"
                         >
-                            Register
+                            S'inscrire
                         </button>
                     </div>
                     {errorLog && (
@@ -194,17 +257,14 @@ const FormRegister = ({ submit, errorLog }) => {
 const Register = () => {
     const navigate = useNavigate();
     const handleRegister=(values)=>{
-      console.log("handleregister")
-
       register(values)
-    //   if(values){
-    //       navigate(URL_HOME);
-    //   }
+      if(values){
+          navigate(URL_LOGIN);
+      }
     };
-
-    
+   
     return (
-        <div class="">
+        <div>
             <FormRegister submit={handleRegister}/>
         </div>
     )

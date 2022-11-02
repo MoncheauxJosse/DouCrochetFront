@@ -9,16 +9,16 @@ import { selectIsLogged, signOut } from './../../redux-store/authenticationSlice
 
 const Navbar = () => {
     return (
-        <Disclosure as="nav" className="fixed top-0 z-50 w-full bg-white shadow-md">
+        <Disclosure as="nav" className="fixed top-0 z-50 w-full bg-light-pink shadow-md">
             {({ open }) => (
                 <>
                     <div className="mx-auto max-w-7xl px-4 sm:px-6">
-                        <div className="flex items-center justify-between py-6 md:justify-start md:space-x-10">
+                        <div className="flex items-center py-6 md:justify-start md:space-x-10">
                             <div>
                                 <Link to={URL_HOME}>
                                     <img
                                         className="h-8 w-auto cursor-pointer sm:h-10"
-                                        src="https://insy2s.com/insy2s/images/Logo-insy2s-INLINE-2021.svg"
+                                        src="https://media.discordapp.net/attachments/1022448911543189504/1036559044544045136/logoDC_Noir.png"
                                         alt=""
                                         width={200}
                                         height={60}
@@ -81,17 +81,17 @@ const ConnectionBtn = () => {
     if (isLogged)
         return (
             <button className="btn btn-green ml-8" onClick={() => dispatch(signOut())}>
-                Sign out
+                Se déconnecter
             </button>
         );
     else
         return (
             <div className="flex flex-col justify-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4">
                 <Link to={URL_LOGIN}>
-                    <div className="link">Sign in</div>
+                    <div className="link">Se connecter</div>
                 </Link>
                 <Link to={URL_REGISTER}>
-                    <button className="btn btn-green">Sign up</button>
+                    <button className="btn bg-light-yellow">S'inscrire</button>
                 </Link>
             </div>
         );
