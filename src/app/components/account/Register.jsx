@@ -194,17 +194,14 @@ const FormRegister = ({ submit, errorLog }) => {
 const Register = () => {
     const navigate = useNavigate();
     const handleRegister=(values)=>{
-      console.log("handleregister")
-
       register(values)
-    //   if(values){
-    //       navigate(URL_HOME);
-    //   }
+      if(values){
+          navigate(URL_HOME);
+      }
     };
-
-    
+   
     return (
-        <div class="">
+        <div>
             <FormRegister submit={handleRegister}/>
         </div>
     )
