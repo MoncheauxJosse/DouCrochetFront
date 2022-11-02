@@ -43,7 +43,7 @@ const App = () => {
             <div className="flex h-screen cursor-default flex-col bg-light-yellow">
                 {isLogged && <IdleTimerCustom />}
                 <Navbar />
-                <main className="mt-24 flex h-full flex-col overflow-y-auto bg-beige-light">
+                <main className="mt-24 flex h-full flex-col overflow-y-auto bg-light-yellow">
                     <Routes />
                 </main>
                 <ToastContainer

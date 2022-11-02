@@ -5,7 +5,6 @@ const RegisterView = ()=>{
 
     return (
         <div class="flex justify-center bg-beige-light">
-
             <Register/>
         </div>
     )

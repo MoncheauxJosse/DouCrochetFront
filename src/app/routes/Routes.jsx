@@ -10,10 +10,12 @@ import LoginView from '../views/LoginView';
 import ProductsView from '../views/ProductsView';
 import { PrivateRoute } from './PrivateRoute';
 import UsersView from '../views/UsersView';
+import DetailProductView from '../views/DetailsProductsView';
 
 const Routes = () => {
     return (
         <RoutesContainer>
+
             <Route path={URL.URL_HOME} element={<HomeView />} />
             <Route
                  path={URL.URL_CREATE_PRODUCT} 
@@ -34,6 +36,9 @@ const Routes = () => {
             <Route path={URL.URL_PRODUCTS} element={ <ProductsView /> }/>
             <Route path={URL.URL_LOGIN} element={<LoginView/>}/>
             <Route path={URL.URL_HOME} element={<HomeView/>}/>
+            <Route path={URL.URL_USERS} element={<UsersView />} />
+
+            <Route path={URL.URL_PRODUCT} element={<DetailProductView />} />
             <Route path={URL.URL_REGISTER} element={<RegisterView/>}/>
 
             

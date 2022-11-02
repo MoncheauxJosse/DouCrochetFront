@@ -110,8 +110,9 @@ const Login = () => {
     const [errorLog, setErrorLog] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
+    
     const handleLogin = (values) => {
+
         authenticate(values)
             .then((res) => {
                 if (res.status === 200 && res.data.token) {
@@ -122,6 +123,7 @@ const Login = () => {
             })
             setErrorLog(true);
     };
+    console.log(errorLog)
 
 
     return (
