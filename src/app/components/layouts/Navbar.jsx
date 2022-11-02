@@ -13,12 +13,12 @@ const Navbar = () => {
             {({ open }) => (
                 <>
                     <div className="mx-auto max-w-7xl px-4 sm:px-6">
-                        <div className="flex items-center justify-between py-6 md:justify-start md:space-x-10">
+                        <div className="flex items-center py-6 md:justify-start md:space-x-10">
                             <div>
                                 <Link to={URL_HOME}>
                                     <img
                                         className="h-8 w-auto cursor-pointer sm:h-10"
-                                        src="https://insy2s.com/insy2s/images/Logo-insy2s-INLINE-2021.svg"
+                                        src="https://media.discordapp.net/attachments/1022448911543189504/1036559044544045136/logoDC_Noir.png"
                                         alt=""
                                         width={200}
                                         height={60}

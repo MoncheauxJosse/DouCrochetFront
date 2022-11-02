@@ -4,3 +4,4 @@ export const URL_BACK_ADMIN = '/admin';
 export const URL_BACK_CREATE_PRODUCT = '/products/create-product';
 export const URL_GET_USERS = '/users';
 export const URL_GET_ALL_PRODUCTS = '/products';
+export const URL_GET_ALL_NEW_PRODUCTS = '/products/nouveau';

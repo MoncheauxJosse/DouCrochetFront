@@ -1,12 +1,13 @@
 import React,{useState,useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAll } from "../api/backend/product";
+import { getAll,getAllNouveau } from "../api/backend/product";
 
 import  '../css/carroucel.css'
 
 const HomeView = () => {
 
     const [products, setProducts] = useState({data:[]}); 
+    const [productsPopulaire, setProductsPopulaire] = useState({data:[]}); 
 
     const [slideIndex, setSlideIndex] = useState(5)
     const [afficheFin, setAfficheFin] = useState(5)
@@ -22,9 +23,11 @@ const HomeView = () => {
     useEffect(() => {
         const fetchData = async () => {
           const productsData = await getAll();
-          setProducts(productsData);
-          console.log(productsData);
-          console.log(products);
+          setProductsPopulaire(productsData);
+         
+          const productsNouveauxData = await getAllNouveau();
+          setProducts(productsNouveauxData);
+         
          
         };
     
@@ -39,19 +42,19 @@ const HomeView = () => {
         console.log("sa passe")
         console.log("le slide index "+slideIndexPopulaire)
         
-        if(slideIndexPopulaire !== products.data.length){
+        if(slideIndexPopulaire !== productsPopulaire.data.length){
 
-            console.log("longuer tableaux "+products.data.length)
-            setProducts(products)
+            console.log("longuer tableaux "+productsPopulaire.data.length)
+            setProductsPopulaire(productsPopulaire)
             setSlideIndexPopulaire(slideIndexPopulaire + 1)
             setAfficheFinPopulaire(afficheFinPopulaire +1)
             setAfficheDebutPopulaire(afficheDebutPopulaire +1)
 
         } 
-        else if (slideIndexPopulaire === products.data.length){
+        else if (slideIndexPopulaire === productsPopulaire.data.length){
 
             console.log("slide a la fin")
-            setProducts(products)
+            setProductsPopulaire(productsPopulaire)
             setSlideIndexPopulaire(5)
             setAfficheFinPopulaire(5)
             setAfficheDebutPopulaire(0)
@@ -64,14 +67,14 @@ const HomeView = () => {
         console.log("en arriere !")
 
         if(slideIndexPopulaire !== 5){
-            setProducts(products)
+            setProductsPopulaire(productsPopulaire)
             setSlideIndexPopulaire(slideIndexPopulaire - 1)
             setAfficheFinPopulaire(afficheFinPopulaire -1)
             setAfficheDebutPopulaire(afficheDebutPopulaire -1)
         }
         else if (slideIndexPopulaire === 1){
-            setProducts(products)
-            setSlideIndexPopulaire(products.length)
+            setProductsPopulaire(productsPopulaire)
+            setSlideIndexPopulaire(productsPopulaire.length)
         }
     }
 
@@ -141,13 +144,13 @@ const HomeView = () => {
             <button className="left" onClick={prevSlidePopulaire}> {"<"} </button>
 
             
-            {products.data?.map((obj, index) => {
+            {productsPopulaire.data?.map((obj, index) => {
 
                 if( index<afficheFinPopulaire && index>=afficheDebutPopulaire ){ 
-                    {console.log(products.data[index].image                        )}
+                    {console.log(productsPopulaire.data[index].image                        )}
                     return (
                     <div id={index} className="m-2 h-90 rounded overflow-hidden shadow-xl bg-light-pink hover:scale-150 duration-200">
-                        <img src={products.data[index].image} className="w-80 m-auto rounded" alt={"img"+(index)} /> 
+                        <img src={productsPopulaire.data[index].image} className="w-80 m-auto rounded" alt={"img"+(index)} /> 
                     </div>
                              )
                     }       
