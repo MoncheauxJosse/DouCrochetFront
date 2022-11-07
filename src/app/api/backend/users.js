@@ -8,8 +8,6 @@ export function getAll() {
 export async function anonymizeUser(id) {
     try {
         const res = await apiBackEnd.put(URL_BACK_DELETE + id);
-        console.log(`Status: ${res.status}`);
-        console.log('Body: ', res.data);
     } catch (err) {
         console.error(err);
     }

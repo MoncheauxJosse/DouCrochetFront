@@ -1,4 +1,7 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import NavAdmin from '../components/layouts/NavAdmin';
+import {selectUser} from './../redux-store/authenticationSlice'
 
 
 // const AdminHomeView = () => {
@@ -7,28 +10,20 @@ import React from 'react';
 
     
        
-    const AdminHomeView = () => {
-        return (
-            
-            <table class="border-separate border-spacing-0">
-  <thead class="bg-gray-50">
-    <tr>
-      <th class="sticky top-0 z-10 border-b border-gray-300 ...">Name</th>
-      <th class="sticky top-0 z-10 border-b border-gray-300 ...">Email</th>
-      <th class="sticky top-0 z-10 border-b border-gray-300 ...">Role</th>
-    </tr>
-  </thead>
-  <tbody class="bg-white">
-    <tr>
-      <td class="border-b border-gray-200 ...">Johne Doe</td>
-      <td class="border-b border-gray-200 ...">Johne.Doe@gmail.com</td>
-      <td class="border-b border-gray-200 ...">Client</td>
-    </tr>
-    
-  </tbody>
-</table>
-        );
-      };
+const AdminHomeView = () => {
+  const user = useSelector(selectUser);
+  console.log(user)
+  return (
+    <div className='ml-5'>
+      <div>
+        <h2>Bienvenue sur l'admin</h2>
+      </div>
+      <div>
+        <NavAdmin />
+      </div>
+    </div>
+  );
+};
     
 
     
