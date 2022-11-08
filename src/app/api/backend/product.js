@@ -11,8 +11,9 @@ export function getAllNouveau() {
 }
 
 export const postProduct = async (product)=>{
-    
-    return apiBackEnd.post(URL_BACK_CREATE_PRODUCT,product);
+    console.log("axios")
+    console.log(product)
+    return apiBackEnd.post(URL_BACK_CREATE_PRODUCT, product);
 }
 
 export const detailProduct = async () => {
