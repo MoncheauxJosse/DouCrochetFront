@@ -1,5 +1,4 @@
-import { /*URL_GET_ALL_PRODUCTS,*/URL_BACK_CREATE_PRODUCT } from '../../constants/urls/urlBackEnd';
-import { URL_GET_ALL_PRODUCTS,URL_GET_ALL_NEW_PRODUCTS} from '../../constants/urls/urlBackEnd';
+import { URL_BACK_CREATE_PRODUCT, URL_DELETE_PRODUCT, URL_BACK_GET_ONE_PRODUCT,URL_GET_ALL_PRODUCTS,URL_GET_ALL_NEW_PRODUCTS } from '../../constants/urls/urlBackEnd';
 import apiBackEnd from './api.Backend';
 
 export function getAll() {
@@ -16,6 +15,11 @@ export const postProduct = async (product)=>{
     return apiBackEnd.post(URL_BACK_CREATE_PRODUCT, product);
 }
 
-export const detailProduct = async () => {
-    return apiBackEnd.get()
+export async function detailProduct(id) {
+    console.log("id axios", id)
+    return apiBackEnd.get(URL_BACK_GET_ONE_PRODUCT + id)
+}
+
+export const deleteProduct = async (id) => {
+    return apiBackEnd.delete(URL_DELETE_PRODUCT + id);
 }

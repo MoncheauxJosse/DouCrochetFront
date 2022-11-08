@@ -11,6 +11,8 @@ import ProductsView from '../views/ProductsView';
 import { PrivateRoute } from './PrivateRoute';
 import UsersView from '../views/UsersView';
 import DetailProductView from '../views/DetailsProductsView';
+import AdminProductsView from '../views/AdminProductsView';
+import CartView from '../views/CartView';
 
 const Routes = () => {
     return (
@@ -29,10 +31,19 @@ const Routes = () => {
                  path={URL.URL_ADMIN_HOME} 
                  element={
                     <PrivateRoute roles={[ROLE_ADMIN]}>
-                        <UsersView />
+                        <AdminHomeView />
                     </PrivateRoute>
                     }
             />
+            <Route
+                 path={URL.URL_ADMIN_PRODUCTS} 
+                 element={
+                    <PrivateRoute roles={[ROLE_ADMIN,ROLE_COMMERCIAL]}>
+                        <AdminProductsView/>
+                    </PrivateRoute>}
+                
+            />
+            <Route path={URL.URL_CART} element={<CartView />} />
             <Route path={URL.URL_PRODUCTS} element={ <ProductsView /> }/>
             <Route path={URL.URL_LOGIN} element={<LoginView/>}/>
             <Route path={URL.URL_HOME} element={<HomeView/>}/>

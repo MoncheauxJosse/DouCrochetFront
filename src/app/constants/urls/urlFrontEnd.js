@@ -1,9 +1,10 @@
 export const URL_HOME = '/';
-export const URL_LOGIN = '/login';
+export const URL_LOGIN = '/connexion';
 export const URL_ADMIN_HOME = '/admin';
-export const URL_REGISTER = '/register';
-export const URL_LIST = '/simple-list';
-export const URL_CREATE_PRODUCT = '/create-product';
-export const URL_USERS = '/users';
-export const URL_PRODUCTS = '/products';
-export const URL_PRODUCT = '/products/detail/';
+export const URL_REGISTER = '/inscription';
+export const URL_CREATE_PRODUCT = '/creation-produit';
+export const URL_USERS = '/admin/utilisateurs';
+export const URL_PRODUCTS = '/produits';
+export const URL_ADMIN_PRODUCTS = '/admin/produits';
+export const URL_PRODUCT = '/produits/detail/';
+export const URL_CART = '/panier';
