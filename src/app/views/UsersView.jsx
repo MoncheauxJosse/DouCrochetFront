@@ -7,7 +7,6 @@ const UsersView = () => {
   const [users, setUsers] = useState([]);
   const [role, setRole] = useState([]);
   const [loader, setLoader] = useState(false);
-  
 
   useEffect(() => {
        getAll().then(userdata =>{
@@ -23,10 +22,12 @@ const UsersView = () => {
       console.log(roleID);
    });
   });
+
   if (loader.state == false) {
   if (!loader) {
     return (<div>LOADING...</div>);
   } 
+}
  
   const deleteUser = (id) => {
     anonymizeUser(id) 
@@ -85,8 +86,6 @@ const UsersView = () => {
     </table>
   );
 };
-
-}
 
 export default UsersView;
 
