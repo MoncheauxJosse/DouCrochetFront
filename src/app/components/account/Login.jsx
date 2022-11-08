@@ -121,7 +121,10 @@ const Login = () => {
                     navigate(URL_HOME);
                 }
             })
-            setErrorLog(true);
+            .catch(()=>{
+                setErrorLog(true)
+            });
+            
     };
     console.log(errorLog)
 

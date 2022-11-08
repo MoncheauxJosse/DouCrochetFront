@@ -2,12 +2,15 @@ import { Disclosure, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/solid';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { URL_HOME, URL_LOGIN, URL_REGISTER } from '../../constants/urls/urlFrontEnd';
-import { selectIsLogged, signOut } from './../../redux-store/authenticationSlice';
+import { URL_ADMIN_HOME, URL_CART, URL_HOME, URL_LOGIN, URL_REGISTER } from '../../constants/urls/urlFrontEnd';
+import { isAdmin, selectIsLogged, signOut } from './../../redux-store/authenticationSlice';
+import { ToastContainer, toast } from 'react-toastify';
+import {BsCartFill} from 'react-icons/bs'
 
 const Navbar = () => {
+    const role = useSelector(isAdmin);
     return (
         <Disclosure as="nav" className="fixed top-0 z-50 w-full bg-light-pink shadow-md">
             {({ open }) => (
@@ -25,8 +28,15 @@ const Navbar = () => {
                                     />
                                 </Link>
                             </div>
+                            
 
                             <div className="hidden flex-1 items-center justify-end md:flex lg:w-0">
+                                <Link to={URL_CART}>
+                                    <div className='btn flex mr-8 items-center bg-light-yellow rounded p-2'>
+                                        <BsCartFill />
+                                        <span className='ml-2'>Panier</span>
+                                    </div>
+                                </Link>
                                 <ConnectionBtn />
                             </div>
 
@@ -49,6 +59,7 @@ const Navbar = () => {
                                     )}
                                 </Disclosure.Button>
                             </div>
+                            
                         </div>
                     </div>
 
@@ -77,12 +88,29 @@ export default Navbar;
 
 const ConnectionBtn = () => {
     const isLogged = useSelector(selectIsLogged);
+    const role = useSelector(isAdmin);
     const dispatch = useDispatch();
+    const showToastMessage = () => {
+        toast.success('Déconnexion réussie', {
+            position: toast.POSITION.TOP_RIGHT
+        });
+    }
     if (isLogged)
         return (
-            <button className="btn btn-green ml-8" onClick={() => dispatch(signOut())}>
+            <>
+            {role === "admin" ?<Link to={URL_ADMIN_HOME}><button className='btn bg-light-yellow hover:bg-light-yellow-hover'>Admin</button></Link>: ''}
+            {role === "admin" ? <Link to={URL_LOGIN}>
+                <button className="btn bg-light-yellow hover:bg-light-yellow-hover ml-8" onClick={() => {dispatch(signOut()); showToastMessage()}}>
+                    Se déconnecter
+                </button>
+            </Link>: 
+            <Link to={URL_HOME}>
+            <button className="btn bg-light-yellow hover:bg-light-yellow-hoverml-8" onClick={() => {dispatch(signOut()); showToastMessage()}}>
                 Se déconnecter
             </button>
+            </Link>
+            }
+            </>
         );
     else
         return (
@@ -91,7 +119,7 @@ const ConnectionBtn = () => {
                     <div className="link">Se connecter</div>
                 </Link>
                 <Link to={URL_REGISTER}>
-                    <button className="btn bg-light-yellow">S'inscrire</button>
+                    <button className="btn bg-light-yellow hover:bg-light-yellow-hover">S'inscrire</button>
                 </Link>
             </div>
         );

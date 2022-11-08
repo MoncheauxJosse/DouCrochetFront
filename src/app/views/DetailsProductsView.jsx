@@ -40,7 +40,6 @@ if(loader.state==false)
                             <img className="w-full" src={detail.detail.image}/>
                         </div>
                     </div>
-
                     <div className="bg-light-pink mt-2 p-2">
                         <div className="text-center text-xl font-bold p-2 border-b-2"> 
                             {detail.detail.name} 
@@ -65,9 +64,8 @@ if(loader.state==false)
                         </div>
                         <div className="flex justify-end">
                             <button className="rounded-full p-3 bg-dark-pink"> ajouter au panier </button>
-                        </div>
-                        
-                        </div>
+                        </div>                        
+                    </div>
                 </div>
             </div>
         </div>
