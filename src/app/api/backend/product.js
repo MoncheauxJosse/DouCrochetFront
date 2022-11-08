@@ -1,5 +1,4 @@
-import { URL_BACK_CREATE_PRODUCT, URL_DELETE_PRODUCT, URL_BACK_GET_ONE_PRODUCT } from '../../constants/urls/urlBackEnd';
-import { URL_GET_ALL_PRODUCTS,URL_GET_ALL_NEW_PRODUCTS} from '../../constants/urls/urlBackEnd';
+import { URL_BACK_CREATE_PRODUCT, URL_DELETE_PRODUCT, URL_BACK_GET_ONE_PRODUCT,URL_GET_ALL_PRODUCTS,URL_GET_ALL_NEW_PRODUCTS } from '../../constants/urls/urlBackEnd';
 import apiBackEnd from './api.Backend';
 
 export function getAll() {
