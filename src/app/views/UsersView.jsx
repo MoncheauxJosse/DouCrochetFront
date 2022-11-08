@@ -27,7 +27,7 @@ const UsersView = () => {
   if (!loader) {
     return (<div>LOADING...</div>);
   } 
- 
+}
   const deleteUser = (id) => {
     anonymizeUser(id) 
     console.log("Utilisateur anonymisé")
@@ -86,7 +86,7 @@ const UsersView = () => {
   );
 };
 
-}
+
 
 export default UsersView;
 
