@@ -1,14 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import NavAdmin from '../components/layouts/NavAdmin';
-import {selectUser} from './../redux-store/authenticationSlice'
-
-
-// const AdminHomeView = () => {
-//     return (
-//     <div className="">ADMIN Test</div>
-
-    
+import {selectUser} from './../redux-store/authenticationSlice'  
        
 const AdminHomeView = () => {
   const user = useSelector(selectUser);

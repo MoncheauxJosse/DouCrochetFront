@@ -7,3 +7,4 @@ export const URL_USERS = '/admin/utilisateurs';
 export const URL_PRODUCTS = '/produits';
 export const URL_ADMIN_PRODUCTS = '/admin/produits';
 export const URL_PRODUCT = '/produits/detail/';
+export const URL_CART = '/panier';

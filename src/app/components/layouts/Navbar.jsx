@@ -4,9 +4,10 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { URL_ADMIN_HOME, URL_HOME, URL_LOGIN, URL_REGISTER } from '../../constants/urls/urlFrontEnd';
+import { URL_ADMIN_HOME, URL_CART, URL_HOME, URL_LOGIN, URL_REGISTER } from '../../constants/urls/urlFrontEnd';
 import { isAdmin, selectIsLogged, signOut } from './../../redux-store/authenticationSlice';
 import { ToastContainer, toast } from 'react-toastify';
+import {BsCartFill} from 'react-icons/bs'
 
 const Navbar = () => {
     const role = useSelector(isAdmin);
@@ -30,6 +31,12 @@ const Navbar = () => {
                             
 
                             <div className="hidden flex-1 items-center justify-end md:flex lg:w-0">
+                                <Link to={URL_CART}>
+                                    <div className='btn flex mr-8 items-center bg-light-yellow rounded p-2'>
+                                        <BsCartFill />
+                                        <span className='ml-2'>Panier</span>
+                                    </div>
+                                </Link>
                                 <ConnectionBtn />
                             </div>
 
