@@ -68,21 +68,21 @@ const FormLogin = ({ submit, errorLog }) => {
                     />
                 </div>
 
-                <div className="flex items-center justify-between">
-                    <Field
-                        name="rememberMe"
-                        label="Se souvenir de moi"
-                        component={Checkbox}
-                        value={true}
-                    />
-                    <div className="text-sm">
-                        <Link to="/forgot-password">
-                            <span className="cursor-pointer font-medium ">
-                                Mot de passe oublié ?
-                            </span>
-                        </Link>
-                    </div>
-                </div>
+                    {/* <div className="flex items-center justify-between">
+                        <Field
+                            name="rememberMe"
+                            label="Se souvenir de moi"
+                            component={Checkbox}
+                            value={true}
+                        />
+                        <div className="text-sm">
+                            <Link to="/forgot-password">
+                                <span className="cursor-pointer font-medium ">
+                                    Mot de passe oublié ?
+                                </span>
+                            </Link>
+                        </div>
+                    </div> */}
 
                 <div>
                     <button

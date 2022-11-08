@@ -81,17 +81,17 @@ const ConnectionBtn = () => {
     if (isLogged)
         return (
             <button className="btn btn-green ml-8" onClick={() => dispatch(signOut())}>
-                Sign out
+                Se déconnecter
             </button>
         );
     else
         return (
             <div className="flex flex-col justify-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4">
                 <Link to={URL_LOGIN}>
-                    <div className="link">Sign in</div>
+                    <div className="link">Se connecter</div>
                 </Link>
                 <Link to={URL_REGISTER}>
-                    <button className="btn bg-light-yellow">Sign up</button>
+                    <button className="btn bg-light-yellow">S'inscrire</button>
                 </Link>
             </div>
         );

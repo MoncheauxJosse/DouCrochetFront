@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { register } from './../../api/backend/account';
-import { URL_HOME } from '../../constants/urls/urlFrontEnd';
+import { URL_LOGIN } from '../../constants/urls/urlFrontEnd';
 import * as Yup from 'yup';
 
 /**
@@ -242,7 +242,7 @@ const schemaFormLogin = Yup.object().shape({
                             type="submit"
                             className="btn bg-light-yellow text-dark-pink group relative w-full mt-4"
                         >
-                            Register
+                            S'inscrire
                         </button>
                     </div>
                     {errorLog && (
@@ -257,18 +257,14 @@ const schemaFormLogin = Yup.object().shape({
 const Register = () => {
     const navigate = useNavigate();
     const handleRegister=(values)=>{
-      console.log("handleregister")
-      register(values).then(
-        
-      )
-    if(values){
-          navigate(URL_HOME);
-    }
+      register(values)
+      if(values){
+          navigate(URL_LOGIN);
+      }
     };
-
-    
+   
     return (
-        <div class="">
+        <div>
             <FormRegister submit={handleRegister}/>
         </div>
     )
