@@ -2,10 +2,13 @@ import React, {useEffect,useState} from 'react'
 import { useFormik } from 'formik';
 import { postProduct } from '../api/backend/product';
 import * as Yup from 'yup'
+import { getAllCategory } from '../api/backend/category';
 
 
 const FormProduct = () =>{
- 
+
+  const [data, setData] = useState({data: []});
+  //const [tabCategory,setTab]= useState([]);
       const formik= useFormik({
 
           initialValues: {
@@ -13,7 +16,9 @@ const FormProduct = () =>{
             price:1,
             description:"",
             quantity: 1,
-            image:null
+            image:null,
+            categoryId:[],
+            createCategory:""
           },
 
           validationSchema: Yup.object().shape({
@@ -22,7 +27,7 @@ const FormProduct = () =>{
             price:Yup.number().min(0.01,"minimum 0,01 ").required('minimum 1'),
             description:Yup.string().min(10,"minimum 10 lettres").required('description requis'),
             quantity: Yup.number().integer().min(1,"minimum 1").required('texte non autorisé dans quantité'),
-            //image:Yup.string().required('image requis')
+            //image:Yup.object().required('image requis')
           }),
 
           onSubmit: values => {
@@ -41,12 +46,23 @@ const FormProduct = () =>{
         }
           ); 
 
-
-        
-
         useEffect(() => {
 
-          console.log(formik.values.image);
+          const fetchData = async () => {
+            const CategoryData = await getAllCategory();
+            setData(CategoryData);         
+          };
+
+          let long = data.data.length
+          console.log(long)
+      
+          if(data.data.length==0){
+            console.log("sa passe")
+            fetchData();
+          }
+          
+          //console.log(data.data)
+          console.log(formik.values);
           },[formik]);
 
           return (
@@ -83,7 +99,51 @@ const FormProduct = () =>{
                {formik.errors.description && <p  className= "error text-xs text-red-600">{formik.errors.description}</p>}
                </div>
 
+
+
+
+
+
+
+
+
+               <div className="mb-2 flex justify-center">
+               <label htmlFor="price" className='font-bold text-light-yellow'>Catégorie</label>
+               </div>
+               <div className="mb-4">
+               <select id="categoryId" name="categoryId" onChange={(e) => {
+                //setTab([...tabCategory,e])
+                formik.handleChange(...formik.values.categoryId,e)
+                }}>
+               <option value="">Aucun</option>
+               {data.data?.map((obj, index) => {
+                  return (
+                      <option key={index} id={index} value={data.data[index]._id}>{data.data[index].name}</option>
+                    )
+                  })} 
+                  </select>
+
+                  <input
+                 id="createCategory"
+                 name="createCategory"
+                 type="text"
+                 onChange={formik.handleChange}
+                 placeholder="creer Categorie"
+                 value={formik.values.createCategory}
+                 className={formik.values.categoryId == "" ? "":"invisible"}
+                 />
+                </div>
+
+
+
+
+
+
+
+
+
                <div className="mb-8">
+               <label for="image" className={formik.errors.image ? "input-error btn":"btn"}>Choisir image</label>
                <input
                  id="image"
                  name="image"
@@ -91,7 +151,7 @@ const FormProduct = () =>{
                  accept='image/*'
                  onChange={(e) =>
                   formik.setFieldValue('image', e.currentTarget.files[0])}
-                 className={formik.errors.image ? "input-error":""}
+                 className='invisible'
                  />
                  {formik.errors.image && <p className= "error text-xs text-red-600">{formik.errors.image}</p>}
 
