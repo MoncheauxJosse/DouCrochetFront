@@ -1,5 +1,5 @@
 import React, {useEffect,useState} from 'react'
-import { useFormik } from 'formik';
+import { useFormik, FieldArray,Field } from 'formik';
 import { postProduct } from '../api/backend/product';
 import * as Yup from 'yup'
 import { getAllCategory } from '../api/backend/category';
@@ -17,7 +17,7 @@ const FormProduct = () =>{
             description:"",
             quantity: 1,
             image:null,
-            categoryId:[],
+            categoryId:[""],
             createCategory:""
           },
 
@@ -38,6 +38,7 @@ const FormProduct = () =>{
             formData.append('price',formik.values.price)
             formData.append('description',formik.values.description)
             formData.append('quantity',formik.values.quantity)
+            formData.append('categoryId',formik.values.categoryId)
 
               postProduct(formData)
               alert("Produit créé !")
@@ -45,6 +46,23 @@ const FormProduct = () =>{
             }, 
         }
           ); 
+
+
+          const antiDuplicateCategory=(e)=>{
+
+            const searchId =formik.values.categoryId.map(category => category.id);
+            const duplicateId = searchId.includes( data.data[e.target.value]._id)
+
+            if(duplicateId==true){
+
+              return [...formik.values.categoryId]
+            }else{
+
+              return [...formik.values.categoryId,{id :data.data[e.target.value]._id,name :data.data[e.target.value].name}]
+            }
+           
+
+        };
 
         useEffect(() => {
 
@@ -60,8 +78,7 @@ const FormProduct = () =>{
             console.log("sa passe")
             fetchData();
           }
-          
-          //console.log(data.data)
+
           console.log(formik.values);
           },[formik]);
 
@@ -74,6 +91,7 @@ const FormProduct = () =>{
                 </div>
                
                 <div className="mb-4">
+                <div className="mb-2 flex justify-center">
                <input
                  id="name"
                  name="name"
@@ -83,10 +101,15 @@ const FormProduct = () =>{
                  placeholder="Nom"
                  className={formik.errors.name ? "input-error":""} 
                />
+               
+               </div>
+               <div className=" flex justify-center">
                {formik.errors.name && <p  className= "error text-xs text-red-600">{formik.errors.name}</p>}
+               </div>
                </div>
 
                <div className="mb-4">
+               <div className="mb-2 flex justify-center">
                <input
                  id="description"
                  name="description"
@@ -96,54 +119,71 @@ const FormProduct = () =>{
                  placeholder="Description"
                  className={formik.errors.description ? "input-error":""}
                />
+               
+               </div>
+               <div className=" flex justify-center">
                {formik.errors.description && <p  className= "error text-xs text-red-600">{formik.errors.description}</p>}
                </div>
-
-
-
-
-
-
-
+               </div>
 
 
                <div className="mb-2 flex justify-center">
-               <label htmlFor="price" className='font-bold text-light-yellow'>Catégorie</label>
+               <label htmlFor="price" className='font-bold text-light-yellow'>créer une Catégorie</label>
                </div>
                <div className="mb-4">
-               <select id="categoryId" name="categoryId" onChange={(e) => {
-                //setTab([...tabCategory,e])
-                formik.handleChange(...formik.values.categoryId,e)
-                }}>
-               <option value="">Aucun</option>
-               {data.data?.map((obj, index) => {
-                  return (
-                      <option key={index} id={index} value={data.data[index]._id}>{data.data[index].name}</option>
-                    )
-                  })} 
-                  </select>
-
-                  <input
+               <div className="mb-2 flex justify-center">
+               <input
                  id="createCategory"
                  name="createCategory"
                  type="text"
                  onChange={formik.handleChange}
                  placeholder="creer Categorie"
                  value={formik.values.createCategory}
-                 className={formik.values.categoryId == "" ? "":"invisible"}
                  />
+                 </div>
+                 </div>
+
+               <div className="mb-2 flex justify-center">
+               <label htmlFor="price" className='font-bold text-light-yellow'>Catégorie</label>
+               </div>
+               <div className="mb-4">
+               <div className="mb-2 flex justify-center">
+
+               <select id="categoryId" name="categoryId" onChange={(e) => {
+
+                formik.setFieldValue("categoryId",antiDuplicateCategory(e))
+                }}>
+               <option value="">Aucun</option>
+               {data.data?.map((obj, index) => {
+                  return (
+                      <option key={index} id={index} value={index} >{data.data[index].name}</option>
+                    )
+                  })} 
+                  </select>
+                  </div>
+
+
+                  <div className="mb-2 flex justify-center">
+               <label htmlFor="price" className='font-bold text-light-yellow'>Vos choix</label>
+               </div>
+
+               <div  className="bg-light-yellow">
+                  {formik.values.categoryId?.map((obj, index) => {
+                  return (
+                    <div className="mb-2 flex justify-center">
+                      <div key={index} id={index}>{formik.values.categoryId[index].name}</div>
+                      </div>
+                    )
+                  })} 
+                  </div>
+                  
                 </div>
-
-
-
-
-
-
-
+                
 
 
                <div className="mb-8">
-               <label for="image" className={formik.errors.image ? "input-error btn":"btn"}>Choisir image</label>
+               <label for="image" className={formik.errors.image ? "input-error btn bg-light-yellow":"btn bg-light-yellow"}>Choisir image</label>
+               </div>
                <input
                  id="image"
                  name="image"
@@ -153,15 +193,20 @@ const FormProduct = () =>{
                   formik.setFieldValue('image', e.currentTarget.files[0])}
                  className='invisible'
                  />
+                 <div className=" flex justify-center">
                  {formik.errors.image && <p className= "error text-xs text-red-600">{formik.errors.image}</p>}
+                 </div>
 
-                </div>
+               
+                 <div className="mb-2 flex justify-center">
 
-               <div className="mb-2 flex justify-center">
-               <label htmlFor="price" className='font-bold text-light-yellow'>Prix</label>
-               </div>
 
+               <label htmlFor="price" className='font-bold text-light-yellow'>Prix :</label>
+
+
+               
                <div className="mb-4">
+
                <input
                  id="price"
                  name="price"
@@ -170,12 +215,14 @@ const FormProduct = () =>{
                  value={formik.values.price}
                  className={formik.errors.price ? "input-error":""}
                />
+
                {formik.errors.price && <p  className= "error text-xs text-red-600">{formik.errors.price}</p>}
                </div>
 
-               <div className="mb-2 flex justify-center">
-                <label htmlFor="quantity" className='font-bold text-light-yellow'>Quantité ajouté</label>
-                </div>
+               
+                <label htmlFor="quantity" className='font-bold text-light-yellow'>Quantitées :</label>
+                
+
 
                 <div className="mb-4">
                <input
@@ -186,7 +233,10 @@ const FormProduct = () =>{
                  value={formik.values.quantity}
                  className={formik.errors.quantity ? "input-error":""}
                />
-               {formik.errors.quantity && <p  className= "error text-xs text-red-600">{formik.errors.quantity}</p>}
+                <div className=" flex justify-center">
+                  {formik.errors.quantity && <p  className= "error text-xs text-red-600">{formik.errors.quantity}</p>}
+                </div>
+               </div>
                </div>
 
                 <div className='flex justify-center'>
