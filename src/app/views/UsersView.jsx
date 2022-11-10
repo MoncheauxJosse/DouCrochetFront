@@ -24,14 +24,15 @@ const UsersView = () => {
 
   },[]);
   if (loader.state == false) {
-    if (!loader) {
-      return <div>LOADING...</div>;
-    }
-  }
+  if (!loader) {
+    return (<div>LOADING...</div>);
+  } 
+}
   const deleteUser = (id) => {
-    anonymizeUser(id);
-    console.log("Utilisateur anonymisé");
-  };
+    anonymizeUser(id) 
+    console.log("Utilisateur anonymisé")
+  }
+ 
   const showToastMessage = () => {
     toast.success("Utilisateur anonymisé", {
       position: toast.POSITION.BOTTOM_LEFT,
@@ -157,5 +158,7 @@ const UsersView = () => {
     </table>
   );
 };
+
+
 
 export default UsersView;

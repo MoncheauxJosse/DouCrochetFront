@@ -1,7 +1,6 @@
 import React, {useEffect,useState} from 'react'
 import { useFormik } from 'formik';
 import { postProduct } from '../api/backend/product';
-import jwt from 'jwt-decode'
 import * as Yup from 'yup'
 
 
@@ -14,23 +13,30 @@ const FormProduct = () =>{
             price:1,
             description:"",
             quantity: 1,
-            image:""
+            image:null
           },
 
           validationSchema: Yup.object().shape({
 
             name:Yup.string().min(3,"minimum 3 lettres").required('Nom requis'),
-            price:Yup.number().min(1,"minimum 1").required('minimum 1'),
+            price:Yup.number().min(0.01,"minimum 0,01 ").required('minimum 1'),
             description:Yup.string().min(10,"minimum 10 lettres").required('description requis'),
-            quantity: Yup.number().min(1,"minimum 1").required('texte non autorisé dans quantité'),
-            image:Yup.string().required('image requis')
+            quantity: Yup.number().integer().min(1,"minimum 1").required('texte non autorisé dans quantité'),
+            //image:Yup.string().required('image requis')
           }),
 
           onSubmit: values => {
 
-            console.log(formik.values)
-  
-              postProduct(formik.values)
+            let formData = new FormData();
+            formData.append('image',formik.values.image)
+            formData.append('name',formik.values.name)
+            formData.append('price',formik.values.price)
+            formData.append('description',formik.values.description)
+            formData.append('quantity',formik.values.quantity)
+
+              postProduct(formData)
+              alert("Produit créé !")
+              
             }, 
         }
           ); 
@@ -40,22 +46,7 @@ const FormProduct = () =>{
 
         useEffect(() => {
 
-
-          // recupere le storege
-          const recupeStorage = localStorage.getItem("persist:root")
-          // parse le storage recuperer pour avoir la donné "auth"
-          const ParseStorage = JSON.parse(recupeStorage);
-          // parse la donné auth pour recuper par la suite le token
-          const ParseAuth = JSON.parse(ParseStorage.auth)
-          // appel le token
-           const token = ParseAuth.token
-            // lance le decode pour recuperer l objet envoyé
-            const infoToken =jwt(token)
-            //lit les donné dans le token decodé
-
-            console.log(infoToken)
-
-          
+          console.log(formik.values.image);
           },[formik]);
 
           return (
@@ -96,10 +87,10 @@ const FormProduct = () =>{
                <input
                  id="image"
                  name="image"
-                 type="text"
-                 onChange={formik.handleChange}
-                 value={formik.values.image}
-                 placeholder="lien image"
+                 type="file"
+                 accept='image/*'
+                 onChange={(e) =>
+                  formik.setFieldValue('image', e.currentTarget.files[0])}
                  className={formik.errors.image ? "input-error":""}
                  />
                  {formik.errors.image && <p className= "error text-xs text-red-600">{formik.errors.image}</p>}
