@@ -15,13 +15,7 @@ export async function anonymizeUser(id) {
     }
 }
 
-export async function modifUser(id) {
-    try {
-        const res = await apiBackEnd.put(URL_BACK_MODIF + id);
-        console.log(res);
-        console.log(`Status: ${res.status}`);
-        console.log('Body: ', res.data);
-    } catch (err) {
-        console.error(err);
-    }
+export  function modifUser(id, index) {
+    console.log(index, "test");
+  return apiBackEnd.put(URL_BACK_MODIF + id, index);
 }
