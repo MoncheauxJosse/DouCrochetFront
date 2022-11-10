@@ -1,6 +1,6 @@
 import { Disclosure, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/solid';
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -10,7 +10,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import {BsCartFill} from 'react-icons/bs'
 
 const Navbar = () => {
-    const role = useSelector(isAdmin);
     return (
         <Disclosure as="nav" className="fixed top-0 z-50 w-full bg-light-pink shadow-md">
             {({ open }) => (

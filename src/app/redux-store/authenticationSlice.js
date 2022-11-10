@@ -67,10 +67,10 @@ export const selectToken = (state) => state.auth.token;
     return roles.some((roles) => roles.includes(user.roles));
 
 };
- export const isAdmin = (state, roles) => {
+ export const isAdmin = (state) => {
 
     const user = state.auth.user;
-    return user.roles
+    return user && user.roles
 };
 
 export default authenticationSlice.reducer;
