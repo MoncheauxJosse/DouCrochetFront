@@ -17,7 +17,7 @@ const FormProduct = () =>{
             description:"",
             quantity: 1,
             image:null,
-            categoryId:[""],
+            categoryId:[],
             createCategory:""
           },
 
@@ -27,7 +27,7 @@ const FormProduct = () =>{
             price:Yup.number().min(0.01,"minimum 0,01 ").required('minimum 1'),
             description:Yup.string().min(10,"minimum 10 lettres").required('description requis'),
             quantity: Yup.number().integer().min(1,"minimum 1").required('texte non autorisé dans quantité'),
-            //image:Yup.object().required('image requis')
+            
           }),
 
           onSubmit: values => {
@@ -38,7 +38,9 @@ const FormProduct = () =>{
             formData.append('price',formik.values.price)
             formData.append('description',formik.values.description)
             formData.append('quantity',formik.values.quantity)
-            formData.append('categoryId',formik.values.categoryId)
+            // transformer en string ?
+            let TadId = formik.values.categoryId.map(category => category.id)
+            formData.append('categoryId',JSON.stringify(TadId))
 
               postProduct(formData)
               alert("Produit créé !")
