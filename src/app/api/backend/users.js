@@ -7,21 +7,11 @@ export function getAll() {
 export function findRole() {
     return apiBackEnd.get(URL_GET_ROLES);
 }
-export async function anonymizeUser(id) {
-    try {
-        const res = await apiBackEnd.put(URL_BACK_DELETE + id);
-    } catch (err) {
-        console.error(err);
-    }
+export function anonymizeUser(id, docs) {
+    return apiBackEnd.put(URL_BACK_DELETE + id, docs);
 }
 
-export async function modifUser(id) {
-    try {
-        const res = await apiBackEnd.put(URL_BACK_MODIF + id);
-        console.log(res);
-        console.log(`Status: ${res.status}`);
-        console.log('Body: ', res.data);
-    } catch (err) {
-        console.error(err);
-    }
+export  function modifUser(id, index) {
+    console.log(index, "test");
+  return apiBackEnd.put(URL_BACK_MODIF + id, index);
 }

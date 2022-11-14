@@ -20,8 +20,6 @@ const ProductsView = () => {
     setloader({ state: true });
   }, []);
 
-//   console.log(products.data[0]._id);
-
 const navigate = useNavigate();
   const details = () => {
         const detailStorage = document.activeElement.id
@@ -56,8 +54,8 @@ const navigate = useNavigate();
                     {product.price}€
                   </p>
                 </div>
-                <div>
-                <button onClick={() => details(product._id)} id={product._id}> detail </button>
+                <div className="flex justify-center">
+                  <button className="button rounded p-3 mb-3 bg-light-yellow hover:text-dark-pink" onClick={() => details(product._id)} id={product._id}> En savoir plus </button>
                 </div>
               </div>
             </div>

@@ -23,7 +23,6 @@ const DetailProductView = () => {
         }
         fetchDetail()
     },[]);
-
       const addToCart = (detail) => {
         dispatch(addCartProduct(detail))
     }
@@ -56,16 +55,14 @@ if(loader.state==false)
                             <div className="pr-2">
                                 Quantité
                             </div>
-                            <select className="text-dark-pink" name="quantity">
+                            {/* <select className="text-dark-pink" name="quantity">
                                 {detail.data?.map(product=>{
                                     <option value={product.quantity}></option>
                                 })}
-                                        {/* <option value="1">1</option>
-                                        <option value="2">2</option> 
-                                        <option value="3">3</option> 
-                                        <option value="4">4</option> 
-                                        <option value="5">5</option>  */}
-                            </select>
+                            </select> */}
+                            <div>
+                                {detail.detail.quantity}
+                            </div>
                         </div>
                         <div className="flex justify-end">
                             <button onClick={() => addToCart(detail)} className="rounded-full p-3 bg-dark-pink"> Ajouter au panier </button>
