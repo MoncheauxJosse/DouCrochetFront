@@ -2,13 +2,14 @@ import React, {useEffect,useState} from 'react'
 import { useFormik, FieldArray,Field } from 'formik';
 import { postProduct } from '../api/backend/product';
 import * as Yup from 'yup'
-import { getAllCategory } from '../api/backend/category';
+import { getAllCategory , postCategory} from '../api/backend/category';
 
 
 const FormProduct = () =>{
 
   const [data, setData] = useState({data: []});
-  //const [tabCategory,setTab]= useState([]);
+
+ const [count,setCount]= useState(0);
       const formik= useFormik({
 
           initialValues: {
@@ -39,8 +40,8 @@ const FormProduct = () =>{
             formData.append('description',formik.values.description)
             formData.append('quantity',formik.values.quantity)
             // transformer en string ?
-            let TadId = formik.values.categoryId.map(category => category.id)
-            formData.append('categoryId',JSON.stringify(TadId))
+            let TabId = formik.values.categoryId.map(category => category.id)
+            formData.append('categoryId',JSON.stringify(TabId))
 
               postProduct(formData)
               alert("Produit créé !")
@@ -48,6 +49,14 @@ const FormProduct = () =>{
             }, 
         }
           ); 
+
+          const createCategoryClick= ()=>{
+
+           
+            postCategory({'name':formik.values.createCategory})
+            setCount(data.data.length+1)
+            
+          }
 
 
           const antiDuplicateCategory=(e)=>{
@@ -66,23 +75,41 @@ const FormProduct = () =>{
 
         };
 
+        const deleteChoice = (index)=>{
+
+          // delete la category selectioné (l'index, objet a suprimer a partir de la, si "2", aurait suprimer l'objet index plus le suivant)
+          
+          const tabDelete = formik.values.categoryId.splice(index,1)
+
+          return formik.values.categoryId
+          
+        }
+         
+
+
+
         useEffect(() => {
 
           const fetchData = async () => {
             const CategoryData = await getAllCategory();
-            setData(CategoryData);         
+            setData(CategoryData);    
+           
           };
 
-          let long = data.data.length
-          console.log(long)
-      
-          if(data.data.length==0){
-            console.log("sa passe")
+          
+
+
+
+          if(data.data.length==0||data.data.length!==count){
+          
             fetchData();
+            setCount(data.data.length)
+
           }
+          
 
           console.log(formik.values);
-          },[formik]);
+          },[formik,count]);
 
           return (
               <div  className="bg-light-yellow flex h-full flex-col items-center justify-center">
@@ -142,6 +169,7 @@ const FormProduct = () =>{
                  placeholder="creer Categorie"
                  value={formik.values.createCategory}
                  />
+                 <div name="Button-Create-Category" className='btn bg-light-yellow' onClick={createCategoryClick}>Valider</div>
                  </div>
                  </div>
 
@@ -173,7 +201,8 @@ const FormProduct = () =>{
                   {formik.values.categoryId?.map((obj, index) => {
                   return (
                     <div className="mb-2 flex justify-center">
-                      <div key={index} id={index}>{formik.values.categoryId[index].name}</div>
+                      <div key={index} id={index}>{formik.values.categoryId[index].name} 
+                      <div className='btn px-2.5 py-0.5 rounded-full text-white bg-light-pink hover:bg-dark-pink' onClick={()=>{formik.setFieldValue("categoryId",deleteChoice(index))}}>X</div></div>
                       </div>
                     )
                   })} 
