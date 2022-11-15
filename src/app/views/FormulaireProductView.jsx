@@ -87,15 +87,9 @@ const FormProduct = () =>{
         }
          
         const loadImage = (e) => {
-
-          const objectUrl = URL.createObjectURL(e)
-          
-
+          const objectUrl = URL.createObjectURL(e)          
           setPreview(objectUrl)
-
           return e
-
-
         }
 
         useEffect(() => {
@@ -112,7 +106,7 @@ const FormProduct = () =>{
 
             }
 
-          console.log(formik.values);
+
           },[formik,count]);
 
           return (
@@ -217,7 +211,7 @@ const FormProduct = () =>{
 
 
                <div className="mb-8 flex gap-20">
-                <label for="image" className={formik.errors.image ? "input-error btn bg-light-yellow":"btn h-10 bg-light-yellow"}>Choisir image</label>
+                <label htmlFor="image" className={formik.errors.image ? "input-error btn bg-light-yellow":"btn h-10 bg-light-yellow"}>Choisir image</label>
                 <img className="w-40 "src={preview} />
                </div>
                

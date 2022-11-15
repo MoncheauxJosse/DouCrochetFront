@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAll, detailProduct } from "../api/backend/product";
+import { getAllPage, detailProduct } from "../api/backend/product";
 import Loader from "../components/lib/utils-components/Loader";
 import { useNavigate } from 'react-router-dom';
 import { URL_PRODUCT } from "../constants/urls/urlFrontEnd";
@@ -8,17 +8,40 @@ import { selectIsLogged } from '../redux-store/authenticationSlice';
 const ProductsView = () => {
   const [products, setProducts] = useState([]);
   const [loader, setloader] = useState({ state: false });
+  const [page, setPage] = useState(1);
     console.log("loader",loader)
+
+
+    const AvancerPage=()=>{
+
+      if(page!==products.totalPages){
+      setPage(page+1)
+      }
+
+
+  }
+  
+  const reculerPage=()=>{
+
+      if(page!==1){
+
+          setPage(page-1)
+      }
+      
+      
+  }
+  
   useEffect(() => {
     const fetchData = async () => {
-      const productsData = await getAll();
-      setProducts(productsData);
-      console.log(productsData);
+      const productsData = await getAllPage(page);
+      setProducts(productsData.data);
+      
+
     };
 
     fetchData();
     setloader({ state: true });
-  }, []);
+  }, [page]);
 
 //   console.log(products.data[0]._id);
 
@@ -37,8 +60,9 @@ const navigate = useNavigate();
     )
   } else if(loader.state == true){
     return (
+      <div>
       <div className="p-10 grid grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:gap-x-8 bg-light-yellow h-max">
-        {products.data?.map((product) => {
+        {products.productsPage?.map((product) => {
           return (
             <div>
               <div
@@ -63,7 +87,17 @@ const navigate = useNavigate();
             </div>
           );
         })}
-        </div>        
+        </div>
+        <section className="flex items-center justify-center">
+    
+        <button onClick={reculerPage} className="bg-light-pink hover:bg-dark-pink text-white font-bold py-2 px-4 rounded" >-</button>
+        <div className="font-bold text-center text-2xl mx-2"> Pages {page} /{products.totalPages}</div>
+        <button onClick={AvancerPage} className="bg-light-pink hover:bg-dark-pink text-white font-bold py-2 px-4 rounded" >+</button>
+    
+    
+    </section>
+    </div>
+
     );
   }
 };
