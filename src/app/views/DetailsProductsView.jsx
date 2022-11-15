@@ -13,6 +13,7 @@ const DetailProductView = () => {
         const fetchDetail = async () => {
 
             let detail = await detailProduct(id);
+            console.log(detail);
 
             setDetail({
                 detail: detail.data,   

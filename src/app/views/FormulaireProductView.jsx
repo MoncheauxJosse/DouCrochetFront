@@ -7,6 +7,7 @@ import { getAllCategory , postCategory} from '../api/backend/category';
 
 const FormProduct = () =>{
 
+  const [preview, setPreview] = useState();
   const [data, setData] = useState({data: []});
 
  const [count,setCount]= useState(0);
@@ -85,8 +86,17 @@ const FormProduct = () =>{
           
         }
          
+        const loadImage = (e) => {
+
+          const objectUrl = URL.createObjectURL(e)
+          
+
+          setPreview(objectUrl)
+
+          return e
 
 
+        }
 
         useEffect(() => {
 
@@ -95,18 +105,12 @@ const FormProduct = () =>{
             setData(CategoryData);    
            
           };
-
-          
-
-
-
-          if(data.data.length==0||data.data.length!==count){
+             if(data.data.length==0||data.data.length!==count){
           
             fetchData();
             setCount(data.data.length)
 
-          }
-          
+            }
 
           console.log(formik.values);
           },[formik,count]);
@@ -212,23 +216,26 @@ const FormProduct = () =>{
                 
 
 
-               <div className="mb-8">
-               <label for="image" className={formik.errors.image ? "input-error btn bg-light-yellow":"btn bg-light-yellow"}>Choisir image</label>
+               <div className="mb-8 flex gap-20">
+                <label for="image" className={formik.errors.image ? "input-error btn bg-light-yellow":"btn h-10 bg-light-yellow"}>Choisir image</label>
+                <img className="w-40 "src={preview} />
                </div>
+               
                <input
                  id="image"
                  name="image"
                  type="file"
                  accept='image/*'
                  onChange={(e) =>
-                  formik.setFieldValue('image', e.currentTarget.files[0])}
+                  formik.setFieldValue('image', loadImage(e.currentTarget.files[0]))}
                  className='invisible'
                  />
                  <div className=" flex justify-center">
                  {formik.errors.image && <p className= "error text-xs text-red-600">{formik.errors.image}</p>}
                  </div>
 
-               
+                 
+
                  <div className="mb-2 flex justify-center">
 
 
