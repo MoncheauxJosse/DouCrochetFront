@@ -3,6 +3,7 @@ import { detailProduct } from "../api/backend/product";
 import Loader from "../components/lib/utils-components/Loader";
 import { useDispatch } from "react-redux";
 import { addCartProduct } from "../redux-store/cartSlice";
+import { toast } from "react-toastify";
 // import { addCartProduct } from "../redux-store/cartSlice";
 
 const DetailProductView = () => {
@@ -14,19 +15,24 @@ const DetailProductView = () => {
     useEffect(() => {     
         const fetchDetail = async () => {
             let detail = await detailProduct(id);
+            console.log(detail)
             setDetail({
                 detail: detail.data,   
             })
             setLoader({
                 state : true
-            })
+            }) 
         }
         fetchDetail()
     },[]);
       const addToCart = (detail) => {
         dispatch(addCartProduct(detail))
     }
-console.log(detail.detail)
+    const showAddMessage = () => {
+        toast.success('Produit ajouté au panier', {
+            position: toast.POSITION.BOTTOM_LEFT
+        });
+    }
 if(loader.state==false)
     return (
         <Loader/>
@@ -65,7 +71,12 @@ if(loader.state==false)
                             </div>
                         </div>
                         <div className="flex justify-end">
-                            <button onClick={() => addToCart(detail)} className="rounded-full p-3 bg-dark-pink"> Ajouter au panier </button>
+                            <button 
+                            onClick={() => {
+                            addToCart(detail); 
+                            showAddMessage();
+                            }} 
+                            className="rounded-full p-3 bg-dark-pink"> Ajouter au panier </button>
                         </div>                        
                     </div>
                 </div>

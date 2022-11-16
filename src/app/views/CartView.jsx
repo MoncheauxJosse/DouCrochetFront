@@ -15,8 +15,8 @@ export default function CartView() {
   if(cartItems !== undefined && cartItems.length > 0){
     return (
       <div>
-        <div className='flex shadow-md my-10'>
-          <div className='w-3/4'>
+        <div className='flex shadow-md my-10 xs:block'>
+          <div className='w-3/4 xs:w-full'>
             <div className="flex justify-between border-b pb-8">
               <h1 className="font-semibold text-2xl">Votre panier</h1>
               <h2 className="font-semibold text-2xl">{cartlength} {cartlength === 1 ? oneProduct : multipleProduct}</h2>
@@ -30,7 +30,7 @@ export default function CartView() {
             {cartItems.map(item => <CartItem key={item.id} id={item.id} quantity={item.quantity}/>)}
           </div>
           <div>
-            <div className="px-8 py-10">
+            <div className="px-8 py-10 fixed xs:relative">
               <h1 className="font-semibold text-2xl border-b pb-8">Ma commande</h1>
               <div className="flex justify-between mt-10 mb-5">
                 <span className="font-semibold text-sm uppercase">{cartlength} {cartlength === 1 ? oneProduct : multipleProduct}</span>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import {detailProduct} from '../../api/backend/product'
+import {increment, decrement} from '../../redux-store/cartSlice'
 
 function CartItem({id, quantity}) {
   const dispatch = useDispatch()
@@ -25,7 +26,7 @@ function CartItem({id, quantity}) {
           <div className="flex items-center -mx-8 px-6 py-5">
             <div className="flex w-2/5">
               <div className="w-32">
-                <img className="w-32 h-32 " src={product.image} alt=""/>
+                <img className="w-32 h-32 xs:h-16 xs:w-16" src={product.image} alt=""/>
               </div>
               <div className="flex flex-col justify-between ml-4 flex-grow">
                 <span className="font-bold text-sm">{product.name}</span>
@@ -33,9 +34,13 @@ function CartItem({id, quantity}) {
               </div>
             </div>
             <div className="flex justify-center w-1/5">
-              <button className='text-xl'>+</button>
+              <button onClick={()=> {
+                dispatch(increment(product.id))
+              }} className='text-xl'>+</button>
               <input className="mx-2 border text-center w-8" type="text" defaultValue={product.quantity}/>
-              <button className='text-xl'>-</button>
+              <button onClick={()=>{
+                dispatch(decrement(product.id))
+              }} className='text-xl'>-</button>
             </div>
             <span className="text-center w-1/5 font-semibold text-sm">{product.price}€</span>
             <span className="text-center w-1/5 font-semibold text-sm">{product.price}€</span>

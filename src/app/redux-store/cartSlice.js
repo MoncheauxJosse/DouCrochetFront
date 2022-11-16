@@ -1,4 +1,4 @@
-import {createAsyncThunk, nanoid, createSlice} from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 
 const cartSlice = createSlice({
     name: "cart", 
@@ -12,7 +12,7 @@ const cartSlice = createSlice({
     reducers: {
         addCartProduct: {
             reducer: (state, action) => {
-              console.log(action.payload.detail._id)
+              console.log(action)
               let cartIndex = state.cartItems.findIndex(
                 (item) => item.id === action.payload.detail._id,
               )
@@ -23,15 +23,27 @@ const cartSlice = createSlice({
                 state.cartItems.push(tempProduct)
               }
             },
-        }
+        },
+        increment: (state, action) => {
+          let index = state.cartItems.findIndex(
+            (item) => item.id === action.payload,
+            )
+            console.log(index)
+          state.cartItems[index].quantity += 1
+        },
+        decrement: (state, action) => {
+          let index = state.cartItems.findIndex(
+            (item) => item.id === action.payload,
+          )
+          if (state.cartItems[index].quantity <= 0) {
+            state.cartItems[index].quantity = 0
+          } else {
+            state.cartItems[index].quantity -= 1
+          }
+        },
     },
-    getCartProducts: (state, action) => {
-        return {
-          ...state,
-        }
-      },
 })
 
  const cartReducer = cartSlice.reducer
  export default cartReducer;
-export const {addCartProduct, getCartProducts} = cartSlice.actions;
+export const {addCartProduct, getCartProducts, getCartCount, getSubTotal, increment, decrement} = cartSlice.actions;
