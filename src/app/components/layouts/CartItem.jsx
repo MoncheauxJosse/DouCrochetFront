@@ -8,13 +8,12 @@ function CartItem({id, quantity}) {
   const dispatch = useDispatch()
   const [product, setProduct] = useState()
   useEffect(()=>{
-    detailProduct(id).then((res)=>{
+    detailProduct(id, quantity).then((res)=>{
       setProduct(res.data)
     })
-  }, [id])
+  }, [id, quantity])
 
   const navigate = useNavigate();
-
   if(!product){
     return(<div>LOADING</div>)
     
@@ -35,11 +34,11 @@ function CartItem({id, quantity}) {
             </div>
             <div className="flex justify-center w-1/5">
               <button onClick={()=> {
-                dispatch(increment(product.id))
+                dispatch(increment(product))
               }} className='text-xl'>+</button>
-              <input className="mx-2 border text-center w-8" type="text" defaultValue={product.quantity}/>
+              <input className="mx-2 border text-center w-10" type="text" value={quantity}/>
               <button onClick={()=>{
-                dispatch(decrement(product.id))
+                dispatch(decrement(product))
               }} className='text-xl'>-</button>
             </div>
             <span className="text-center w-1/5 font-semibold text-sm">{product.price}€</span>
