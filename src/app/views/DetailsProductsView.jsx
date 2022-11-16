@@ -15,7 +15,8 @@ const DetailProductView = () => {
     useEffect(() => {     
         const fetchDetail = async () => {
             let detail = await detailProduct(id);
-            console.log(detail)
+            console.log(detail);
+
             setDetail({
                 detail: detail.data,   
             })
