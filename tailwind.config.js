@@ -23,8 +23,8 @@ module.exports = {
                 },
                 'light-pink': '#eca7a7',
                 'dark-pink': '#ed8179',
-                'light-yellow': '#fff5e4',
-                'light-yellow-hover': '#FAD89E'
+                'light-yellow': '#ffffff',
+                'light-yellow-hover': '#FAD89E',
             },
         },
     },
