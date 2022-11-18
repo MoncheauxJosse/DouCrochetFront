@@ -3,15 +3,15 @@ import { getAllPage, detailProduct } from "../api/backend/product";
 import Loader from "../components/lib/utils-components/Loader";
 import { useNavigate } from 'react-router-dom';
 import { URL_PRODUCT } from "../constants/urls/urlFrontEnd";
-import { selectIsLogged } from '../redux-store/authenticationSlice';
 
 const ProductsView = () => {
   const [products, setProducts] = useState([]);
   const [loader, setloader] = useState({ state: false });
   const [page, setPage] = useState(1);
     console.log("loader",loader)
+    
 
-
+    console.log(products)
     const AvancerPage=()=>{
 
       if(page!==products.totalPages){
