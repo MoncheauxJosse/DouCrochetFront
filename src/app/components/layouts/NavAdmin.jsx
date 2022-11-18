@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaUserAlt } from 'react-icons/fa';
 import { BsFillBagCheckFill } from 'react-icons/bs';
-import { BsFillCartPlusFill } from 'react-icons/bs';
+import { BsFillBagPlusFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { URL_ADMIN_PRODUCTS, URL_CREATE_PRODUCT, URL_USERS } from '../../constants/urls/urlFrontEnd';
 
@@ -22,7 +22,7 @@ export default function NavAdmin() {
       </Link>
       <Link to={URL_CREATE_PRODUCT}>
         <div className='bg-light-pink rounded flex flex-col items-center transition hover:scale-110'>
-            <div className='p-8 text-5xl'><BsFillCartPlusFill className='text-light-yellow'/></div>
+            <div className='p-8 text-5xl'><BsFillBagPlusFill className='text-light-yellow'/></div>
             <span className='font-bold pb-8'>Ajouter un produit</span>
         </div>
       </Link>

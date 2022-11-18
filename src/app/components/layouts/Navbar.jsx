@@ -1,6 +1,6 @@
 import { Disclosure, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/solid';
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import {BsCartFill} from 'react-icons/bs'
 
 const Navbar = () => {
-    const role = useSelector(isAdmin);
+    const {cartItems} = useSelector((state) => state.cart)
     return (
         <Disclosure as="nav" className="fixed top-0 z-50 w-full bg-light-pink shadow-md">
             {({ open }) => (
@@ -32,9 +32,12 @@ const Navbar = () => {
 
                             <div className="hidden flex-1 items-center justify-end md:flex lg:w-0">
                                 <Link to={URL_CART}>
-                                    <div className='btn flex mr-8 items-center bg-light-yellow rounded p-2'>
-                                        <BsCartFill />
-                                        <span className='ml-2'>Panier</span>
+                                    <div className='flex flex-col justify-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4'>
+                                        <button class="btn bg-light-yellow hover:bg-light-yellow-hover mr-8">
+                                            <BsCartFill />
+                                            <span class="mx-2">Panier</span>
+                                            <span class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">{cartItems.length}</span>
+                                        </button>
                                     </div>
                                 </Link>
                                 <ConnectionBtn />
@@ -74,6 +77,17 @@ const Navbar = () => {
                         <Disclosure.Panel className="p-4 md:hidden ">
                             <hr />
                             <div className="p-4">
+                                <div className="hidden flex-1 items-center justify-end md:flex lg:w-0">
+                                    <Link to={URL_CART}>
+                                        <div className='flex flex-col justify-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4'>
+                                            <button class="btn bg-light-yellow hover:bg-light-yellow-hover mr-8">
+                                                <BsCartFill />
+                                                <span class="mx-2">Panier</span>
+                                                <span class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">{cartItems.length}</span>
+                                            </button>
+                                        </div>
+                                    </Link>
+                                </div>
                                 <ConnectionBtn />
                             </div>
                         </Disclosure.Panel>
@@ -105,7 +119,7 @@ const ConnectionBtn = () => {
                 </button>
             </Link>: 
             <Link to={URL_HOME}>
-            <button className="btn bg-light-yellow hover:bg-light-yellow-hoverml-8" onClick={() => {dispatch(signOut()); showToastMessage()}}>
+            <button className="btn bg-light-yellow hover:bg-light-yellow-hover" onClick={() => {dispatch(signOut()); showToastMessage()}}>
                 Se déconnecter
             </button>
             </Link>
@@ -115,9 +129,9 @@ const ConnectionBtn = () => {
         );
     else
         return (
-            <div className="flex flex-col justify-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4">
+            <div className="flex flex-col justify-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4 ">
                 <Link to={URL_LOGIN}>
-                    <div className="link">Se connecter</div>
+                    <div className="link hover:text-dark-pink">Se connecter</div>
                 </Link>
                 <Link to={URL_REGISTER}>
                     <button className="btn bg-light-yellow hover:bg-light-yellow-hover">S'inscrire</button>

@@ -29,8 +29,12 @@ const UsersView = () => {
   } 
 }
   const deleteUser = (id) => {
-    anonymizeUser(id) 
-    console.log("Utilisateur anonymisé")
+    anonymizeUser(id).then(res=>{
+      console.log(res)
+      setReload(prevState => !prevState);
+    }).catch(err => {
+      console.log(err);
+    });
   }
  
   const showToastMessage = () => {
@@ -118,15 +122,12 @@ const UsersView = () => {
                       deleteUser(user._id);
                       showToastMessage();
                     }}
-                    className="delete-button border-b bg-red-500 rounded-md p-3 block w-1/2 p-1.5"
+                    className="delete-button border-b bg-red-500 rounded-md block w-1/2 p-1.5"
                   >
                     Supprimer
                   </button>
-                </td>
-                
-                <td className="align-items: flex ">
-                  <tbody className=" align-items: flex bg-white ">
-
+                </td >
+                    <td className=" align-items: flex bg-white ">
                     <select className=" align-items: stretch; block w-2/3 p-1 rounded-md"
                       id = {index}
                     
@@ -138,18 +139,15 @@ const UsersView = () => {
                         Commercial
                       </option>
                     </select>
-                    <button class=" align-items: flex bg-blue-50 border border-gray-300 text-pink-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-2/3 p-1.5 dark:bg-blue-700 dark:border-gray-600  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    <button className="align-items: bg-blue-50 border border-gray-300 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-2/3 p-1.5"
                       onClick ={() => {
-                        
                         editUser(user._id, index);
                         showToastconfirm();
                       }}
                     >
                       confirmer
                     </button>
-                  </tbody>
-                </td>
-                <td></td>
+                    </td>
               </tr>
             )}
           </>

@@ -2,13 +2,15 @@ import React, {useEffect,useState} from 'react'
 import { useFormik, FieldArray,Field } from 'formik';
 import { postProduct } from '../api/backend/product';
 import * as Yup from 'yup'
-import { getAllCategory } from '../api/backend/category';
+import { getAllCategory , postCategory} from '../api/backend/category';
 
 
 const FormProduct = () =>{
 
+  const [preview, setPreview] = useState();
   const [data, setData] = useState({data: []});
-  //const [tabCategory,setTab]= useState([]);
+
+ const [count,setCount]= useState(0);
       const formik= useFormik({
 
           initialValues: {
@@ -39,8 +41,8 @@ const FormProduct = () =>{
             formData.append('description',formik.values.description)
             formData.append('quantity',formik.values.quantity)
             // transformer en string ?
-            let TadId = formik.values.categoryId.map(category => category.id)
-            formData.append('categoryId',JSON.stringify(TadId))
+            let TabId = formik.values.categoryId.map(category => category.id)
+            formData.append('categoryId',JSON.stringify(TabId))
 
               postProduct(formData)
               alert("Produit créé !")
@@ -48,6 +50,14 @@ const FormProduct = () =>{
             }, 
         }
           ); 
+
+          const createCategoryClick= ()=>{
+
+           
+            postCategory({'name':formik.values.createCategory})
+            setCount(data.data.length+1)
+            
+          }
 
 
           const antiDuplicateCategory=(e)=>{
@@ -66,23 +76,38 @@ const FormProduct = () =>{
 
         };
 
+        const deleteChoice = (index)=>{
+
+          // delete la category selectioné (l'index, objet a suprimer a partir de la, si "2", aurait suprimer l'objet index plus le suivant)
+          
+          const tabDelete = formik.values.categoryId.splice(index,1)
+
+          return formik.values.categoryId
+          
+        }
+         
+        const loadImage = (e) => {
+          const objectUrl = URL.createObjectURL(e)          
+          setPreview(objectUrl)
+          return e
+        }
+
         useEffect(() => {
 
           const fetchData = async () => {
             const CategoryData = await getAllCategory();
-            setData(CategoryData);         
+            setData(CategoryData);    
+           
           };
-
-          let long = data.data.length
-          console.log(long)
-      
-          if(data.data.length==0){
-            console.log("sa passe")
+             if(data.data.length==0||data.data.length!==count){
+          
             fetchData();
-          }
+            setCount(data.data.length)
 
-          console.log(formik.values);
-          },[formik]);
+            }
+
+
+          },[formik,count]);
 
           return (
               <div  className="bg-light-yellow flex h-full flex-col items-center justify-center">
@@ -142,6 +167,7 @@ const FormProduct = () =>{
                  placeholder="creer Categorie"
                  value={formik.values.createCategory}
                  />
+                 <div name="Button-Create-Category" className='btn bg-light-yellow' onClick={createCategoryClick}>Valider</div>
                  </div>
                  </div>
 
@@ -173,7 +199,8 @@ const FormProduct = () =>{
                   {formik.values.categoryId?.map((obj, index) => {
                   return (
                     <div className="mb-2 flex justify-center">
-                      <div key={index} id={index}>{formik.values.categoryId[index].name}</div>
+                      <div key={index} id={index}>{formik.values.categoryId[index].name} 
+                      <div className='btn px-2.5 py-0.5 rounded-full text-white bg-light-pink hover:bg-dark-pink' onClick={()=>{formik.setFieldValue("categoryId",deleteChoice(index))}}>X</div></div>
                       </div>
                     )
                   })} 
@@ -183,23 +210,26 @@ const FormProduct = () =>{
                 
 
 
-               <div className="mb-8">
-               <label for="image" className={formik.errors.image ? "input-error btn bg-light-yellow":"btn bg-light-yellow"}>Choisir image</label>
+               <div className="mb-8 flex gap-20">
+                <label htmlFor="image" className={formik.errors.image ? "input-error btn bg-light-yellow":"btn h-10 bg-light-yellow"}>Choisir image</label>
+                <img className="w-40 "src={preview} />
                </div>
+               
                <input
                  id="image"
                  name="image"
                  type="file"
                  accept='image/*'
                  onChange={(e) =>
-                  formik.setFieldValue('image', e.currentTarget.files[0])}
+                  formik.setFieldValue('image', loadImage(e.currentTarget.files[0]))}
                  className='invisible'
                  />
                  <div className=" flex justify-center">
                  {formik.errors.image && <p className= "error text-xs text-red-600">{formik.errors.image}</p>}
                  </div>
 
-               
+                 
+
                  <div className="mb-2 flex justify-center">
 
 
