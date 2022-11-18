@@ -25,7 +25,7 @@ const DetailProductView = () => {
         fetchDetail()
     },[]);
 
-console.log(detail)
+console.log(detail.detail)
 if(loader.state==false)
     return (
         <Loader/>

@@ -4,7 +4,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { URL_ADMIN_HOME, URL_CART, URL_HOME, URL_LOGIN, URL_REGISTER } from '../../constants/urls/urlFrontEnd';
+import { URL_ADMIN_HOME, URL_CART, URL_HOME, URL_LOGIN, URL_PROFILE, URL_REGISTER } from '../../constants/urls/urlFrontEnd';
 import { isAdmin, selectIsLogged, signOut } from './../../redux-store/authenticationSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import {BsCartFill} from 'react-icons/bs'
@@ -109,6 +109,7 @@ const ConnectionBtn = () => {
                 Se déconnecter
             </button>
             </Link>
+            
             }
             </>
         );

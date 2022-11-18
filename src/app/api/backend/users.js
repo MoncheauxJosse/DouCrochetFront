@@ -1,4 +1,4 @@
-import {URL_BACK_DELETE, URL_BACK_MODIF, URL_GET_ROLES, URL_GET_USERS} from '../../constants/urls/urlBackEnd';
+import {URL_BACK_DELETE, URL_BACK_MODIF, URL_GET_ROLES, URL_GET_USERS, URL_BACK_PROFILE} from '../../constants/urls/urlBackEnd';
 import apiBackEnd from './api.Backend';
 
 export function getAll() {
@@ -18,4 +18,8 @@ export async function anonymizeUser(id) {
 export  function modifUser(id, index) {
     console.log(index, "test");
   return apiBackEnd.put(URL_BACK_MODIF + id, index);
+}
+
+export function getProfile(){
+    return apiBackEnd.get(URL_BACK_PROFILE)
 }
