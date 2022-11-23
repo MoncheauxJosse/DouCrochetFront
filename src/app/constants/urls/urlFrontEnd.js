@@ -5,6 +5,7 @@ export const URL_REGISTER = '/inscription';
 export const URL_CREATE_PRODUCT = '/creation-produit';
 export const URL_USERS = '/admin/utilisateurs';
 export const URL_PRODUCTS = '/produits';
+export const URL_PROFILE = '/profile'
 export const URL_ADMIN_PRODUCTS = '/admin/produits';
 export const URL_PRODUCT = '/produits/detail/';
 export const URL_CART = '/panier';
