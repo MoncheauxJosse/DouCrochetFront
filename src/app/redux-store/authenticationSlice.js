@@ -32,7 +32,7 @@ export const authenticationSlice = createSlice({
                 roles: claims.role,
             };
              // ajoute le user dans le store redux
-             state.user = user;
+            state.user = user;
             state.isAuthenticated = isTokenValid(token);
             setToken(action.payload);
         },

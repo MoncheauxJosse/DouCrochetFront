@@ -8,6 +8,7 @@ import { URL_ADMIN_HOME, URL_CART, URL_HOME, URL_LOGIN, URL_REGISTER } from '../
 import { isAdmin, selectIsLogged, signOut } from './../../redux-store/authenticationSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import {BsCartFill} from 'react-icons/bs'
+import {FaUserAlt} from 'react-icons/fa'
 
 const Navbar = () => {
     const {cartItems} = useSelector((state) => state.cart)
@@ -29,8 +30,15 @@ const Navbar = () => {
                                 </Link>
                             </div>
                             
-
                             <div className="hidden flex-1 items-center justify-end md:flex lg:w-0">
+                                {/* <Link to={}> */}
+                                <div className='flex flex-col justify-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4'>
+                                        <button class="btn bg-light-yellow hover:bg-light-yellow-hover mr-8">
+                                            <FaUserAlt />
+                                            <span class="mx-2">Profil</span>
+                                        </button>
+                                    </div>
+                                {/* </Link> */}
                                 <Link to={URL_CART}>
                                     <div className='flex flex-col justify-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4'>
                                         <button class="btn bg-light-yellow hover:bg-light-yellow-hover mr-8">
@@ -77,9 +85,16 @@ const Navbar = () => {
                         <Disclosure.Panel className="p-4 md:hidden ">
                             <hr />
                             <div className="p-4">
-                                <div className="hidden flex-1 items-center justify-end md:flex lg:w-0">
+                                {/* <Link to={}> */}
+                                <div className='mb-5'>
+                                        <button class="btn bg-light-yellow hover:bg-light-yellow-hover mr-8">
+                                            <FaUserAlt />
+                                            <span class="mx-2">Profil</span>
+                                        </button>
+                                    </div>
+                                {/* </Link> */}
                                     <Link to={URL_CART}>
-                                        <div className='flex flex-col justify-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4'>
+                                        <div className='mb-5'>
                                             <button class="btn bg-light-yellow hover:bg-light-yellow-hover mr-8">
                                                 <BsCartFill />
                                                 <span class="mx-2">Panier</span>
@@ -87,7 +102,6 @@ const Navbar = () => {
                                             </button>
                                         </div>
                                     </Link>
-                                </div>
                                 <ConnectionBtn />
                             </div>
                         </Disclosure.Panel>

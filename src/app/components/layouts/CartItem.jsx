@@ -1,22 +1,21 @@
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 import {detailProduct} from '../../api/backend/product'
 import {increment, decrement, getTotal, removeCartItem} from '../../redux-store/cartSlice'
 
 function CartItem({id, quantity}) {
   const dispatch = useDispatch()
   const [product, setProduct] = useState()
+
   useEffect(()=>{
     detailProduct(id, quantity).then((res)=>{
       setProduct(res.data)
     })
   }, [id, quantity])
-
-  const navigate = useNavigate();
-  if(!product){
-    return(<div>LOADING</div>)
     
+
+  if(!product){
+    return(<div>Chargement...</div>)
   }
   return (
     <div className="mx-auto">
@@ -31,7 +30,7 @@ function CartItem({id, quantity}) {
                 <span className="font-bold text-sm">{product.name}</span>
                 <button type='button' onClick={()=>{
                   dispatch(removeCartItem(product))
-                }} className="font-semibold hover:text-red-500 text-gray-500 text-xs">Supprimer</button>
+                }} className="font-semibold hover:text-red-500 text-gray-500 text-xs text-start">Supprimer</button>
               </div>
             </div>
             <div className="flex justify-center w-1/5">
