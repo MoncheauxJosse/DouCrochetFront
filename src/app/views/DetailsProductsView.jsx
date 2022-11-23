@@ -25,10 +25,12 @@ const DetailProductView = () => {
         }
         fetchDetail()
     },[]);
+
       const addToCart = (detail) => {
         dispatch(addCartProduct(detail))
         console.log(detail)
     }
+
 if(loader.state==false)
     return (
         <Loader/>
