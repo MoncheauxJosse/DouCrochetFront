@@ -1,22 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 import { Field, Form, Formik, ErrorMessage } from 'formik';
 import { getPayloadToken } from "../../services/tokenServices";
 import * as Yup from 'yup';
 import Input from "../lib/form-and-error-components/Input";
 import { updateUser } from "../../api/backend/users";
+import { useDispatch } from "react-redux";
+import { URL_PROFILE } from "../../constants/urls/urlFrontEnd";
+import {format} from "date-fns";
 
 const FormUpdate = ({submit}) => {
     const token = getPayloadToken(localStorage.token)
-    console.log("token" , token)
+    const dateToInput = format(new Date(token.birthdate), 'yyyy-MM-dd').toString()
 
     const defaulValuesUpdate = {
         firstname: token.firstname,
         lastname: token.lastname,
-        // birthdate: token.birthdate,
-        // telephone: token.telephone,
+        birthdate: dateToInput,
+        telephone: token.telephone,
         // password: '',
         // Confirmpassword: '',
-        // email: token.email,
+        email: token.email,
         country: token.adresse.country,
         cityCode: token.adresse.cityCode,
         number: token.adresse.number,
@@ -28,11 +32,11 @@ const FormUpdate = ({submit}) => {
     const schemaFormUpdate = Yup.object().shape({
         firstname: Yup.string().min(2, "Prénom trop court").max(30, "Prénom trop long").required('Prénom obligatoire'),
         lastname: Yup.string().min(2, "Nom trop court").max(30, "Nom trop long").required('Nom obligatoire'),
-        // birthdate: Yup.date().min('01-01-1900', 'Date de naissance invalide').max(new Date, 'Date de naissance invalide').required('Date obligatoire'),
-        // telephone: Yup.number().required('Telephone obligatoire'),
+        birthdate: Yup.date().min('01-01-1900', 'Date de naissance invalide').max(new Date, 'Date de naissance invalide').required('Date obligatoire'),
+        telephone: Yup.number().required('Telephone obligatoire'),
         // password: Yup.string().min(8, 'minimum 8 caractères').required('Mot de passe obligatoire'),
         // confirmPassword: Yup.string().min(8, 'minimum 8 caractères').required('Mot de passe obligatoire'),
-        // email: Yup.string().email('email invalide').required('e-mail obligatoire'),
+        email: Yup.string().email('email invalide').required('e-mail obligatoire'),
         country: Yup.string().required('Pays obligatoire'),
         cityCode: Yup.number().max(999999, "Maximum 6 chiffres").typeError("Le code postal doit être un nombre").required('Code postal obligatoire'),
         number: Yup.string().required('Numéro de rue obligatoire'),
@@ -55,7 +59,7 @@ const FormUpdate = ({submit}) => {
                                 <div className="p-5 w-96">
 
                                     <div className="text-slate-700 text-center text-lg font-bold pb-2">Informations Personnelles</div>
-                                    <div className="text-slate-500 mt-8">Votre Prénom :</div>
+                                    <div className="text-slate-500 mt-8">Prénom :</div>
                                     <Field
                                         type="text"
                                         name="firstname"
@@ -69,7 +73,7 @@ const FormUpdate = ({submit}) => {
                                         component="small"
                                         className="text-red-500"
                                     />
-                                    <div className="text-slate-500 mt-4">Votre nom :</div>
+                                    <div className="text-slate-500 mt-4">Nom :</div>
                                     <Field
                                         type="text"
                                         name="lastname"
@@ -82,6 +86,48 @@ const FormUpdate = ({submit}) => {
                                     <ErrorMessage
                                         name="lastname"
                                         component="small"
+                                        className="text-red-500"
+                                    />
+                                    <div className="text-slate-500 mt-4">E-mail :</div>
+                                      <Field
+                                        type="text"
+                                        name="email"
+                                        autoComplete="email"
+                                        component={Input}
+                                        className="rounded-none mt-1"
+                                        noError
+                                    />
+                                    <ErrorMessage
+                                        name="email"
+                                        component="small"
+                                        className="text-red-500"
+                                    />
+                                    <div className="text-slate-500 mt-4">N° de telephone :</div>
+                                        <Field
+                                        type="text"
+                                        name="telephone"
+                                        autoComplete="telephone"
+                                        component={Input}
+                                        className="rounded-none mt-1"
+                                        noError
+                                    />
+                                    <ErrorMessage
+                                        name="telephone"
+                                        component="small"
+                                        className="text-red-500"
+                                    />
+                                     <div className="text-slate-500 mt-4">Date de naissance :</div>
+                                        <Field
+                                        type="date"
+                                        name="birthdate"
+                                        autoComplete="birthdate"
+                                        component={Input}
+                                        className="rounded-none mt-1"
+                                        noError
+                                    />
+                                    <ErrorMessage
+                                        name="birthdate"
+                                        component="birthdatel"
                                         className="text-red-500"
                                     />
                                 </div>
@@ -118,7 +164,7 @@ const FormUpdate = ({submit}) => {
                                         className="text-red-500"
                                         message="Utiliser que des chiffres"
                                     />
-                                    <div className="text-slate-500 mt-4">N° :</div>
+                                    <div className="text-slate-500 mt-4">N° de rue :</div>
                                     <Field
                                         type="text"
                                         name="number"
@@ -169,10 +215,10 @@ const FormUpdate = ({submit}) => {
                                 </div>
                             </div>
 
-                            <div className="flex justify-center">
+                            <div className="flex justify-center ">
                                 <button
                                     type="submit"
-                                    className="btn bg-light-yellow text-dark-pink w-40 mt-4">
+                                    className="btn rounded-sm hover:bg-dark-pink text-white bg-light-pink w-40 mt-4 hover:scale-105 active:scale-100 active:duration-100 duration-500">
                                     Enregistrer
                                 </button>
                             </div>
@@ -185,11 +231,22 @@ const FormUpdate = ({submit}) => {
 }
 
 const updateOneUser = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate()
     const token = getPayloadToken(localStorage.token)
-    const handleUpdate =(values)=>{
+    console.log("token Avant", localStorage.token)
+
+    const handleUpdate = async (values)=>{
         const id = token._id
-       updateUser(id, {values})
-        console.log("modifyUser", values)
+       const update = await updateUser(id, values)
+        if(update){
+
+            localStorage.setItem("token",update.data.token)
+            location.reload();
+            navigate(URL_PROFILE)
+
+        }
+       console.log("token Après", localStorage.token)
     }
 
     return (
