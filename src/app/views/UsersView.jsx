@@ -32,16 +32,15 @@ const UsersView = () => {
     anonymizeUser(id).then(res=>{
       console.log(res)
       setReload(prevState => !prevState);
+      toast.success("Utilisateur anonymisé", {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
     }).catch(err => {
-      console.log(err);
+      toast.error("Erreur dans la suppression d'utilisateur", {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
     });
   }
- 
-  const showToastMessage = () => {
-    toast.success("Utilisateur anonymisé", {
-      position: toast.POSITION.BOTTOM_LEFT,
-    });
-  };
 
   
   const editUser = (_id, index) => {
@@ -50,19 +49,19 @@ const UsersView = () => {
     modifUser(_id, {roleSelect}).then( response => {
       console.log(response);
       setReload(prevState => !prevState);
+      toast.success("Role Modifié", {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
     }).catch(err => {
       console.log(err);
+      toast.error("Erreur dans la modification du rôle", {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
     });
 
     // setReload(prevState => !prevState);
     console.log("role modifier");
   }
-
-  const showToastconfirm = () => {
-    toast.success("Role Modifier", {
-      position: toast.POSITION.BOTTOM_LEFT,
-    });
-  };
 
   return (
     <table className="min-w-full border text-center">
@@ -117,15 +116,17 @@ const UsersView = () => {
                   {user.role.role}
                 </td>
                 <td className="align-items: flex-start">
-                  <button
+                  <div className="flex justify-center">
+                    <button
                     onClick={() => {
                       deleteUser(user._id);
-                      showToastMessage();
                     }}
-                    className="delete-button border-b bg-red-500 rounded-md block w-1/2 p-1.5"
-                  >
+                    className="delete-button border-b bg-red-500 rounded-md block w-1/2 p-1.5 "
+                    >
                     Supprimer
-                  </button>
+                    </button>
+                  </div>
+                  
                 </td >
                     <td className=" align-items: flex bg-white ">
                     <select className=" align-items: stretch; block w-2/3 p-1 rounded-md"
@@ -142,7 +143,6 @@ const UsersView = () => {
                     <button className="align-items: bg-blue-50 border border-gray-300 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-2/3 p-1.5"
                       onClick ={() => {
                         editUser(user._id, index);
-                        showToastconfirm();
                       }}
                     >
                       confirmer

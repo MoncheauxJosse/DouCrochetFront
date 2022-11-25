@@ -1,4 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 const cartSlice = createSlice({
     name: "cart", 
@@ -6,28 +7,44 @@ const cartSlice = createSlice({
         cartItems: [],
         totalAmount: 0,
         totalCount: 0,
+        subAmount: 0,
         status: "idle",
         error: null
     },
     reducers: {
         addCartProduct: {
             reducer: (state, action) => {
-              console.log(action)
               let cartIndex = state.cartItems.findIndex(
                 (item) => item.id === action.payload.detail._id,
               )
+              let quantityMax = action.payload.detail.quantity
+              console.log(quantityMax)
               if (cartIndex >= 0) {
-                state.cartItems[cartIndex].quantity += 1
+                if(quantityMax > state.cartItems[cartIndex].quantity ){
+                  state.cartItems[cartIndex].quantity += 1
+                  toast.success('Produit ajouté au panier', {
+                    position: toast.POSITION.BOTTOM_LEFT
+                });
+                }else{
+                  toast.error('Il n\'y a plus de produits en stock', {
+                    position: toast.POSITION.BOTTOM_LEFT
+                });
+                }
               } else {
-                let tempProduct = { id:action.payload.detail._id, quantity: 1, quantityMax: action.payload.detail.quantity }
+                let tempProduct = { id:action.payload.detail._id, quantity: 1, quantityMax: action.payload.detail.quantity, price : action.payload.detail.price }
                 state.cartItems.push(tempProduct)
+                toast.success('Produit ajouté au panier', {
+                  position: toast.POSITION.BOTTOM_LEFT
+              });
               }
             },
         },
         increment: (state, action) => {
+          console.log(action.payload)
           let index = state.cartItems.findIndex(
             (item) => item.id === action.payload._id,
             )
+            console.log(state.cartItems)
             if(state.cartItems[index].quantity < state.cartItems[index].quantityMax){
               state.cartItems[index].quantity += 1
             }
@@ -43,9 +60,18 @@ const cartSlice = createSlice({
           }
           console.log(state.cartItems[index].quantity)
         },
+        removeCartItem: (state, action) => {
+          let index = state.cartItems.findIndex(
+            (item) => item.id === action.payload._id,
+            )
+            console.log(index)
+          if(index !== -1){
+            state.cartItems.splice(index, 1)
+          }
+        }
     },
 })
 
  const cartReducer = cartSlice.reducer
  export default cartReducer;
-export const {addCartProduct, increment, decrement} = cartSlice.actions;
+export const {addCartProduct, increment, decrement, removeCartItem} = cartSlice.actions;

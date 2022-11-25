@@ -14,3 +14,4 @@ export const URL_DELETE_PRODUCT = '/products/delete/';
 export const URL_BACK_PROFILE = '/users/profile'
 export const URL_BACK_CREATE_CATEGORY = '/products/create-category';
 export const URL_BACK_ORDER_USER = '/support/return-product/';
+export const URL_BACK_UPDATE_USER = '/users/update/'

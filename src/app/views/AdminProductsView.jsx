@@ -19,14 +19,18 @@ const AdminProductsView = () => {
 
   const deleteOneProduct = (productid) => {
     console.log(productid)
-    deleteProduct(productid) 
-    setReload(!reload)
-  }
-
-  const showDeleteMessage = () => {
-    toast.success('Produit supprimé', {
+    deleteProduct(productid).then((res)=>{
+      setReload(!reload)
+      if(res.status === 200){
+        toast.success('Produit supprimé', {
         position: toast.POSITION.BOTTOM_LEFT
     });
+      }
+    }).catch((err)=> {
+      toast.error(err.message, {
+        position: toast.POSITION.BOTTOM_LEFT
+    });
+    })
   }
 
   if (!loader) {
@@ -55,7 +59,7 @@ const AdminProductsView = () => {
                   </p>
                   <div className="flex flex-col justify-between mt-3">
                     <button className="border-b bg-green-500 rounded-md p-3">Modifier</button>
-                    <button onClick={() => {deleteOneProduct(product._id); showDeleteMessage()}} className="border-b bg-red-500 rounded-md p-3">Supprimer</button>
+                    <button onClick={() => {deleteOneProduct(product._id)}} className="border-b bg-red-500 rounded-md p-3">Supprimer</button>
                   </div>
                 </div>
               </div>
