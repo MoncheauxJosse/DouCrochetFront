@@ -7,7 +7,7 @@ import {URL_PRODUCTS} from '../constants/urls/urlFrontEnd'
 
 export default function CartView() {
   const dispatch = useDispatch()
-  const {cartItems} = useSelector((state) => state.cart)
+  const {cartItems, subAmount} = useSelector((state) => state.cart)
   const cartlength = cartItems.length;
   let oneProduct = 'produit'
   let multipleProduct = 'produits'

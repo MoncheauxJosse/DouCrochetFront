@@ -4,7 +4,6 @@ import Loader from "../components/lib/utils-components/Loader";
 import { useDispatch } from "react-redux";
 import { addCartProduct } from "../redux-store/cartSlice";
 import { toast } from "react-toastify";
-// import { addCartProduct } from "../redux-store/cartSlice";
 
 const DetailProductView = () => {
     const [detail, setDetail] = useState({ detail: [] })
@@ -29,11 +28,7 @@ const DetailProductView = () => {
 
       const addToCart = (detail) => {
         dispatch(addCartProduct(detail))
-    }
-    const showAddMessage = () => {
-        toast.success('Produit ajouté au panier', {
-            position: toast.POSITION.BOTTOM_LEFT
-        });
+        console.log(detail)
     }
 
 if(loader.state==false)
@@ -76,8 +71,7 @@ if(loader.state==false)
                         <div className="flex justify-end">
                             <button 
                             onClick={() => {
-                            addToCart(detail); 
-                            showAddMessage();
+                            addToCart(detail);
                             }} 
                             className="rounded-full p-3 bg-dark-pink"> Ajouter au panier </button>
                         </div>                        

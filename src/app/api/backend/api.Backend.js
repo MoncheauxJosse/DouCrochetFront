@@ -37,6 +37,6 @@ apiBackEnd.interceptors.response.use(
     },
     (error) => {
         handleHttpError(error);
-        return error;
+        return Promise.reject(error);
     },
 );

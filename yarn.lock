@@ -665,10 +665,10 @@
   "resolved" "https://registry.npmjs.org/csstype/-/csstype-3.1.0.tgz"
   "version" "3.1.0"
 
-"date-fns@^2.29.3":
-  "integrity" "sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA=="
-  "resolved" "https://registry.npmjs.org/date-fns/-/date-fns-2.29.3.tgz"
-  "version" "2.29.3"
+"date-fns@^2.29.1":
+  "integrity" "sha512-dlLD5rKaKxpFdnjrs+5azHDFOPEu4ANy/LTh04A1DTzMM7qoajmKCBc8pkKRFT41CNzw+4gQh79X5C+Jq27HAw=="
+  "resolved" "https://registry.npmjs.org/date-fns/-/date-fns-2.29.1.tgz"
+  "version" "2.29.1"
 
 "debug@^4.1.0", "debug@^4.3.4":
   "integrity" "sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ=="
