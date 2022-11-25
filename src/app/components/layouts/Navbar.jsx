@@ -103,6 +103,7 @@ export default Navbar;
 const ConnectionBtn = () => {
     const isLogged = useSelector(selectIsLogged);
     const role = useSelector(isAdmin);
+    console.log(role.role)
     const dispatch = useDispatch();
     const showToastMessage = () => {
         toast.success('Déconnexion réussie', {
@@ -112,8 +113,8 @@ const ConnectionBtn = () => {
     if (isLogged)
         return (
             <>
-            {role === "admin" ?<Link to={URL_ADMIN_HOME}><button className='btn bg-light-yellow hover:bg-light-yellow-hover'>Admin</button></Link>: ''}
-            {role === "admin" ? <Link to={URL_LOGIN}>
+            {role.role === "admin" ?<Link to={URL_ADMIN_HOME}><button className='btn bg-light-yellow hover:bg-light-yellow-hover'>Admin</button></Link>: ''}
+            {role.role === "admin" ? <Link to={URL_LOGIN}>
                 <button className="btn bg-light-yellow hover:bg-light-yellow-hover ml-8" onClick={() => {dispatch(signOut()); showToastMessage()}}>
                     Se déconnecter
                 </button>

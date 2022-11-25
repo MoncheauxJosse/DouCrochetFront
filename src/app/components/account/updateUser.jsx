@@ -231,6 +231,7 @@ const updateOneUser = () => {
     const navigate = useNavigate()
     const token = getPayloadToken(localStorage.token)
     console.log("token Avant", localStorage.token)
+    console.log(token.role)
 
     const handleUpdate = async (values)=>{
         const id = token._id
