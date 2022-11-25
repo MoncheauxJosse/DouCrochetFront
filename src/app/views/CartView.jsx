@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -7,10 +7,20 @@ import {URL_PRODUCTS} from '../constants/urls/urlFrontEnd'
 
 export default function CartView() {
   const dispatch = useDispatch()
-  const {cartItems, subAmount} = useSelector((state) => state.cart)
+  const {cartItems} = useSelector((state) => state.cart)
+  console.log(cartItems)
   const cartlength = cartItems.length;
   let oneProduct = 'produit'
   let multipleProduct = 'produits'
+
+  const getTotal = (cart) => {
+      console.log("ca passe ", cart)
+      let somme = 0
+      for(let i = 0; i < cart.length; i++){
+        somme = somme + (cart[i].quantity * cart[i].price)
+      }
+      return somme.toFixed(2)
+  }
 
   if(cartItems !== undefined && cartItems.length > 0){
     return (
@@ -34,7 +44,7 @@ export default function CartView() {
               <h1 className="font-semibold text-2xl border-b pb-8">Ma commande</h1>
               <div className="flex justify-between mt-10 mb-5">
                 <span className="font-semibold text-sm uppercase">{cartlength} {cartlength === 1 ? oneProduct : multipleProduct}</span>
-                <span className="font-semibold text-sm">(total des produits)</span>
+                {/* <span className="font-semibold text-sm">(total des produits)</span> */}
               </div>
               <div>
                 <label className="font-medium inline-block mb-3 text-sm uppercase">Livraison</label>
@@ -45,7 +55,7 @@ export default function CartView() {
               <div className="border-t mt-8">
                 <div className="flex font-semibold justify-between py-6 text-sm uppercase">
                   <span>Prix au total</span>
-                  <span>(total)</span>
+                  <span>{getTotal(cartItems)}€</span>
                 </div>
                 <button className="bg-light-pink font-semibold hover:bg-dark-pink py-3 text-sm text-white uppercase w-full">Commander</button>
               </div>

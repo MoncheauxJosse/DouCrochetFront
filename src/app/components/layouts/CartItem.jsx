@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import {detailProduct} from '../../api/backend/product'
-import {increment, decrement, getTotal, removeCartItem} from '../../redux-store/cartSlice'
+import {increment, decrement, removeCartItem} from '../../redux-store/cartSlice'
 
 function CartItem({id, quantity}) {
   const dispatch = useDispatch()
@@ -36,12 +36,10 @@ function CartItem({id, quantity}) {
             <div className="flex justify-center w-1/5">
             <button onClick={()=>{
                 dispatch(decrement(product))
-                dispatch(getTotal())
               }} className='text-xl mx-2'>-</button>
               <div className='px-3 border-2 border-light-pink bg-light-pink'>{quantity}</div>
               <button onClick={()=> {
                 dispatch(increment(product))
-                dispatch(getTotal())
               }} className='text-xl mx-2'>+</button>
             </div>
             <span className="text-center w-1/5 font-semibold text-sm">{product.price}€</span>
