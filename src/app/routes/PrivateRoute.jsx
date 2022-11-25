@@ -24,7 +24,7 @@ export const PrivateRoute = ({ children, roles }) => {
     const isAuthenticated = useSelector(selectIsLogged);
     //passe le role dans selectHasrole ( authenticationSlice.js)
     const token = useSelector(selectToken)
-    const hasRole = useSelector((state) => selectHasRole(state, roles));
+    const hasRole = useSelector((state) => selectHasRole(state, roles.role));
 
     if (!isAuthenticated)
         return <Navigate replace to={URL_LOGIN} state={{ from: location }} />;
