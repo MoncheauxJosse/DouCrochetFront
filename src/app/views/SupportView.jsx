@@ -1,19 +1,18 @@
 import React,{useEffect,useState} from 'react';
-import { useSelector } from 'react-redux';
-import {selectUser} from '../redux-store/authenticationSlice'  
+  
 //import NavSupport from '../components/layouts/NavSupport';
 import ChoiceView from '../views/ChoiceSupportView'
 import { AiFillPhone,AiOutlineContainer,AiOutlineMessage } from 'react-icons/ai';
 
 const Support = () => {
 
-    const user = useSelector(selectUser);
     const [change,setChange]= useState()
 
 
     const choice=(e)=>{
         setChange(event.target.id)
     }
+
 
     useEffect(() => {   
     },[change])

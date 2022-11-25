@@ -1,11 +1,16 @@
 import React, {useEffect,useState} from 'react'
 import { useFormik, FieldArray,Field } from 'formik';
 import * as Yup from 'yup'
+import { useSelector } from 'react-redux';
+import {selectUser,selectToken} from '../redux-store/authenticationSlice'
+import { OrderUser } from '../api/backend/order';
 //import { getAllCategory , postCategory} from '../api/backend/category';
 
 const ReturnView = () => {
 
+    const token = useSelector(selectToken);
     const [preview, setPreview] = useState();
+    const [facture, setFacture] = useState({data: []});
     const formik= useFormik({
 
         initialValues: {
@@ -40,6 +45,28 @@ const ReturnView = () => {
             setPreview(objectUrl)
             return e
           }
+
+          useEffect(() => {   
+
+            console.log("active getOrderUser")
+            const fetchData = async () => {
+              const OrderDataUser = await OrderUser(token);
+
+              console.log(OrderDataUser)
+              setFacture(OrderDataUser)
+
+
+             
+            };
+               /*if(data.data.length==0||data.data.length!==count){
+            
+              fetchData();
+              setCount(data.data.length)
+  
+              }*/
+              fetchData();
+  
+          },[])
 
     return (
 
@@ -113,19 +140,20 @@ const ReturnView = () => {
 
        <div className="mb-4">
 
-       <input
-         id="factureId"
-         name="factureId"
-         type="text"
-         onChange={formik.handleChange}
-         value={formik.values.factureId}
-         className={formik.errors.factureId ? "input-error":""}
-       />
-
-       {formik.errors.factureId && <p  className= "error text-xs text-red-600">{formik.errors.factureId}</p>}
+       <select id="factureId" name="factureId" onChange={(e) => {
+        formik.setFieldValue("factureId",e)
+        }}>
+          {facture.data?.map((obj, index) => {
+            return (
+            <option key={index} id={index} value={index} >{facture.data[index].name}</option>
+            )
+            })}
+        </select>
        </div>
 
        </div>
+
+
 
         <div className='flex justify-center'>
        <button  className=" connect-button bg-light-yellow text-dark-pink btn group relative w-full" type="submit">Envoyer</button>
