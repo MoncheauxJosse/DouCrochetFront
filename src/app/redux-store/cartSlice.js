@@ -26,12 +26,12 @@ const cartSlice = createSlice({
                     position: toast.POSITION.BOTTOM_LEFT
                 });
                 }else{
-                  toast.error('erreur', {
+                  toast.error('Il n\'y a plus de produits en stock', {
                     position: toast.POSITION.BOTTOM_LEFT
                 });
                 }
               } else {
-                let tempProduct = { id:action.payload.detail._id, quantity: 1, quantityMax: action.payload.detail.quantity }
+                let tempProduct = { id:action.payload.detail._id, quantity: 1, quantityMax: action.payload.detail.quantity, price : action.payload.detail.price }
                 state.cartItems.push(tempProduct)
                 toast.success('Produit ajouté au panier', {
                   position: toast.POSITION.BOTTOM_LEFT
@@ -60,11 +60,6 @@ const cartSlice = createSlice({
           }
           console.log(state.cartItems[index].quantity)
         },
-        getTotal: (state, action) => {
-          state.subAmount = state.cartItems.reduce((acc, item) => {
-            return acc + item.price * item.quantity
-          }, 0)
-        },
         removeCartItem: (state, action) => {
           let index = state.cartItems.findIndex(
             (item) => item.id === action.payload._id,
@@ -79,4 +74,4 @@ const cartSlice = createSlice({
 
  const cartReducer = cartSlice.reducer
  export default cartReducer;
-export const {addCartProduct, increment, decrement, getTotal, removeCartItem} = cartSlice.actions;
+export const {addCartProduct, increment, decrement, removeCartItem} = cartSlice.actions;
