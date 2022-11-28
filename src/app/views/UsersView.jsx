@@ -49,8 +49,7 @@ const UsersView = () => {
     }).catch(err => {
       console.log(err);
     });
-
-    // setReload(prevState => !prevState);
+// setReload(prevState => !prevState);
     console.log("role modifier");
   }
 
@@ -99,7 +98,7 @@ const UsersView = () => {
       <tbody className="bg-white">
         {users.map((user, index) => (
           <>
-            {user.role.role === "admin" ? (
+            {user.role.role === "admin" && user.role.role === "commercial"? (
               ""
             ) : (
               <tr key={user._id} className="users-list">
@@ -138,7 +137,7 @@ const UsersView = () => {
                         Commercial
                       </option>
                     </select>
-                    <button class=" align-items: flex bg-blue-50 border border-gray-300 text-pink-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-2/3 p-1.5 dark:bg-blue-700 dark:border-gray-600  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    <button className=" align-items: flex bg-blue-50 border border-gray-300  text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-2/3 p-1.5 dark:bg-blue-700 dark:border-gray-600  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       onClick ={() => {
                         
                         editUser(user._id, index);

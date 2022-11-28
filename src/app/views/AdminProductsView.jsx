@@ -3,6 +3,8 @@ import { getAll } from "../api/backend/product";
 import Loader from "../components/lib/utils-components/Loader";
 import {deleteProduct} from '../api/backend/product';
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
+import { URL_ADMIN_DETAIL_PRODUCT } from "../constants/urls/urlFrontEnd";
 
 const AdminProductsView = () => {
   const [products, setProducts] = useState([]);
@@ -22,6 +24,14 @@ const AdminProductsView = () => {
     deleteProduct(productid) 
     setReload(!reload)
   }
+
+const navigate = useNavigate();
+  const updateOneProduct = (id) => {
+    sessionStorage.setItem("detailProduct", id);
+  
+      navigate(URL_ADMIN_DETAIL_PRODUCT)
+  }
+  
 
   const showDeleteMessage = () => {
     toast.success('Produit supprimé', {
@@ -54,7 +64,7 @@ const AdminProductsView = () => {
                     {product.price}€
                   </p>
                   <div className="flex flex-col justify-between mt-3">
-                    <button className="border-b bg-green-500 rounded-md p-3">Modifier</button>
+                    <button onClick={() => {updateOneProduct(product._id)}} className="border-b bg-green-500 rounded-md p-3">Modifier</button>
                     <button onClick={() => {deleteOneProduct(product._id); showDeleteMessage()}} className="border-b bg-red-500 rounded-md p-3">Supprimer</button>
                   </div>
                 </div>

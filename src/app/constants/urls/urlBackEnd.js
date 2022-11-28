@@ -12,3 +12,4 @@ export const URL_BACK_GET_ONE_PRODUCT = '/products/detail/';
 export const URL_GET_ALL_NEW_PRODUCTS = '/products/nouveau';
 export const URL_DELETE_PRODUCT = '/products/delete/'
 export const URL_BACK_CREATE_CATEGORY = '/products/create-category';
+export const URL_UPDATE_PRODUCT = '/products/update/'
