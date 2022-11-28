@@ -13,6 +13,7 @@ const Footer = () => {
     };
 
     return (
+        <div>
         <div className='bg-light-pink flex'>
 
             <div className='flex justify-start mx-auto sm:px-6 ' > 
@@ -31,6 +32,8 @@ const Footer = () => {
 
                 </div>
             </div>
+        </div>
+        
         </div>
 
 

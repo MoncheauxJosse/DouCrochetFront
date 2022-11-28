@@ -3,7 +3,7 @@ import { useFormik, FieldArray,Field } from 'formik';
 import * as Yup from 'yup'
 import { useSelector } from 'react-redux';
 import {selectUser,selectToken} from '../redux-store/authenticationSlice'
-import { OrderUser } from '../api/backend/order';
+import { supportOrder,postReturn } from '../api/backend/support';
 //import { getAllCategory , postCategory} from '../api/backend/category';
 
 const ReturnView = () => {
@@ -30,10 +30,15 @@ const ReturnView = () => {
 
         onSubmit: values => {
 
+          console.log("facture : "+formik.values.factureId)
+
           let formData = new FormData();
           formData.append('image',formik.values.image)
           formData.append('nameProduct',formik.values.nameProduct)
           formData.append('description',formik.values.description)
+          formData.append('facture',formik.values.factureId)
+
+          postReturn(formData)
             alert("message envoyé !")
             
           }, 
@@ -50,7 +55,7 @@ const ReturnView = () => {
 
             console.log("active getOrderUser")
             const fetchData = async () => {
-              const OrderDataUser = await OrderUser(token);
+              const OrderDataUser = await supportOrder(token);
 
               console.log(OrderDataUser)
               setFacture(OrderDataUser)
@@ -103,7 +108,7 @@ const ReturnView = () => {
          type="text"
          onChange={formik.handleChange}
          value={formik.values.description}
-         placeholder="raison du renvoie"
+         placeholder="Raison du renvoi"
          className={formik.errors.description ? "input-error":""}
        />
        
@@ -116,7 +121,7 @@ const ReturnView = () => {
 
 
        <div className="mb-8 flex gap-20">
-        <label htmlFor="image" className={formik.errors.image ? "input-error btn bg-light-yellow":"btn h-10 bg-light-yellow"}>ajouté une image</label>
+        <label htmlFor="image" className={formik.errors.image ? "input-error btn bg-light-yellow":"btn h-10 bg-light-yellow"}>Ajouter une image</label>
         <img className="w-40 "src={preview} />
        </div>
        
@@ -136,16 +141,17 @@ const ReturnView = () => {
          
 
         <div className="mb-2 flex justify-center">
-       <label htmlFor="Id" className='font-bold text-light-yellow'>facture liée au produit :</label>
+       <label htmlFor="Id" className='font-bold text-light-yellow'>Date de l'achat :</label>
 
        <div className="mb-4">
 
-       <select id="factureId" name="factureId" onChange={(e) => {
-        formik.setFieldValue("factureId",e)
+       <select id="factureId" name="factureId" onChange={(e) => {    
+        formik.setFieldValue("factureId",facture.data[e.target.value]._id)
         }}>
+          <option value="">Aucun</option>
           {facture.data?.map((obj, index) => {
             return (
-            <option key={index} id={index} value={index} >{facture.data[index].name}</option>
+            <option key={index} id={index} value={index} >{facture.data[index].order_bill}</option>
             )
             })}
         </select>

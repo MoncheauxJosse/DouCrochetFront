@@ -155,6 +155,7 @@ const HomeView = () => {
             <button  className="right" onClick={nextSlidePopulaire} >{">"}</button>
            
         </div>
+        
         </div>
     );
 };

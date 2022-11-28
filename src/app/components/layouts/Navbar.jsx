@@ -16,15 +16,14 @@ const Navbar = () => {
             {({ open }) => (
                 <>
                     <div className="mx-auto max-w-7xl px-4 sm:px-6">
-                        <div className="flex items-center py-6 md:justify-start md:space-x-10">
+                        <div className="flex items-center py-6 ">
                             <div>
                                 <Link to={URL_HOME}>
                                     <img
-                                        className="h-8 w-auto cursor-pointer sm:h-10"
-                                        src="https://media.discordapp.net/attachments/1022448911543189504/1036559044544045136/logoDC_Noir.png"
+                                        className=" h-8 w-auto cursor-pointer"
+                                        src="https://media.discordapp.net/attachments/1022448911543189504/1045683779093676152/doudoutrai3blanc_Plan_de_travail_1.png?width=559&height=559"
                                         alt=""
-                                        width={200}
-                                        height={60}
+                                        
                                     />
                                 </Link>
                             </div>

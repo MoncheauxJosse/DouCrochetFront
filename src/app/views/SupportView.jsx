@@ -2,7 +2,8 @@ import React,{useEffect,useState} from 'react';
   
 //import NavSupport from '../components/layouts/NavSupport';
 import ChoiceView from '../views/ChoiceSupportView'
-import { AiFillPhone,AiOutlineContainer,AiOutlineMessage } from 'react-icons/ai';
+import {BsFillTelephoneFill} from 'react-icons/bs'
+import {AiOutlineContainer,AiOutlineMessage } from 'react-icons/ai';
 
 const Support = () => {
 
@@ -28,9 +29,9 @@ const Support = () => {
         <div className='mt-8 grid lg:grid-cols-5 gap-4 md:grid-cols-4 sm:grid-cols-3'>
 
 <div onClick={choice} id={1} className='bg-light-pink rounded flex flex-col items-center transition hover:scale-110'>
-   <div id={1} className='p-8 text-5xl'><AiFillPhone id={1} className='text-light-yellow'/>
+   <div id={1} className='p-8 text-5xl'><BsFillTelephoneFill id={1} className='text-light-yellow'/>
    </div>
-   <span id={1} className='font-bold pb-8'>conctater</span>
+   <span id={1} className='font-bold pb-8'>contacter</span>
 </div>
 
 <div onClick={choice} id={2} className='bg-light-pink rounded flex flex-col items-center transition hover:scale-110'>
