@@ -14,13 +14,10 @@ export function getAllNouveau() {
 }
 
 export const postProduct = async (product)=>{
-    console.log("axios")
-    console.log(product)
     return apiBackEnd.post(URL_BACK_CREATE_PRODUCT, product);
 }
 
 export async function detailProduct(id) {
-    console.log("id axios", id)
     return apiBackEnd.get(URL_BACK_GET_ONE_PRODUCT + id)
 }
 

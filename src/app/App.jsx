@@ -5,6 +5,7 @@ import { ToastContainer } from 'react-toastify';
 
 import IdleTimerCustom from './components/account/IdleTimerCustom';
 import Navbar from './components/layouts/Navbar';
+import Footer from './components/layouts/Footer';
 import Loader from './components/lib/utils-components/Loader';
 import { selectIsLogged, signIn } from './redux-store/authenticationSlice';
 import Routes from './routes/Routes';
@@ -40,11 +41,12 @@ const App = () => {
 
     return (
         <BrowserRouter>
-            <div className="flex h-screen cursor-default flex-col bg-light-yellow">
+            <div className="flex h-screen cursor-default flex-col bg-light-yellow ">
                 {isLogged && <IdleTimerCustom />}
                 <Navbar />
                 <main className="mt-24 flex h-full flex-col overflow-y-auto bg-light-yellow">
                     <Routes />
+                
                 </main>
                 <ToastContainer
                     toastClassName={({ type }) =>
@@ -55,7 +57,9 @@ const App = () => {
                     position="bottom-left"
                     autoClose={3000}
                 />
+                
             </div>
+            <Footer/>
         </BrowserRouter>
     );
 };

@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 
 import authenticationReducer from './authenticationSlice';
 import {persistReducer, persistStore} from "redux-persist";
+import cartReducer from "../redux-store/cartSlice";
 
 /**
  * To configure the store redux.
@@ -12,6 +13,7 @@ import {persistReducer, persistStore} from "redux-persist";
  */
 const rootReducer = combineReducers( {
     auth: authenticationReducer,
+    cart: cartReducer
 });
 
 const persistConfig = {

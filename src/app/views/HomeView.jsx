@@ -1,7 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAll,getAllNouveau } from "../api/backend/product";
-
 import  '../css/carroucel.css'
 
 const HomeView = () => {
@@ -27,15 +26,12 @@ const HomeView = () => {
          
           const productsNouveauxData = await getAllNouveau();
           setProducts(productsNouveauxData);
-         
-         
         };
     
         fetchData();
         
       },[]);
-
-
+      
       //caroucel populaire
       const nextSlidePopulaire = () => {
 

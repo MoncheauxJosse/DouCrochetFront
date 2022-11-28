@@ -3,15 +3,15 @@ import { getAllPage, detailProduct } from "../api/backend/product";
 import Loader from "../components/lib/utils-components/Loader";
 import { useNavigate } from 'react-router-dom';
 import { URL_PRODUCT } from "../constants/urls/urlFrontEnd";
-import { selectIsLogged } from '../redux-store/authenticationSlice';
 
 const ProductsView = () => {
   const [products, setProducts] = useState([]);
   const [loader, setloader] = useState({ state: false });
   const [page, setPage] = useState(1);
     console.log("loader",loader)
+    
 
-
+    console.log(products)
     const AvancerPage=()=>{
 
       if(page!==products.totalPages){
@@ -42,8 +42,6 @@ const ProductsView = () => {
     fetchData();
     setloader({ state: true });
   }, [page]);
-
-//   console.log(products.data[0]._id);
 
 const navigate = useNavigate();
   const details = () => {
@@ -80,8 +78,8 @@ const navigate = useNavigate();
                     {product.price}€
                   </p>
                 </div>
-                <div>
-                <button onClick={() => details(product._id)} id={product._id}> detail </button>
+                <div className="flex justify-center">
+                  <button className="button rounded p-3 mb-3 bg-light-yellow hover:text-dark-pink" onClick={() => details(product._id)} id={product._id}> En savoir plus </button>
                 </div>
               </div>
             </div>

@@ -1,32 +1,36 @@
 import { useState, useEffect } from "react";
 import { detailProduct } from "../api/backend/product";
 import Loader from "../components/lib/utils-components/Loader";
+import { useDispatch } from "react-redux";
+import { addCartProduct } from "../redux-store/cartSlice";
+import { toast } from "react-toastify";
 
 const DetailProductView = () => {
     const [detail, setDetail] = useState({ detail: [] })
-    const [loader, setloader] = useState({state : false})
-    console.log("loader",loader)
-    
+    const [loader, setLoader] = useState({state : false})
+    const dispatch = useDispatch();
+
     const id = sessionStorage.getItem('detailStorage')
-    console.log("id detailproduct", id)
     useEffect(() => {     
         const fetchDetail = async () => {
-
             let detail = await detailProduct(id);
             console.log(detail);
 
             setDetail({
                 detail: detail.data,   
             })
-            setloader({
+            setLoader({
                 state : true
-            })
-            console.log("state true")
+            }) 
         }
         fetchDetail()
     },[]);
 
-console.log(detail)
+      const addToCart = (detail) => {
+        dispatch(addCartProduct(detail))
+        console.log(detail)
+    }
+
 if(loader.state==false)
     return (
         <Loader/>
@@ -55,16 +59,21 @@ if(loader.state==false)
                             <div className="pr-2">
                                 Quantité
                             </div>
-                            <select className="text-dark-pink" name="quantity">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option> 
-                                        <option value="3">3</option> 
-                                        <option value="4">4</option> 
-                                        <option value="5">5</option> 
-                            </select>
+                            {/* <select className="text-dark-pink" name="quantity">
+                                {detail.data?.map(product=>{
+                                    <option value={product.quantity}></option>
+                                })}
+                            </select> */}
+                            <div>
+                                {detail.detail.quantity}
+                            </div>
                         </div>
                         <div className="flex justify-end">
-                            <button className="rounded-full p-3 bg-dark-pink"> ajouter au panier </button>
+                            <button 
+                            onClick={() => {
+                            addToCart(detail);
+                            }} 
+                            className="rounded-full p-3 bg-dark-pink"> Ajouter au panier </button>
                         </div>                        
                     </div>
                 </div>

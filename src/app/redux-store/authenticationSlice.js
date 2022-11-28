@@ -61,16 +61,16 @@ export const selectToken = (state) => state.auth.token;
 
     if (!user) return false;
 
-    // console.log(roles)
-    // console.log(user.roles)
+    console.log(roles)
+    console.log(user.roles)
 
-    return roles.some((roles) => roles.includes(user.roles));
+    return roles.some((roles) => roles.includes(user.roles.role));
 
 };
- export const isAdmin = (state, roles) => {
+ export const isAdmin = (state) => {
 
     const user = state.auth.user;
-    return user.roles
+    return user && user.roles
 };
 
 export default authenticationSlice.reducer;

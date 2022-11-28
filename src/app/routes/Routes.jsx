@@ -13,6 +13,8 @@ import UsersView from '../views/UsersView';
 import DetailProductView from '../views/DetailsProductsView';
 import AdminProductsView from '../views/AdminProductsView';
 import CartView from '../views/CartView';
+import ProfileView from '../views/ProfileView';
+import SupportView from '../views/SupportView';
 import EditProductView from '../views/EditProductView';
 
 const Routes = () => {
@@ -57,9 +59,12 @@ const Routes = () => {
             <Route path={URL.URL_LOGIN} element={<LoginView/>}/>
             <Route path={URL.URL_HOME} element={<HomeView/>}/>
             <Route path={URL.URL_USERS} element={<UsersView />} />
+            <Route path={URL.URL_PROFILE} element={<ProfileView/>}/>
 
             <Route path={URL.URL_PRODUCT} element={<DetailProductView />} />
             <Route path={URL.URL_REGISTER} element={<RegisterView/>}/>
+            <Route path={URL.URL_SUPPORT} element={<SupportView/>}/>
+
 
             
         </RoutesContainer>

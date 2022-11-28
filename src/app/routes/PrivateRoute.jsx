@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
 
 import { URL_HOME, URL_LOGIN } from '../constants/urls/urlFrontEnd';
-import { selectHasRole,selectIsLogged } from '../redux-store/authenticationSlice';
+import { selectHasRole,selectIsLogged, selectToken } from '../redux-store/authenticationSlice';
 
 /**
  * Component PriveRoute
@@ -22,9 +22,9 @@ import { selectHasRole,selectIsLogged } from '../redux-store/authenticationSlice
 export const PrivateRoute = ({ children, roles }) => {
     const location = useLocation();
     const isAuthenticated = useSelector(selectIsLogged);
-
     //passe le role dans selectHasrole ( authenticationSlice.js)
-    const hasRole = useSelector((state) => selectHasRole(state, roles));
+    const token = useSelector(selectToken)
+    const hasRole = useSelector((state) => selectHasRole(state, roles.role));
 
     if (!isAuthenticated)
         return <Navigate replace to={URL_LOGIN} state={{ from: location }} />;

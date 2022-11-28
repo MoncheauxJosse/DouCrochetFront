@@ -21,7 +21,11 @@ const AdminProductsView = () => {
 
   const deleteOneProduct = (productid) => {
     console.log(productid)
-    deleteProduct(productid) 
+    deleteProduct(productid).then((res)=>{
+      setReload(!reload)
+      if(res.status === 200){
+        toast.success('Produit supprimé'), {
+    deleteProduct(productid)
     setReload(!reload)
   }
 
@@ -37,6 +41,12 @@ const navigate = useNavigate();
     toast.success('Produit supprimé', {
         position: toast.POSITION.BOTTOM_LEFT
     });
+      }
+    }).catch((err)=> {
+      toast.error(err.message, {
+        position: toast.POSITION.BOTTOM_LEFT
+    });
+    })
   }
 
   if (!loader) {
