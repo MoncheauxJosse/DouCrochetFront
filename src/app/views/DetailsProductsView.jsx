@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { detailProduct } from "../api/backend/product";
 import Loader from "../components/lib/utils-components/Loader";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addCartProduct } from "../redux-store/cartSlice";
 import { toast } from "react-toastify";
 
@@ -11,6 +11,7 @@ const DetailProductView = () => {
     const dispatch = useDispatch();
 
     const id = sessionStorage.getItem('detailStorage')
+    const cartProduct = useSelector((state) => state.cart.cartItems.find(item => item.id == id))
     useEffect(() => {     
         const fetchDetail = async () => {
             let detail = await detailProduct(id);
@@ -57,7 +58,7 @@ if(loader.state==false)
                         </div>
                         <div className="flex flex-row items-center justify-end p-1">
                             <div className="pr-2">
-                                Quantité
+                                Quantité en stock
                             </div>
                             {/* <select className="text-dark-pink" name="quantity">
                                 {detail.data?.map(product=>{
@@ -65,15 +66,15 @@ if(loader.state==false)
                                 })}
                             </select> */}
                             <div>
-                                {detail.detail.quantity}
+                                {detail.detail.quantity - (cartProduct?.quantity || 0)}
                             </div>
                         </div>
                         <div className="flex justify-end">
                             <button 
                             onClick={() => {
                             addToCart(detail);
-                            }} 
-                            className="rounded-full p-3 bg-dark-pink"> Ajouter au panier </button>
+                            }} disabled = {detail.detail.quantity <= cartProduct?.quantity}
+                            className={`rounded-full p-3 ${detail.detail.quantity <= cartProduct?.quantity? 'bg-gray-500': 'bg-dark-pink'} `}> Ajouter au panier </button>
                         </div>                        
                     </div>
                 </div>
