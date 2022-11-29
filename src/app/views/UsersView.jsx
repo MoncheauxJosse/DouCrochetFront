@@ -101,7 +101,7 @@ const UsersView = () => {
       <tbody className="bg-white">
         {users.map((user, index) => (
           <>
-            {user.role.role === "admin" && user.role.role === "commercial"? (
+            {user.role.role === "admin" ? (
               ""
             ) : (
               <tr key={user._id} className="users-list">
