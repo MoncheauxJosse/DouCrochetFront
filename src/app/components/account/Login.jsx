@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
-import { URL_HOME } from '../../constants/urls/urlFrontEnd';
+import { URL_HOME, URL_PRODUCTS } from '../../constants/urls/urlFrontEnd';
 import { signIn } from '../../redux-store/authenticationSlice';
 import ErrorMessSmall from '../lib/form-and-error-components/ErrorMessSmall';
 import Input from '../lib/form-and-error-components/Input';
@@ -118,7 +118,7 @@ const Login = () => {
                 if (res.status === 200 && res.data.token) {
                     //token passe ici !!!!
                     dispatch(signIn(res.data.token));
-                    navigate(URL_HOME);
+                    navigate(URL_PRODUCTS);
                 }
             })
             .catch(()=>{

@@ -4,13 +4,16 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { URL_ADMIN_HOME, URL_CART, URL_HOME, URL_LOGIN, URL_PROFILE, URL_REGISTER } from '../../constants/urls/urlFrontEnd';
+import { URL_ADMIN_HOME, URL_CART, URL_HOME, URL_LOGIN, URL_PRODUCTS, URL_PROFILE, URL_REGISTER } from '../../constants/urls/urlFrontEnd';
 import { isAdmin, selectIsLogged, signOut } from './../../redux-store/authenticationSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import {BsCartFill} from 'react-icons/bs'
+import {BsFillBagCheckFill} from 'react-icons/bs'
+import {FaUserAlt} from 'react-icons/fa'
 
 const Navbar = () => {
     const {cartItems} = useSelector((state) => state.cart)
+    const isLogged = useSelector(selectIsLogged);
     return (
         <Disclosure as="nav" className="fixed top-0 z-50 w-full bg-light-pink">
             {({ open }) => (
@@ -28,8 +31,15 @@ const Navbar = () => {
                                 </Link>
                             </div>
                             
-
                             <div className="hidden flex-1 items-center justify-end md:flex lg:w-0">
+                            <Link to={URL_PRODUCTS}>
+                                    <div className='flex flex-col justify-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4'>
+                                        <button class="btn rounded bg-light-yellow hover:bg-light-yellow-hover mr-8">
+                                            <BsFillBagCheckFill />
+                                            <span className="mx-2">Produits</span>
+                                        </button>
+                                    </div>
+                                </Link>
                                 <Link to={URL_CART}>
                                     <div className='flex flex-col justify-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4'>
                                         <button class="btn rounded bg-light-yellow hover:bg-light-yellow-hover mr-8">
@@ -40,13 +50,22 @@ const Navbar = () => {
                                     </div>
                                 </Link>
                                 <ConnectionBtn />
+                                {isLogged ? <Link to={URL_PROFILE}>
+                                    <div className='flex flex-col justify-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4'>
+                                        <button class="btn rounded bg-light-yellow hover:bg-light-yellow-hover mr-8">
+                                        <FaUserAlt />
+                                        <span className="mx-2">Profil</span>
+                                        </button>
+                                    </div>
+                                </Link>
+                                : ''}
                             </div>
 
                             <div className="-mr-2 flex md:hidden">
                                 {/* Mobile menu button */}
                                 <Disclosure.Button
-                                    className="inline-flex transform items-center justify-center rounded-md p-2 text-primary hover:bg-primary 
-                                    hover:text-white focus:outline-none active:scale-95 active:ring-2 active:ring-primary active:ring-offset-2 "
+                                    className="inline-flex transform items-center justify-center rounded-md p-2 text-light-yellow hover:light-yellow 
+                                    hover:text-white focus:outline-none active:scale-95 active:ring-2 active:ring-offset-2 "
                                 >
                                     {open ? (
                                         <XIcon
@@ -76,9 +95,8 @@ const Navbar = () => {
                         <Disclosure.Panel className="p-4 md:hidden ">
                             <hr />
                             <div className="p-4">
-                                <div className="hidden flex-1 items-center justify-end md:flex lg:w-0">
                                     <Link to={URL_CART}>
-                                        <div className='flex flex-col justify-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4'>
+                                        <div className='mb-5'>
                                             <button class="btn bg-light-yellow hover:bg-light-yellow-hover mr-8">
                                                 <BsCartFill />
                                                 <span class="mx-2">Panier</span>
@@ -86,7 +104,15 @@ const Navbar = () => {
                                             </button>
                                         </div>
                                     </Link>
-                                </div>
+                                    {isLogged ? <Link to={URL_PROFILE}>
+                                    <div className='mb-5'>
+                                        <button class="btn rounded bg-light-yellow hover:bg-light-yellow-hover mr-8">
+                                        <FaUserAlt />
+                                        <span className="mx-2">Profil</span>
+                                        </button>
+                                    </div>
+                                </Link> : ''}
+                                    
                                 <ConnectionBtn />
                             </div>
                         </Disclosure.Panel>
@@ -114,12 +140,12 @@ const ConnectionBtn = () => {
             <>
             {role === "admin" ?<Link to={URL_ADMIN_HOME}><button className='btn bg-light-yellow hover:bg-light-yellow-hover'>Admin</button></Link>: ''}
             {role === "admin" ? <Link to={URL_LOGIN}>
-                <button className="btn bg-light-yellow hover:bg-light-yellow-hover ml-8" onClick={() => {dispatch(signOut()); showToastMessage()}}>
+                <button className="btn bg-light-yellow hover:bg-light-yellow-hover ml-8 mr-8" onClick={() => {dispatch(signOut()); showToastMessage()}}>
                     Se déconnecter
                 </button>
             </Link>: 
             <Link to={URL_HOME}>
-            <button className="btn rounded bg-light-yellow hover:bg-light-yellow-hover" onClick={() => {dispatch(signOut()); showToastMessage()}}>
+            <button className="btn rounded bg-light-yellow hover:bg-light-yellow-hover mr-8" onClick={() => {dispatch(signOut()); showToastMessage()}}>
                 Se déconnecter
             </button>
             </Link>
