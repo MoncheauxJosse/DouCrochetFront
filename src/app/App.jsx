@@ -41,10 +41,10 @@ const App = () => {
 
     return (
         <BrowserRouter>
-            <div className="flex h-screen cursor-default flex-col bg-light-yellow ">
+            <div className="flex cursor-default min-h-screen flex-col bg-light-yellow ">
                 {isLogged && <IdleTimerCustom />}
                 <Navbar />
-                <main className="mt-24 flex h-full flex-col overflow-y-auto bg-light-yellow">
+                <main className="mt-24 flex flex-grow flex-col overflow-y-hidden bg-light-yellow">
                     <Routes />
                 
                 </main>
@@ -57,9 +57,12 @@ const App = () => {
                     position="bottom-left"
                     autoClose={3000}
                 />
-                
+                <div>
+                    <Footer/>
+                </div>
             </div>
-            <Footer/>
+            
+            
         </BrowserRouter>
     );
 };

@@ -148,7 +148,7 @@ const ReturnView = () => {
        <select id="factureId" name="factureId" onChange={(e) => {    
         formik.setFieldValue("factureId",facture.data[e.target.value]._id)
         }}>
-          <option value="">Aucun</option>
+          <option value="">Choisir ...</option>
           {facture.data?.map((obj, index) => {
             return (
             <option key={index} id={index} value={index} >{facture.data[index].order_bill}</option>

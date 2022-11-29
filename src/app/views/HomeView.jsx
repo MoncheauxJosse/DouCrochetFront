@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAll,getAllNouveau } from "../api/backend/product";
 import  '../css/carroucel.css'
+import { URL_PRODUCT } from "../constants/urls/urlFrontEnd";
 
 const HomeView = () => {
 
@@ -31,6 +32,13 @@ const HomeView = () => {
         fetchData();
         
       },[]);
+
+      const details = (e) => {
+        const detailStorage = e
+        console.log(detailStorage)
+        sessionStorage.setItem("detailStorage", detailStorage)
+        navigate(URL_PRODUCT)
+  }
       
       //caroucel populaire
       const nextSlidePopulaire = () => {
@@ -125,7 +133,7 @@ const HomeView = () => {
                     // {console.log(products.data[index].image)}
                     return (
                     <div key={index} id={index} className="m-2 h-90 rounded overflow-hidden shadow-xl bg-light-pink hover:scale-150 duration-200">
-                        <img src={products.data[index].image} className="w-80 m-auto rounded" alt={"img"+(index)} /> 
+                        <img onClick={() => details(products.data[index]._id)} src={products.data[index].image} className="w-80 m-auto rounded" alt={"img"+(index)} /> 
                     </div>
                              )
                     }       
@@ -146,7 +154,7 @@ const HomeView = () => {
                     // {console.log(productsPopulaire.data[index].image)}
                     return (
                     <div key={index} id={index} className="m-2 h-90 rounded overflow-hidden shadow-xl bg-light-pink hover:scale-150 duration-200">
-                        <img src={productsPopulaire.data[index].image} className="w-80 m-auto rounded" alt={"img"+(index)} /> 
+                        <img onClick={() => details(productsPopulaire.data[index]._id)}  src={productsPopulaire.data[index].image} className="w-80 m-auto rounded" alt={"img"+(index)} /> 
                     </div>
                              )
                     }       
