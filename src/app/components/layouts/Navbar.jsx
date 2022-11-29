@@ -13,6 +13,7 @@ import {FaUserAlt} from 'react-icons/fa'
 
 const Navbar = () => {
     const {cartItems} = useSelector((state) => state.cart)
+    const isLogged = useSelector(selectIsLogged);
     return (
         <Disclosure as="nav" className="fixed top-0 z-50 w-full bg-light-pink">
             {({ open }) => (
@@ -50,7 +51,7 @@ const Navbar = () => {
                                     </div>
                                 </Link>
                                 <ConnectionBtn />
-                                <Link to={URL_PROFILE}>
+                                {isLogged ? <Link to={URL_PROFILE}>
                                     <div className='flex flex-col justify-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4'>
                                         <button class="btn rounded bg-light-yellow hover:bg-light-yellow-hover mr-8">
                                         <FaUserAlt />
@@ -58,6 +59,7 @@ const Navbar = () => {
                                         </button>
                                     </div>
                                 </Link>
+                                : ''}
                             </div>
 
                             <div className="-mr-2 flex md:hidden">
@@ -103,14 +105,15 @@ const Navbar = () => {
                                             </button>
                                         </div>
                                     </Link>
-                                    <Link to={URL_PROFILE}>
+                                    {isLogged ? <Link to={URL_PROFILE}>
                                     <div className='mb-5'>
                                         <button class="btn rounded bg-light-yellow hover:bg-light-yellow-hover mr-8">
                                         <FaUserAlt />
                                         <span className="mx-2">Profil</span>
                                         </button>
                                     </div>
-                                </Link>
+                                </Link> : ''}
+                                    
                                 <ConnectionBtn />
                             </div>
                         </Disclosure.Panel>
