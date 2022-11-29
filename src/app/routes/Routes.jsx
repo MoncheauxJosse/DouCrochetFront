@@ -14,6 +14,7 @@ import DetailProductView from '../views/DetailsProductsView';
 import AdminProductsView from '../views/AdminProductsView';
 import CartView from '../views/CartView';
 import ProfileView from '../views/ProfileView';
+import SupportView from '../views/SupportView';
 
 const Routes = () => {
     return (
@@ -53,6 +54,8 @@ const Routes = () => {
 
             <Route path={URL.URL_PRODUCT} element={<DetailProductView />} />
             <Route path={URL.URL_REGISTER} element={<RegisterView/>}/>
+            <Route path={URL.URL_SUPPORT} element={<SupportView/>}/>
+
 
             
         </RoutesContainer>
