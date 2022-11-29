@@ -10,21 +10,24 @@ import { ToastContainer, toast } from 'react-toastify';
 import {BsCartFill} from 'react-icons/bs'
 import {BsFillBagCheckFill} from 'react-icons/bs'
 import {FaUserAlt} from 'react-icons/fa'
+import {BiLogOut} from 'react-icons/bi'
+import logo from '../../assets/images/logo.png'
 
 const Navbar = () => {
     const {cartItems} = useSelector((state) => state.cart)
     const isLogged = useSelector(selectIsLogged);
+    const role = useSelector(isAdmin);
     return (
         <Disclosure as="nav" className="fixed top-0 z-50 w-full bg-light-pink">
             {({ open }) => (
                 <>
-                    <div className="mx-auto max-w-7xl px-4 sm:px-6">
-                        <div className="flex items-center py-6 ">
+                    <div className="mx-auto max-w-7xl px-2 sm:px-6">
+                        <div className="flex items-center py-2 ">
                             <div>
                                 <Link to={URL_HOME}>
                                     <img
-                                        className=" h-8 w-auto cursor-pointer"
-                                        src="https://media.discordapp.net/attachments/1022448911543189504/1045683779093676152/doudoutrai3blanc_Plan_de_travail_1.png?width=559&height=559"
+                                        className="h-16 w-auto cursor-pointer"
+                                        src={logo}
                                         alt=""
                                         
                                     />
@@ -32,6 +35,7 @@ const Navbar = () => {
                             </div>
                             
                             <div className="hidden flex-1 items-center justify-end md:flex lg:w-0">
+                           {isLogged && role === "admin" && <Link to={URL_ADMIN_HOME}><button className='btn bg-light-yellow hover:bg-light-yellow-hover mr-8'>Admin</button></Link>}
                             <Link to={URL_PRODUCTS}>
                                     <div className='flex flex-col justify-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4'>
                                         <button class="btn rounded bg-light-yellow hover:bg-light-yellow-hover mr-8">
@@ -40,25 +44,20 @@ const Navbar = () => {
                                         </button>
                                     </div>
                                 </Link>
-                                <Link to={URL_CART}>
-                                    <div className='flex flex-col justify-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4'>
-                                        <button class="btn rounded bg-light-yellow hover:bg-light-yellow-hover mr-8">
-                                            <BsCartFill />
-                                            <span className="mx-2">Panier</span>
-                                            <span className="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none w-6 h-6 text-red-100 bg-red-600 rounded-full">{cartItems.length}</span>
-                                        </button>
-                                    </div>
-                                </Link>
-                                <ConnectionBtn />
-                                {isLogged ? <Link to={URL_PROFILE}>
-                                    <div className='flex flex-col justify-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4'>
-                                        <button class="btn rounded bg-light-yellow hover:bg-light-yellow-hover mr-8">
+                                
+                                {isLogged ? <Link to={URL_PROFILE} title="Voir le profil">
+                                    <div className='flex flex-col justify-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4 mx-2 text-2xl hover:text-light-yellow'>
                                         <FaUserAlt />
-                                        <span className="mx-2">Profil</span>
-                                        </button>
                                     </div>
                                 </Link>
                                 : ''}
+                                <Link to={URL_CART} title="Voir le panier">
+                                    <div className='flex relative space-y-4 md:flex-row md:items-center md:space-y-0 mx-2 text-2xl hover:text-light-yellow'>
+                                            <BsCartFill />
+                                            <span className="absolute -top-1 -right-1 text-center text-sm font-bold leading-none w-4 h-4 text-red-100 bg-red-600 rounded-full">{cartItems.length}</span>
+                                    </div>
+                                </Link>
+                                <ConnectionBtn />
                             </div>
 
                             <div className="-mr-2 flex md:hidden">
@@ -96,20 +95,14 @@ const Navbar = () => {
                             <hr />
                             <div className="p-4">
                                     <Link to={URL_CART}>
-                                        <div className='mb-5'>
-                                            <button class="btn bg-light-yellow hover:bg-light-yellow-hover mr-8">
-                                                <BsCartFill />
-                                                <span class="mx-2">Panier</span>
-                                                <span class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">{cartItems.length}</span>
-                                            </button>
+                                        <div className='mb-5 flex flex-col justify-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4 mx-2 text-2xl hover:text-light-yellow'>
+                                            <FaUserAlt />
                                         </div>
                                     </Link>
                                     {isLogged ? <Link to={URL_PROFILE}>
-                                    <div className='mb-5'>
-                                        <button class="btn rounded bg-light-yellow hover:bg-light-yellow-hover mr-8">
-                                        <FaUserAlt />
-                                        <span className="mx-2">Profil</span>
-                                        </button>
+                                    <div className='flex relative space-y-4 md:flex-row md:items-center md:space-y-0 mx-2 text-2xl hover:text-light-yellow'>
+                                        <BsCartFill />
+                                        <span className="absolute -top-1 -right-1 text-center text-sm font-bold leading-none w-4 h-4 text-red-100 bg-red-600 rounded-full">{cartItems.length}</span>
                                     </div>
                                 </Link> : ''}
                                     
@@ -138,16 +131,15 @@ const ConnectionBtn = () => {
     if (isLogged)
         return (
             <>
-            {role === "admin" ?<Link to={URL_ADMIN_HOME}><button className='btn bg-light-yellow hover:bg-light-yellow-hover'>Admin</button></Link>: ''}
             {role === "admin" ? <Link to={URL_LOGIN}>
-                <button className="btn bg-light-yellow hover:bg-light-yellow-hover ml-8 mr-8" onClick={() => {dispatch(signOut()); showToastMessage()}}>
-                    Se déconnecter
-                </button>
+                <div className=" hover:text-red-500 text-2xl ml-8 mr-8" onClick={() => {dispatch(signOut()); showToastMessage()}} title="Déconnexion">
+                    <BiLogOut className="mr-2 text-3xl" />
+                </div>
             </Link>: 
             <Link to={URL_HOME}>
-            <button className="btn rounded bg-light-yellow hover:bg-light-yellow-hover mr-8" onClick={() => {dispatch(signOut()); showToastMessage()}}>
-                Se déconnecter
-            </button>
+            <div className=" rounded hover:text-red-500 text-2xl mr-8" onClick={() => {dispatch(signOut()); showToastMessage()}} title="Déconnexion">
+            <BiLogOut className="mr-2 text-3xl"/>
+            </div>
             </Link>
             
             }

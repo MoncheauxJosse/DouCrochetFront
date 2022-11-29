@@ -57,7 +57,7 @@ const App = () => {
                     position="bottom-left"
                     autoClose={3000}
                 />
-                <div>
+                <div className='mt-4'>
                     <Footer/>
                 </div>
             </div>

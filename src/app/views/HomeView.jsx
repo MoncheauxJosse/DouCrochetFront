@@ -132,7 +132,7 @@ const HomeView = () => {
                 if( index<afficheFin && index>=afficheDebut ){ 
                     // {console.log(products.data[index].image)}
                     return (
-                    <div key={index} id={index} className="m-2 h-90 rounded overflow-hidden shadow-xl bg-light-pink hover:scale-150 duration-200">
+                    <div key={index} id={index} className="cursor-pointer m-2 h-90 rounded overflow-hidden shadow-xl bg-light-pink hover:scale-150 duration-200">
                         <img onClick={() => details(products.data[index]._id)} src={products.data[index].image} className="w-80 m-auto rounded" alt={"img"+(index)} /> 
                     </div>
                              )
@@ -153,7 +153,7 @@ const HomeView = () => {
                 if( index<afficheFinPopulaire && index>=afficheDebutPopulaire ){ 
                     // {console.log(productsPopulaire.data[index].image)}
                     return (
-                    <div key={index} id={index} className="m-2 h-90 rounded overflow-hidden shadow-xl bg-light-pink hover:scale-150 duration-200">
+                    <div key={index} id={index} className="cursor-pointer m-2 h-90 rounded overflow-hidden shadow-xl bg-light-pink hover:scale-150 duration-200">
                         <img onClick={() => details(productsPopulaire.data[index]._id)}  src={productsPopulaire.data[index].image} className="w-80 m-auto rounded" alt={"img"+(index)} /> 
                     </div>
                              )
