@@ -89,7 +89,7 @@ const EditProductView = () => {
         validationSchema={schemaFormLogin}
         >
        {({setFieldValue}) =>( <Form className="mb-2 flex justify-center">
-          <div className="bg-light-pink rounded-md p-3 block w-1/3 p-5 ">
+          <div className="bg-light-pink rounded-md block w-1/3 p-5 ">
           <label className=" mb-2 flex justify-center font-bold text-light-yellow text-xl">
             Modifier un produit
           </label>
@@ -110,7 +110,7 @@ const EditProductView = () => {
                 className="text-red-500"
               />
             </div>
-            <label className="font-bold text-light-yellow ">Déscription :</label>
+            <label className="font-bold text-light-yellow ">Description :</label>
             <Field
               type="text"
               name="description"
@@ -158,7 +158,7 @@ const EditProductView = () => {
               component="small"
               className="text-red-500"
             />
-            <label className="font-bold text-light-yellow ">Choisire une autre photo :</label>
+            <label className="font-bold text-light-yellow ">Choisir une autre photo :</label>
             <input type="file" name="image" id="image" onChange={(e) => {setFieldValue("image", loadImage(e.currentTarget.files[0])) }} />
             
             <img src={preview} alt=""/>
@@ -167,7 +167,7 @@ const EditProductView = () => {
               component="small"
               className="text-red-500"
             />
-            <label className="font-bold text-light-yellow ">Pix :</label>
+            <label className="font-bold text-light-yellow ">Prix :</label>
             <Field
               type="text"
               name="price"
@@ -206,7 +206,7 @@ const EditProductView = () => {
                 type="submit"
                 className=" mb-2  bg-blue-500 rounded-md p-3 "
               >
-                valider
+                Valider
               </button>
             </div>
           </div>

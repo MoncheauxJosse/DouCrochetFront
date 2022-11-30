@@ -70,7 +70,7 @@ const UsersView = () => {
             scope="col"
             className="text-sm font-medium text-black-900 px-6 py-4 border-r "
           >
-            Name
+            Nom
           </th>
           <th
             scope="col"
@@ -82,7 +82,7 @@ const UsersView = () => {
             scope="col"
             className="text-sm font-medium text-gray-900 px-6 py-4 border-r "
           >
-            Role
+            Rôle
           </th>
           <th
             scope="col"

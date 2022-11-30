@@ -157,7 +157,7 @@ const FormProduct = () =>{
 
 
                <div className="mb-2 flex justify-center">
-               <label htmlFor="price" className='font-bold text-light-yellow'>créer une Catégorie</label>
+               <label htmlFor="price" className='font-bold text-light-yellow'>Créer une catégorie</label>
                </div>
                <div className="mb-4">
                <div className="mb-2 flex justify-center">
@@ -166,7 +166,7 @@ const FormProduct = () =>{
                  name="createCategory"
                  type="text"
                  onChange={formik.handleChange}
-                 placeholder="creer Categorie"
+                 placeholder="Créer categorie"
                  value={formik.values.createCategory}
                  />
                  <div name="Button-Create-Category" className='btn bg-light-yellow' onClick={createCategoryClick}>Valider</div>
@@ -254,7 +254,7 @@ const FormProduct = () =>{
                </div>
 
                
-                <label htmlFor="quantity" className='font-bold text-light-yellow'>Quantitées :</label>
+                <label htmlFor="quantity" className='font-bold text-light-yellow'>Quantité :</label>
                 
 
 
