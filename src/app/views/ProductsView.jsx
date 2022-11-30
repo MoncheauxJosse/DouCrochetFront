@@ -11,10 +11,7 @@ const ProductsView = () => {
   const [products, setProducts] = useState([]);
   const [loader, setloader] = useState({ state: false });
   const [page, setPage] = useState(1);
-  
-    console.log("loader",loader)
 
-    //console.log(products)
     const AvancerPage=()=>{
 
       if(page!==products.totalPages){

@@ -11,12 +11,11 @@ import {format} from "date-fns";
 
 const FormUpdate = ({submit}) => {
     const token = getPayloadToken(localStorage.token)
-    console.log(token);
     const dateToInput = format(new Date(token.birthdate), 'yyyy-MM-dd').toString()
-console.log(dateToInput);
+    console.log(dateToInput);
     const defaulValuesUpdate = {
         firstname: token.firstname,
-        lastname:token.lastname,
+        lastname: token.lastname,
         birthdate: dateToInput,
         telephone: token.telephone,
         email: token.email,
@@ -231,8 +230,6 @@ const updateOneUser = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const token = getPayloadToken(localStorage.token)
-    console.log("token Avant", localStorage.token)
-    console.log(token.role)
 
     const handleUpdate = async (values)=>{
         const id = token._id

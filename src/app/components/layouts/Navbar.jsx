@@ -4,7 +4,6 @@ import { MenuIcon, XIcon } from '@heroicons/react/solid';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-//className="w-5 h-5 text-gray-500 dark:text-gray-400"
 import { URL_ADMIN_HOME, URL_CART, URL_HOME, URL_LOGIN, URL_PRODUCTS, URL_PROFILE, URL_REGISTER } from '../../constants/urls/urlFrontEnd';
 import { isAdmin, selectIsLogged, signOut } from './../../redux-store/authenticationSlice';
 import { ToastContainer, toast } from 'react-toastify';
@@ -48,27 +47,27 @@ const Navbar = () => {
                                 </Link>
                             </div>
                             <div>
-                            <div class="flex justify-center items-center">
-                                <div class=" xl:w-96 justify-center items-center ">
-                                    <div class="input-group relative flex items-center w-full ">
+                            <div className="flex justify-center items-center ml-5">
+                                <div className=" xl:w-96 justify-center items-center ">
+                                    <div className="input-group relative flex items-center w-full ">
                                         <input type="search" onChange={(e)=> setInput({searchData: e.target.value})} class="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Search" aria-label="Search" aria-describedby="button-addon2"/>
-                                        <button onClick={search} className="btn inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center" type="button" id="button-addon2" >
+                                        <button onClick={search} className="btn px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center" type="button" id="button-addon2" >
                                             <BiSearchAlt/>
                                         </button>
                                     </div>
                                 </div>
-                                </div>
+                            </div>
                             </div>
                             <div className="hidden flex-1 items-center justify-end md:flex lg:w-0">
                            {isLogged && role === "admin" && <Link to={URL_ADMIN_HOME}><button className='btn bg-light-yellow hover:bg-light-yellow-hover mr-8'>Admin</button></Link>}
                             <Link to={URL_PRODUCTS}>
-                                    <div className='flex flex-col justify-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4'>
-                                        <button class="btn rounded bg-light-yellow hover:bg-light-yellow-hover mr-8">
-                                            <BsFillBagCheckFill />
-                                            <span className="mx-2">Produits</span>
-                                        </button>
-                                    </div>
-                                </Link>
+                                <div className='flex flex-col justify-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4'>
+                                    <button className="btn rounded bg-light-yellow hover:bg-light-yellow-hover mr-8">
+                                        <BsFillBagCheckFill />
+                                        <span className="mx-2">Produits</span>
+                                    </button>
+                                </div>
+                            </Link>
                                 
                                 {isLogged ? <Link to={URL_PROFILE} title="Voir le profil">
                                     <div className='flex flex-col justify-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4 mx-2 text-2xl hover:text-light-yellow'>
@@ -146,7 +145,6 @@ export default Navbar;
 const ConnectionBtn = () => {
     const isLogged = useSelector(selectIsLogged);
     const role = useSelector(isAdmin);
-    console.log(role)
     const dispatch = useDispatch();
     const showToastMessage = () => {
         toast.success('Déconnexion réussie', {

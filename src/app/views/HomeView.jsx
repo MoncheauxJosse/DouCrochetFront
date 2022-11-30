@@ -42,9 +42,6 @@ const HomeView = () => {
       
       //caroucel populaire
       const nextSlidePopulaire = () => {
-
-        console.log("sa passe")
-        console.log("le slide index "+slideIndexPopulaire)
         
         if(slideIndexPopulaire !== productsPopulaire.data.length){
 
@@ -67,8 +64,6 @@ const HomeView = () => {
     }
 
     const prevSlidePopulaire = () => {
-           
-        console.log("en arriere !")
 
         if(slideIndexPopulaire !== 5){
             setProductsPopulaire(productsPopulaire)
@@ -106,8 +101,6 @@ const HomeView = () => {
     }
 
     const prevSlide = () => {
-           
-        console.log("en arriere !")
 
         if(slideIndex !== 5){
             setProducts(products)
