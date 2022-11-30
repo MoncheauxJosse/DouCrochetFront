@@ -1,8 +1,10 @@
 import { URL_BACK_CREATE_PRODUCT,URL_GET_PAGE_PRODUCTS, URL_DELETE_PRODUCT, URL_BACK_GET_ONE_PRODUCT,URL_GET_ALL_PRODUCTS,URL_GET_ALL_NEW_PRODUCTS, URL_UPDATE_PRODUCT } from '../../constants/urls/urlBackEnd';
 import apiBackEnd from './api.Backend';
 
-export function getAllPage(page) {
-    return apiBackEnd.get(URL_GET_PAGE_PRODUCTS+"/"+page);
+export function getAllPage(name,page) {
+
+    //return apiBackEnd.get(URL_GET_PAGE_PRODUCTS+"/"+page);
+    return apiBackEnd.get(URL_GET_PAGE_PRODUCTS+"/"+name+"/"+page);
 }
 
 export function getAll() {

@@ -1,22 +1,36 @@
 import { Disclosure, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/solid';
+
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-
+//className="w-5 h-5 text-gray-500 dark:text-gray-400"
 import { URL_ADMIN_HOME, URL_CART, URL_HOME, URL_LOGIN, URL_PRODUCTS, URL_PROFILE, URL_REGISTER } from '../../constants/urls/urlFrontEnd';
 import { isAdmin, selectIsLogged, signOut } from './../../redux-store/authenticationSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import {BsCartFill} from 'react-icons/bs'
 import {BsFillBagCheckFill} from 'react-icons/bs'
 import {FaUserAlt} from 'react-icons/fa'
-import {BiLogOut} from 'react-icons/bi'
+import {BiLogOut,BiSearchAlt} from 'react-icons/bi'
 import logo from '../../assets/images/logo.png'
+
 
 const Navbar = () => {
     const {cartItems} = useSelector((state) => state.cart)
     const isLogged = useSelector(selectIsLogged);
+    const [input ,setInput]= useState({searchData:''})
     const role = useSelector(isAdmin);
+    const navigate= useNavigate()
+
+    const search= ()=>{
+
+        navigate(URL_PRODUCTS,{
+            state:{
+                search:input
+            },
+        });
+        
+      }
     return (
         <Disclosure as="nav" className="fixed top-0 z-50 w-full bg-light-pink">
             {({ open }) => (
@@ -33,7 +47,18 @@ const Navbar = () => {
                                     />
                                 </Link>
                             </div>
-                            
+                            <div>
+                            <div class="flex justify-center items-center">
+                                <div class=" xl:w-96 justify-center items-center ">
+                                    <div class="input-group relative flex items-center w-full ">
+                                        <input type="search" onChange={(e)=> setInput({searchData: e.target.value})} class="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Search" aria-label="Search" aria-describedby="button-addon2"/>
+                                        <button onClick={search} className="btn inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center" type="button" id="button-addon2" >
+                                            <BiSearchAlt/>
+                                        </button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
                             <div className="hidden flex-1 items-center justify-end md:flex lg:w-0">
                            {isLogged && role === "admin" && <Link to={URL_ADMIN_HOME}><button className='btn bg-light-yellow hover:bg-light-yellow-hover mr-8'>Admin</button></Link>}
                             <Link to={URL_PRODUCTS}>

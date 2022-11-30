@@ -53,7 +53,7 @@ const AdminProductsView = () => {
         return (
           <div>
             <div
-              className="m-2 h-90 rounded overflow-hidden shadow-xl bg-light-pink hover:bg-dark-pink transition duration-1000 hover:text-white"
+              className="m-2 h-90 rounded overflow-hidden shadow-xl bg-light-pink "
               key={product._id}
             >
               <img
@@ -69,16 +69,16 @@ const AdminProductsView = () => {
                     onClick={() => {
                       updateOneProduct(product._id);
                     }}
-                    className="border-b bg-green-500 rounded-md p-3"
+                    className=" hover:bg-dark-pink transition duration-1000 hover:text-white border-b bg-green-500 rounded-md p-3"
                   >
                     Modifier
                   </button>
-                  <button
+                  <button 
                     onClick={() => {
                       deleteOneProduct(product._id);
                       showDeleteMessage();
                     }}
-                    className="border-b bg-red-500 rounded-md p-3"
+                    className=" hover:bg-dark-pink transition duration-1000 hover:text-white border-b bg-red-500 rounded-md p-3"
                   >
                     Supprimer
                   </button>

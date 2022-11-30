@@ -118,7 +118,7 @@ const Login = () => {
                 if (res.status === 200 && res.data.token) {
                     //token passe ici !!!!
                     dispatch(signIn(res.data.token));
-                    navigate(URL_PRODUCTS);
+                    navigate(URL_HOME);
                 }
             })
             .catch(()=>{
