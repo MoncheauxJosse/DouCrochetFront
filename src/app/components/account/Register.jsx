@@ -1,4 +1,4 @@
-import '../../css/Register.css'
+import '../../css/register.css'
 import { Field, Form, Formik, ErrorMessage } from 'formik';
 import Input from '../lib/form-and-error-components/Input';
 import { Link, useNavigate } from 'react-router-dom';
