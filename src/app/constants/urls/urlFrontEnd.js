@@ -9,4 +9,5 @@ export const URL_PROFILE = '/profile'
 export const URL_ADMIN_PRODUCTS = '/admin/produits';
 export const URL_PRODUCT = '/produits/detail/';
 export const URL_CART = '/panier';
+export const URL_ADMIN_DETAIL_PRODUCT = '/admin/produits/detail';
 export const URL_SUPPORT = '/support';

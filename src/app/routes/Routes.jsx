@@ -15,6 +15,7 @@ import AdminProductsView from '../views/AdminProductsView';
 import CartView from '../views/CartView';
 import ProfileView from '../views/ProfileView';
 import SupportView from '../views/SupportView';
+import EditProductView from '../views/EditProductView';
 
 const Routes = () => {
     return (
@@ -34,6 +35,14 @@ const Routes = () => {
                  element={
                     <PrivateRoute roles={[ROLE_ADMIN]}>
                         <AdminHomeView />
+                    </PrivateRoute>
+                    }
+            />
+                <Route
+                 path={URL.URL_ADMIN_DETAIL_PRODUCT} 
+                 element={
+                    <PrivateRoute roles={[ROLE_ADMIN, ROLE_COMMERCIAL]}>
+                        <EditProductView />
                     </PrivateRoute>
                     }
             />

@@ -3,15 +3,18 @@ import { getAllPage, detailProduct } from "../api/backend/product";
 import Loader from "../components/lib/utils-components/Loader";
 import { useNavigate } from 'react-router-dom';
 import { URL_PRODUCT } from "../constants/urls/urlFrontEnd";
+import { useLocation } from 'react-router-dom'
 
 const ProductsView = () => {
+
+  const location= useLocation()
   const [products, setProducts] = useState([]);
   const [loader, setloader] = useState({ state: false });
   const [page, setPage] = useState(1);
+  
     console.log("loader",loader)
-    
 
-    console.log(products)
+    //console.log(products)
     const AvancerPage=()=>{
 
       if(page!==products.totalPages){
@@ -30,18 +33,33 @@ const ProductsView = () => {
       
       
   }
+
+  async function recupeLocal(){
+
+    if(location.state!==null){
+
+      if(location.state.search.searchData!==''){
+        return location.state.search.searchData
+      }else{
+        return 'Totaux'
+      }
+
+    }else{
+          return 'Totaux'
+  }}
   
   useEffect(() => {
+  
     const fetchData = async () => {
-      const productsData = await getAllPage(page);
-      setProducts(productsData.data);
-      
 
+      const essai = await recupeLocal()   
+      const productsData = await getAllPage(essai,page);
+      setProducts(productsData.data);    
     };
 
     fetchData();
     setloader({ state: true });
-  }, [page]);
+  }, [page,location]);
 
 const navigate = useNavigate();
   const details = () => {
