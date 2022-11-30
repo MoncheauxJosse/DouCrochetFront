@@ -37,13 +37,13 @@ const Navbar = () => {
                             <div className="hidden flex-1 items-center justify-end md:flex lg:w-0">
                            {isLogged && role === "admin" && <Link to={URL_ADMIN_HOME}><button className='btn bg-light-yellow hover:bg-light-yellow-hover mr-8'>Admin</button></Link>}
                             <Link to={URL_PRODUCTS}>
-                                    <div className='flex flex-col justify-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4'>
-                                        <button class="btn rounded bg-light-yellow hover:bg-light-yellow-hover mr-8">
-                                            <BsFillBagCheckFill />
-                                            <span className="mx-2">Produits</span>
-                                        </button>
-                                    </div>
-                                </Link>
+                                <div className='flex flex-col justify-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4'>
+                                    <button class="btn rounded bg-light-yellow hover:bg-light-yellow-hover mr-8">
+                                        <BsFillBagCheckFill />
+                                        <span className="mx-2">Produits</span>
+                                    </button>
+                                </div>
+                            </Link>
                                 
                                 {isLogged ? <Link to={URL_PROFILE} title="Voir le profil">
                                     <div className='flex flex-col justify-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4 mx-2 text-2xl hover:text-light-yellow'>
