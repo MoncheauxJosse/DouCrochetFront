@@ -12,19 +12,19 @@ import {format} from "date-fns";
 const FormUpdate = ({submit}) => {
     const token = getPayloadToken(localStorage.token)
     console.log(token);
-    const dateToInput = format(new Date(token.lastname), 'yyyy-MM-dd').toString()
+    const dateToInput = format(new Date(token.birthdate), 'yyyy-MM-dd').toString()
 console.log(dateToInput);
     const defaulValuesUpdate = {
         firstname: token.firstname,
-        lastname: token.role,
+        lastname:token.lastname,
         birthdate: dateToInput,
-        telephone: "01-02-03-04-05",
+        telephone: token.telephone,
         email: token.email,
-        country: token.birthdate.country,
-        cityCode: token.birthdate.cityCode,
-        number: token.birthdate.number,
-        street: token.birthdate.street,
-        city: token.birthdate.city,
+        country: token.adresse.country,
+        cityCode: token.adresse.cityCode,
+        number: token.adresse.number,
+        street: token.adresse.street,
+        city: token.adresse.city,
         rememberMe: false,
     };
 
