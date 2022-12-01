@@ -202,7 +202,7 @@ const FormProduct = () =>{
                   return (
                     <div className="mb-2 flex justify-center">
                       <div key={index} id={index}>{formik.values.categoryId[index].name} 
-                      <div className='btn px-2.5 py-0.5 rounded-full text-white bg-light-pink hover:bg-dark-pink' onClick={()=>{formik.setFieldValue("categoryId",deleteChoice(index))}}>X</div></div>
+                      <div className='btn p-1 h-6 w-6 rounded-full text-white bg-light-pink hover:bg-dark-pink ml-5 cursor-pointer' onClick={()=>{formik.setFieldValue("categoryId",deleteChoice(index))}}>X</div></div>
                       </div>
                     )
                   })} 

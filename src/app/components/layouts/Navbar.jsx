@@ -12,6 +12,7 @@ import {BsFillBagCheckFill} from 'react-icons/bs'
 import {FaUserAlt} from 'react-icons/fa'
 import {BiLogOut,BiSearchAlt} from 'react-icons/bi'
 import logo from '../../assets/images/logo.png'
+import Searchbar from './Searchbar';
 
 
 const Navbar = () => {
@@ -34,8 +35,8 @@ const Navbar = () => {
         <Disclosure as="nav" className="fixed top-0 z-50 w-full bg-light-pink">
             {({ open }) => (
                 <>
-                    <div className="mx-auto max-w-7xl px-2 sm:px-6">
-                        <div className="flex items-center py-2 ">
+                    <div className=" px-2 sm:px-6">
+                        <div className="flex justify-between items-center">
                             <div>
                                 <Link to={URL_HOME}>
                                     <img
@@ -46,19 +47,10 @@ const Navbar = () => {
                                     />
                                 </Link>
                             </div>
-                            <div>
-                            <div className="flex justify-center items-center ml-5">
-                                <div className=" xl:w-96 justify-center items-center ">
-                                    <div className="input-group relative flex items-center w-full ">
-                                        <input type="search" onChange={(e)=> setInput({searchData: e.target.value})} class="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-light-pink focus:bg-white focus:border-dark-pink focus:outline-none" placeholder="Rechercher..." aria-label="Search" aria-describedby="button-addon2"/>
-                                        <button onClick={search} className="btn px-6 py-2 bg-dark-pink text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-white hover:text-black hover:shadow-lg  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-white active:shadow-lg transition duration-150 ease-in-out flex items-center" type="button" id="button-addon2" >
-                                            <BiSearchAlt className='text-xl'/>
-                                        </button>
-                                    </div>
-                                </div>
+                            <div className='hidden lg:flex'>
+                            <Searchbar />
                             </div>
-                            </div>
-                            <div className="hidden flex-1 items-center justify-end md:flex lg:w-0">
+                            <div className="hidden md:flex items-center">
                            {isLogged && role === "admin" && <Link to={URL_ADMIN_HOME}><button className='btn bg-light-yellow hover:bg-light-yellow-hover mr-8'>Admin</button></Link>}
                             <Link to={URL_PRODUCTS}>
                                 <div className='flex flex-col justify-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4'>
@@ -84,7 +76,7 @@ const Navbar = () => {
                                 <ConnectionBtn />
                             </div>
 
-                            <div className="-mr-2 flex md:hidden">
+                            <div className="flex md:hidden">
                                 {/* Mobile menu button */}
                                 <Disclosure.Button
                                     className="inline-flex transform items-center justify-center rounded-md p-2 text-light-yellow hover:light-yellow 
@@ -117,20 +109,20 @@ const Navbar = () => {
                     >
                         <Disclosure.Panel className="p-4 md:hidden ">
                             <hr />
-                            <div className="p-4">
+                            <div className="p-4 flex flex-col space-y-3">
                                     <Link to={URL_CART}>
-                                        <div className='mb-5 flex flex-col justify-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4 mx-2 text-2xl hover:text-light-yellow'>
+                                        <div className='flex flex-col justify-center mx-2 text-2xl hover:text-light-yellow'>
                                             <FaUserAlt />
                                         </div>
                                     </Link>
                                     {isLogged ? <Link to={URL_PROFILE}>
-                                    <div className='flex relative space-y-4 md:flex-row md:items-center md:space-y-0 mx-2 text-2xl hover:text-light-yellow'>
+                                    <div className='relative space-y-4 mx-2 text-2xl hover:text-light-yellow'>
                                         <BsCartFill />
-                                        <span className="absolute -top-1 -right-1 text-center text-sm font-bold leading-none w-4 h-4 text-red-100 bg-red-600 rounded-full">{cartItems.length}</span>
+                                        <span className="absolute bottom-3 left-3 text-center text-sm font-bold leading-none w-4 h-4 text-red-100 bg-red-600 rounded-full">{cartItems.length}</span>
                                     </div>
                                 </Link> : ''}
-                                    
                                 <ConnectionBtn />
+                                {isLogged && role === "admin" && <Link to={URL_ADMIN_HOME}><button className='btn bg-light-yellow hover:bg-light-yellow-hover mr-8'>Admin</button></Link>}
                             </div>
                         </Disclosure.Panel>
                     </Transition>
@@ -155,13 +147,13 @@ const ConnectionBtn = () => {
         return (
             <>
             {role === "admin" ? <Link to={URL_LOGIN}>
-                <div className=" hover:text-red-500 text-2xl ml-8 mr-8" onClick={() => {dispatch(signOut()); showToastMessage()}} title="Déconnexion">
-                    <BiLogOut className="mr-2 text-3xl" />
+                <div className=" hover:text-red-500 text-3xl" onClick={() => {dispatch(signOut()); showToastMessage()}} title="Déconnexion">
+                    <BiLogOut className="" />
                 </div>
             </Link>: 
             <Link to={URL_HOME}>
-            <div className=" rounded hover:text-red-500 text-2xl mr-8" onClick={() => {dispatch(signOut()); showToastMessage()}} title="Déconnexion">
-            <BiLogOut className="mr-2 text-3xl"/>
+            <div className=" rounded hover:text-red-500" onClick={() => {dispatch(signOut()); showToastMessage()}} title="Déconnexion">
+            <BiLogOut className=" text-3xl"/>
             </div>
             </Link>
             

@@ -25,10 +25,10 @@ export default function CartView() {
   if(cartItems !== undefined && cartItems.length > 0){
     return (
       <div>
-        <div className='flex shadow-md my-10 xs:block'>
+        <div className='flex my-10 xs:block'>
           <div className='w-3/4 xs:w-full'>
             <div className="flex justify-between border-b pb-8">
-              <h1 className="font-semibold text-2xl">Votre panier</h1>
+              <h1 className="font-semibold text-2xl ml-5">Votre panier</h1>
               <h2 className="font-semibold text-2xl">{cartlength} {cartlength === 1 ? oneProduct : multipleProduct}</h2>
             </div>
             <div className="flex px-10 pt-10 ml-5">
@@ -46,12 +46,12 @@ export default function CartView() {
                 <span className="font-semibold text-sm uppercase">{cartlength} {cartlength === 1 ? oneProduct : multipleProduct}</span>
                 {/* <span className="font-semibold text-sm">(total des produits)</span> */}
               </div>
-              <div>
+              {/* <div>
                 <label className="font-medium inline-block mb-3 text-sm uppercase">Livraison</label>
                 <select className="block p-2 text-gray-600 w-full text-sm">
                   <option>Standard - 10.00€</option>
                 </select>
-              </div>
+              </div> */}
               <div className="border-t mt-8">
                 <div className="flex font-semibold justify-between py-6 text-sm uppercase">
                   <span>Prix au total</span>

@@ -87,7 +87,7 @@ const ContacterView = () => {
                       </div>
                       <div className="grow ml-6">
                         <p className="font-bold mb-1">Facebook</p>
-                        <a href='https://www.facebook.com/profile.php?id=100075687324766' className="text-gray-500">Les Dou'Crochets</a>
+                        <a href='https://www.facebook.com/profile.php?id=100075687324766' target="_blank" className="text-gray-500">Les Dou'Crochets</a>
                       </div>
                     </div>
                   </div>

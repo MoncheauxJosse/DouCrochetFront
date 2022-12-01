@@ -15,12 +15,9 @@ const EditProductView = () => {
     const [loader, setloader] = useState({ state: false });
     const id = sessionStorage.getItem("detailProduct");
     
-    console.log("loader", loader);
-    
     useEffect(() => {
         const fetchData = async () => {
             const productsData = await detailProduct(id);
-            console.log(productsData);
             setProducts(productsData.data);
             setPreview(products.image);
             setloader({ state: true });
@@ -28,7 +25,6 @@ const EditProductView = () => {
         
         fetchData();
     }, []);
-    console.log(products._id);
     
     const loadImage = (e) => {
         const objectUrl = URL.createObjectURL(e);

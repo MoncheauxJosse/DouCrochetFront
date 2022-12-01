@@ -10,6 +10,7 @@ import Loader from './components/lib/utils-components/Loader';
 import { selectIsLogged, signIn } from './redux-store/authenticationSlice';
 import Routes from './routes/Routes';
 import { getToken } from './services/tokenServices';
+import Searchbar from './components/layouts/Searchbar';
 
 const contextClass = {
     success: 'bg-green-600',
@@ -44,7 +45,10 @@ const App = () => {
             <div className="flex cursor-default min-h-screen flex-col bg-light-yellow ">
                 {isLogged && <IdleTimerCustom />}
                 <Navbar />
-                <main className="mt-24 flex flex-grow flex-col overflow-y-hidden bg-light-yellow">
+                <div className='lg:hidden flex mt-20 justify-center'>
+                    <Searchbar />
+                    </div>
+                <main className="lg:mt-24 flex flex-grow flex-col overflow-y-hidden bg-light-yellow">
                     <Routes />
                 
                 </main>
