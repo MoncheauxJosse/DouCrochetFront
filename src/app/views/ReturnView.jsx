@@ -122,7 +122,7 @@ const ReturnView = () => {
 
        <div className="mb-8 flex gap-20">
         <label htmlFor="image" className={formik.errors.image ? "input-error btn bg-light-yellow":"btn h-10 bg-light-yellow"}>Ajouter une image</label>
-        <img className="w-40 "src={preview} />
+        {preview &&<img className="w-40 "src={preview} />}
        </div>
        
        <input
