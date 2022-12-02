@@ -1,33 +1,12 @@
 import React,{useState,useEffect} from 'react';
 import { AiFillPhone, AiFillInstagram, AiFillFacebook} from 'react-icons/ai';
-import {RiMailSendLine} from 'react-icons/ri';4
+import {RiMailSendLine} from 'react-icons/ri';
+import instagram from '../assets/images/icons8-instagram-48.png'
+import facebook from '../assets/images/icons8-facebook-48.png'
 
 const ContacterView = () => {
 
     return (
-        // <div className='mt-2'>
-        //     <h3>Nous contacter :</h3>
-
-        //     <i>Pour toute réclamation, veuillez vous reporter sur l'onglé réclamation.
-        //         Le service ci-joint, ne gére pas cela.
-        //     </i>
-
-        //     <div className='ml-5 mt-2'>
-        //         <div className='flex'>
-        //             <AiFillPhone className='text-dark text-2xl bg-light-pink rounded h-8 w-8'/>
-        //             <div className='font-semibold'>tel :
-        //                 </div> 
-                 
-        //             03.**.**.**.**
-        //         </div>
-
-        //         <div className='flex'>
-        //             <RiMailSendLine className='text-dark'/>
-        //             <div className='font-semibold'>email :
-        //             </div> DouCrochet@gmail.com
-        //         </div>
-        //     </div>
-        // </div>
         <div className="container my-24 px-6 mx-auto">
         <section className="mb-32 text-gray-800">
           <div className="block rounded-lg shadow-lg bg-white">
@@ -68,8 +47,8 @@ const ContacterView = () => {
                   <div className="mb-12 grow-0 shrink-0 basis-auto w-full md:w-6/12 lg:w-full xl:w-6/12 px-3 md:px-6 xl:px-12">
                     <div className="flex align-start">
                       <div className="shrink-0">
-                        <div className="p-4 bg-light-pink rounded-md shadow-md w-14 h-14 flex items-center justify-center">
-                          <AiFillInstagram className='text-white text-2xl'/>
+                        <div className="bg-light-pink rounded-md shadow-md w-14 h-14 flex items-center justify-center">
+                          <img src={instagram} className='h-10 w-10'></img>
                         </div>
                       </div>
                       <div className="grow ml-6">
@@ -81,8 +60,8 @@ const ContacterView = () => {
                   <div className="mb-12 lg:mb-0 grow-0 shrink-0 basis-auto w-full md:w-6/12 lg:w-full xl:w-6/12 px-3 md:px-6 xl:px-12">
                     <div className="flex align-start">
                       <div className="shrink-0">
-                        <div className="p-4 bg-light-pink rounded-md shadow-md w-14 h-14 flex items-center justify-center">
-                          <AiFillFacebook className='text-white text-2xl'/>
+                        <div className="bg-light-pink rounded-md shadow-md w-14 h-14 flex items-center justify-center">
+                          <img src={facebook} className='h-10 w-10'/>
                         </div>
                       </div>
                       <div className="grow ml-6">
