@@ -31,7 +31,7 @@ const FormUpdate = ({submit}) => {
         firstname: Yup.string().min(2, "Prénom trop court").max(30, "Prénom trop long").required('Prénom obligatoire'),
         lastname: Yup.string().min(2, "Nom trop court").max(30, "Nom trop long").required('Nom obligatoire'),
         birthdate: Yup.date().min('01-01-1900', 'Date de naissance invalide').max(new Date, 'Date de naissance invalide').required('Date obligatoire'),
-        telephone: Yup.string().required('Telephone obligatoire'),
+        telephone: Yup.number().required('Telephone obligatoire'),
         email: Yup.string().email('email invalide').required('e-mail obligatoire'),
         country: Yup.string().required('Pays obligatoire'),
         cityCode: Yup.number().max(999999, "Maximum 6 chiffres").typeError("Le code postal doit être un nombre").required('Code postal obligatoire'),
