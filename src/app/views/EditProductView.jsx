@@ -32,7 +32,7 @@ const EditProductView = () => {
         return e;
       };
 
-  const handleSubmit = (data) => {
+  const handleSubmit = (data,setFieldValue) => {
     console.log(data);
     let formdata = new FormData();
     formdata.append('image', data.image);
@@ -40,7 +40,12 @@ const EditProductView = () => {
     formdata.append('price', data.price);
     // formdata.append('categorie', data.categorie);
     formdata.append('quantity', data.quantity);
-    updateProduct(formdata, products._id);
+    updateProduct(formdata, products._id).then(res =>{
+        setProducts(res.data)
+        setFieldValue('image,',res.data.image)
+        setPreview(null)
+        showChangeProductMessage();
+     });
     console.log(data.image + " handleSubmit");
     console.log(data);
 
@@ -81,7 +86,7 @@ const EditProductView = () => {
     return (
         <Formik
         initialValues={defaulValuesProduct}
-        onSubmit={handleSubmit}
+        onSubmit= {(values, actions) => handleSubmit(values,actions.setFieldValue)}
         validationSchema={schemaFormLogin}
         >
        {({setFieldValue}) =>( <Form className="mb-2 flex justify-center">
@@ -138,22 +143,7 @@ const EditProductView = () => {
               className="text-red-500"
             />
             <label className="font-bold text-light-yellow ">Photo :</label>
-              <Field
-              as="image"
-              type="image"
-              name="image"
-              placeholder="Image"
-              autoComplete="image"
-              component={Input}
-              className="rounded-md text-black"
-              noError
-              
-            />
-            <ErrorMessage
-              name="image"
-              component="small"
-              className="text-red-500"
-            />
+              <img src={products.image} alt="Image produit" />
             <label className="font-bold text-light-yellow ">Choisir une autre photo :</label>
             <input type="file" name="image" id="image" onChange={(e) => {setFieldValue("image", loadImage(e.currentTarget.files[0])) }} />
             
@@ -195,10 +185,6 @@ const EditProductView = () => {
             />
             <div className="my-10 flex justify-center">
               <button
-                onClick={() => {
-                  handleSubmit(products._id);
-                  showChangeProductMessage();
-                }}
                 type="submit"
                 className=" mb-2  bg-blue-500 rounded-md p-3 "
               >
