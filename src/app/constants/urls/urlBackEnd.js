@@ -17,3 +17,4 @@ export const URL_UPDATE_PRODUCT = '/products/update/'
 export const URL_BACK_ORDER_USER = '/support/return-product';
 export const URL_BACK_UPDATE_USER = '/users/update/'
 export const URL_BACK_COOKIE = '/cookie/setcookie/';
+export const URL_BACK_GET_COOKIE = '/cookie/getcookie/';

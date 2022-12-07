@@ -1,14 +1,22 @@
 import React from 'react'
-import { getCookie } from '../api/backend/users';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { getCookie, setCookie } from '../api/backend/users';
 
-export default function CookieView() {
+export default function CookieView() {  
+    const [cookie, setcookie] = useState();
+    useEffect(() => {
+      getCookie().then((res)=>{
+        setcookie(res.data)
+      });  
+    }, [])
     const acceptCookies = () => {
-        getCookie().then((res)=> {
-            console.log(res)
+        setCookie().then((res)=> {
+            setcookie(res.data)
         });
     }
   return (
-    <div className="container mx-auto fixed left-0 bottom-0">
+    cookie ? null : <div className="container mx-auto fixed left-2 bottom-2">
         <div className='bg-white w-72'>
             <div className="w-72 bg-white rounded-lg shadow-md p-6">
                 <div className="w-16 mx-auto relative -mt-10 mb-3">
@@ -24,5 +32,6 @@ export default function CookieView() {
             </div>
         </div>
     </div>
+    
   )
 }

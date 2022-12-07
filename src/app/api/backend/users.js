@@ -1,4 +1,4 @@
-import {URL_BACK_DELETE, URL_BACK_MODIF, URL_GET_ROLES, URL_GET_USERS, URL_BACK_PROFILE, URL_BACK_UPDATE_USER, URL_BACK_COOKIE} from '../../constants/urls/urlBackEnd';
+import {URL_BACK_DELETE, URL_BACK_MODIF, URL_GET_ROLES, URL_GET_USERS, URL_BACK_PROFILE, URL_BACK_UPDATE_USER, URL_BACK_COOKIE, URL_BACK_GET_COOKIE} from '../../constants/urls/urlBackEnd';
 import apiBackEnd from './api.Backend';
 
 export function getAll() {
@@ -24,6 +24,9 @@ export function getProfile(){
     return apiBackEnd.get(URL_BACK_PROFILE)
 }
 
+export function setCookie(){
+    return apiBackEnd.post(URL_BACK_COOKIE)
+}
 export function getCookie(){
-    return apiBackEnd.get(URL_BACK_COOKIE)
+    return apiBackEnd.get(URL_BACK_GET_COOKIE)
 }

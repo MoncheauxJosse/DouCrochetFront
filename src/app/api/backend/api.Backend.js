@@ -9,6 +9,7 @@ import { getToken } from '../../services/tokenServices';
  * @author Peter Mollet
  */
 const apiBackEnd = axios.create({
+    withCredentials: true,
     baseURL: import.meta.env.VITE_BACKEND_URL,
 });
 export default apiBackEnd;
