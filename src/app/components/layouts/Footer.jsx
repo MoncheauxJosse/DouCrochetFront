@@ -5,11 +5,14 @@ import { useNavigate } from "react-router-dom"
 const Footer = () => {
     const navigate= useNavigate()
 
-    const click=(e)=>{
+    const support=(e)=>{
 
         navigate(URL.URL_SUPPORT);
 
     };
+    const cgu=()=>{
+        navigate(URL.URL_CGU)
+    }
 
     return (
         <div>
@@ -17,15 +20,15 @@ const Footer = () => {
 
             <div className='flex justify-start mx-auto sm:px-6 ' > 
 
-                <div onClick={click} className="cursor-pointer py-2 px-6 text-white hover:text-light-yellow-hover underline ">
+                <div onClick={support} className="cursor-pointer py-2 px-6 text-white hover:text-light-yellow-hover underline ">
                     Contacter support. 
 
                 </div>
-                <div className=" py-2 px-6 text-white hover:text-light-yellow-hover underline ">
+                <div className="cursor-pointer py-2 px-6 text-white hover:text-light-yellow-hover underline ">
                     FAQ
 
                 </div>
-                <div className=" py-2 px-6 text-white hover:text-light-yellow-hover underline ">
+                <div onClick={cgu} className="cursor-pointer py-2 px-6 text-white hover:text-light-yellow-hover underline ">
                     Conditions générales de vente
 
 

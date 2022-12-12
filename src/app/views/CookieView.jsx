@@ -2,9 +2,11 @@ import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { getCookie, setCookie } from '../api/backend/users';
+import {ImCross} from 'react-icons/im';
 
 export default function CookieView() {  
     const [cookie, setcookie] = useState();
+    const [visible, setVisible] = useState(false);
     useEffect(() => {
       getCookie().then((res)=>{
         setcookie(res.data)
@@ -16,9 +18,12 @@ export default function CookieView() {
         });
     }
   return (
-    cookie ? null : <div className="container mx-auto fixed left-2 bottom-2">
+    cookie ? null : <div style={visible?{display:"none"}:{display:"block"}} className="slide container mx-auto fixed left-2 bottom-2 z-10">
         <div className='bg-white w-72'>
             <div className="w-72 bg-white rounded-lg shadow-md p-6">
+                <div className='flex justify-end text-2xl items-start text-light-pink'>
+                    <button onClick={()=>setVisible(!visible)}><ImCross/></button>
+                </div>
                 <div className="w-16 mx-auto relative -mt-10 mb-3">
                     <img className="-mt-1" src="https://www.svgrepo.com/show/30963/cookie.svg" alt="Cookie Icon SVG"/>
                 </div>

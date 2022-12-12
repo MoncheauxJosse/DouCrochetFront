@@ -127,23 +127,31 @@ const HomeView = () => {
         <>
         <Swiper spaceBetween={30}
         centeredSlides={true}
-        // autoplay={{
-        //   delay: 2500,
-        //   disableOnInteraction: false,
-        // }}
+        autoplay={{
+          delay: 4000,
+          disableOnInteraction: false,
+        }}
         pagination={{
           clickable: true,
         }}
-        navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper w-full h-full">
-            <SwiperSlide className='relative'><img src={banner} alt="dou'crochet" className=''/>
-                <div className='absolute text-center flex justify-center items-center'>
-                    <h2 className='text-4xl'>Bienvenue chez les Dou'Crochets !</h2>
+            <SwiperSlide className='relative'>
+                <div className='fadeIn absolute text-center flex justify-center items-center top-1/3 left-1/4 mobile:left-10'>
+                    <h2 className='text-4xl text-white xs:text-xl mobile:text-lg xl:text-5xl'>Bienvenue chez les Dou'Crochets !</h2>
                 </div>
+                <img src={banner} alt="dou'crochet"/>
             </SwiperSlide>
-            <SwiperSlide><img src={banner1} alt="dou'crochet" className=''/>Votre magasin de doudous fabriqués à la main</SwiperSlide>
-            <SwiperSlide><img src={banner2} alt="dou'crochet" className=''/>Les commandes se font à la demande</SwiperSlide>
+            <SwiperSlide>
+                <div className='fadeIn absolute text-center flex justify-center items-center top-1/3 left-1/4 mobile:left-10 xl:left-52 md:left-10 minipc:left-32 xl:left-40'>
+                    <h2 className='text-4xl text-white xs:text-xl mobile:text-lg xl:text-5xl'>Votre magasin de doudous fabriqués à la main</h2>
+                </div>
+                <img src={banner1} alt="dou'crochet"/></SwiperSlide>
+            <SwiperSlide>
+                <div className='fadeIn absolute text-center flex justify-center items-center top-1/3 left-1/4 mobile:left-10'>
+                    <h2 className='text-4xl text-white xs:text-xl mobile:text-lg xl:text-5xl'>Les commandes se font à la demande</h2>
+                </div>
+                <img src={banner2} alt="dou'crochet"/></SwiperSlide>
         </Swiper>
         <div className="text-center">
                 <h2 className='font-bold text-light-pink text-xl mt-4'>Nouveautés</h2>
