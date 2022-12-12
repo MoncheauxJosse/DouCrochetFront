@@ -43,7 +43,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <div className="flex cursor-default min-h-screen flex-col bg-light-yellow ">
-                {isLogged && <IdleTimerCustom />}
+                {isLogged}
                 <Navbar />
                 <div className='lg:hidden flex mt-20 justify-center'>
                     <Searchbar />
