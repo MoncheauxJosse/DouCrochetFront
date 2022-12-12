@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState} from 'react';
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import CartItem from '../components/layouts/CartItem'
-import {URL_PRODUCTS} from '../constants/urls/urlFrontEnd'
+import {URL_LOGIN, URL_PRODUCTS, URL_REGISTER, URL_SUMMARY} from '../constants/urls/urlFrontEnd'
+import { useNavigate } from 'react-router-dom';
 
 export default function CartView() {
   const dispatch = useDispatch()
@@ -21,6 +22,17 @@ export default function CartView() {
       }
       return somme.toFixed(2)
   }
+
+  const navigate = useNavigate()
+  const summary = ()=> {
+      if(localStorage.token){
+        navigate(URL_SUMMARY) 
+      }
+      else{
+        alert("vous devez creer un compte ou vous connecter pour continuer")
+        navigate(URL_LOGIN)
+      }
+    }
 
   if(cartItems !== undefined && cartItems.length > 0){
     return (
@@ -57,7 +69,7 @@ export default function CartView() {
                   <span>Prix au total</span>
                   <span>{getTotal(cartItems)}€</span>
                 </div>
-                <button className="bg-light-pink font-semibold hover:bg-dark-pink py-3 text-sm text-white uppercase w-full">Commander</button>
+                <button id="popup"className="bg-light-pink font-semibold hover:bg-dark-pink py-3 text-sm text-white uppercase w-full" onClick={summary}>Commander</button>
               </div>
             </div>
           </div>

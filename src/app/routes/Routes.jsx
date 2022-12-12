@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes as RoutesContainer } from 'react-router-dom';
 import RegisterView from '../views/RegistrerView';
-import { ROLE_ADMIN,ROLE_COMMERCIAL } from '../constants/rolesConstant';
+import { ROLE_ADMIN,ROLE_COMMERCIAL, ROLE_USER } from '../constants/rolesConstant';
 import * as URL from '../constants/urls/urlFrontEnd';
 import AdminHomeView from '../views/AdminHomeView';
 import FormProductView from '../views/FormulaireProductView';
@@ -16,7 +16,11 @@ import CartView from '../views/CartView';
 import ProfileView from '../views/ProfileView';
 import SupportView from '../views/SupportView';
 import EditProductView from '../views/EditProductView';
+<<<<<<< HEAD
 import TermsofSales from '../views/TermsofSales';
+=======
+import SummaryView from '../views/summaryView';
+>>>>>>> dev
 
 const Routes = () => {
     return (
@@ -52,23 +56,25 @@ const Routes = () => {
                  element={
                     <PrivateRoute roles={[ROLE_ADMIN,ROLE_COMMERCIAL]}>
                         <AdminProductsView/>
-                    </PrivateRoute>}
-                
+                    </PrivateRoute>}    
             />
+            <Route path={URL.URL_SUMMARY} element={<SummaryView/>}/>
             <Route path={URL.URL_CART} element={<CartView />} />
             <Route path={URL.URL_PRODUCTS} element={ <ProductsView /> }/>
             <Route path={URL.URL_LOGIN} element={<LoginView/>}/>
             <Route path={URL.URL_HOME} element={<HomeView/>}/>
             <Route path={URL.URL_USERS} element={<UsersView />} />
             <Route path={URL.URL_PROFILE} element={<ProfileView/>}/>
-
             <Route path={URL.URL_PRODUCT} element={<DetailProductView />} />
             <Route path={URL.URL_REGISTER} element={<RegisterView/>}/>
             <Route path={URL.URL_SUPPORT} element={<SupportView/>}/>
+<<<<<<< HEAD
             <Route path={URL.URL_CGU} element={<TermsofSales/>}/>
 
 
             
+=======
+>>>>>>> dev
         </RoutesContainer>
     );
 };

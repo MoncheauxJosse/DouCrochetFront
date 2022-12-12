@@ -11,4 +11,8 @@ export const URL_PRODUCT = '/produits/detail/';
 export const URL_CART = '/panier';
 export const URL_ADMIN_DETAIL_PRODUCT = '/admin/produits/detail';
 export const URL_SUPPORT = '/support';
+<<<<<<< HEAD
 export const URL_CGU = '/conditions-generales-de-vente';
+=======
+export const URL_SUMMARY = '/recapitulatif'
+>>>>>>> dev
