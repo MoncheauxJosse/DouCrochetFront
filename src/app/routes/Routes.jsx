@@ -16,11 +16,8 @@ import CartView from '../views/CartView';
 import ProfileView from '../views/ProfileView';
 import SupportView from '../views/SupportView';
 import EditProductView from '../views/EditProductView';
-<<<<<<< HEAD
 import TermsofSales from '../views/TermsofSales';
-=======
 import SummaryView from '../views/summaryView';
->>>>>>> dev
 
 const Routes = () => {
     return (
@@ -68,13 +65,10 @@ const Routes = () => {
             <Route path={URL.URL_PRODUCT} element={<DetailProductView />} />
             <Route path={URL.URL_REGISTER} element={<RegisterView/>}/>
             <Route path={URL.URL_SUPPORT} element={<SupportView/>}/>
-<<<<<<< HEAD
             <Route path={URL.URL_CGU} element={<TermsofSales/>}/>
 
 
             
-=======
->>>>>>> dev
         </RoutesContainer>
     );
 };
