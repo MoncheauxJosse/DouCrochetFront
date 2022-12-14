@@ -52,7 +52,7 @@ const App = () => {
                 <div className='lg:hidden flex mt-20 justify-center'>
                     <Searchbar />
                     </div>
-                <main className="lg:mt-24 flex flex-grow flex-col overflow-y-hidden bg-light-yellow">
+                <main className="lg:mt-16 flex flex-grow flex-col overflow-y-hidden bg-light-yellow">
                     <Routes />
                 
                 </main>

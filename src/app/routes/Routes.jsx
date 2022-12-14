@@ -18,6 +18,7 @@ import SupportView from '../views/SupportView';
 import EditProductView from '../views/EditProductView';
 import TermsofSales from '../views/TermsofSales';
 import SummaryView from '../views/summaryView';
+import NotFoundView from '../views/NotFoundView';
 
 const Routes = () => {
     return (
@@ -66,6 +67,7 @@ const Routes = () => {
             <Route path={URL.URL_REGISTER} element={<RegisterView/>}/>
             <Route path={URL.URL_SUPPORT} element={<SupportView/>}/>
             <Route path={URL.URL_CGU} element={<TermsofSales/>}/>
+            <Route path='*' element={<NotFoundView />}/>
 
 
             
