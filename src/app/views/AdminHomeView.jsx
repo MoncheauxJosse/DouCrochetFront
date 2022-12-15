@@ -9,7 +9,7 @@ const AdminHomeView = () => {
   return (
     <div className='ml-5'>
       <div>
-        <h2>Bienvenue sur l'admin</h2>
+        <h2 className='text-5xl text-bold'>Bienvenue sur l'admin</h2>
       </div>
       <div>
         <NavAdmin />
@@ -17,10 +17,5 @@ const AdminHomeView = () => {
     </div>
   );
 };
-    
-
-    
-
-
 
 export default AdminHomeView;
