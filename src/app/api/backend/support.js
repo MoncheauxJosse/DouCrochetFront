@@ -1,4 +1,4 @@
-import  {URL_BACK_ORDER_USER} from '../../constants/urls/urlBackEnd';
+import  {URL_BACK_ORDER_USER,URL_BACK_COMPLAINT} from '../../constants/urls/urlBackEnd';
 import apiBackEnd from './api.Backend';
 
 export async function supportOrder(token) {
@@ -9,4 +9,10 @@ export async function supportOrder(token) {
 export const postReturn = async (body)=> {
 
     return apiBackEnd.post(URL_BACK_ORDER_USER, body)
+}
+
+export const postComplaint = async (body)=> {
+
+    console.log("test axios ",body)
+    return apiBackEnd.post(URL_BACK_COMPLAINT, body)
 }
