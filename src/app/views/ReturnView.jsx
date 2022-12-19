@@ -4,7 +4,6 @@ import * as Yup from 'yup'
 import { useSelector } from 'react-redux';
 import {selectUser,selectToken} from '../redux-store/authenticationSlice'
 import { supportOrder,postReturn } from '../api/backend/support';
-//import { getAllCategory , postCategory} from '../api/backend/category';
 
 const ReturnView = () => {
 

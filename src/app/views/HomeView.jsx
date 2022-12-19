@@ -3,6 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import { getAll,getAllNouveau } from "../api/backend/product";
 import  '../css/carroucel.css'
 import { URL_PRODUCT } from "../constants/urls/urlFrontEnd";
+import "../../index.css"
+import banner from '../assets/images/banniere-dou-crochet.png';
+import banner1 from '../assets/images/banniere-dou-crochet1.png';
+import banner2 from '../assets/images/banniere-dou-crochet2.png';
+import { useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Autoplay, Pagination, Navigation } from "swiper";
 
 const HomeView = () => {
 
@@ -114,50 +124,78 @@ const HomeView = () => {
         }
     }
     return (
+        <>
+        <Swiper spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 4000,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="mySwiper w-full h-full">
+            <SwiperSlide className='relative'>
+                <div className='fadeIn absolute text-center flex justify-center items-center top-1/3 left-1/4 mobile:left-10'>
+                    <h2 className='text-4xl text-white xs:text-xl mobile:text-lg xl:text-5xl'>Bienvenue chez les Dou'Crochets !</h2>
+                </div>
+                <img src={banner} alt="dou'crochet"/>
+            </SwiperSlide>
+            <SwiperSlide>
+                <div className='fadeIn absolute text-center flex justify-center items-center top-1/3 left-1/4 mobile:left-10 xl:left-52 md:left-10 minipc:left-32 xl:left-40'>
+                    <h2 className='text-4xl text-white xs:text-xl mobile:text-lg xl:text-5xl'>Votre magasin de doudous fabriqués à la main</h2>
+                </div>
+                <img src={banner1} alt="dou'crochet"/></SwiperSlide>
+            <SwiperSlide>
+                <div className='fadeIn absolute text-center flex justify-center items-center top-1/3 left-1/4 mobile:left-10'>
+                    <h2 className='text-4xl text-white xs:text-xl mobile:text-lg xl:text-5xl'>Les commandes se font à la demande</h2>
+                </div>
+                <img src={banner2} alt="dou'crochet"/></SwiperSlide>
+        </Swiper>
         <div className="text-center">
-            <h2 className='font-bold text-light-pink text-xl mt-4'>Nouveautés</h2>
-        <div className="caroucel">
-            <button className="left" onClick={prevSlide}> {"<"} </button>
+                <h2 className='font-bold text-light-pink text-xl mt-4'>Nouveautés</h2>
+                <div className="caroucel">
+                    <button className="left" onClick={prevSlide}> {"<"} </button>
 
-            
-            {products.data?.map((obj, index) => {
 
-                if( index<afficheFin && index>=afficheDebut ){ 
-                    // {console.log(products.data[index].image)}
-                    return (
-                    <div key={index} id={index} className="cursor-pointer m-2 h-90 rounded overflow-hidden shadow-xl bg-light-pink hover:scale-150 duration-200">
-                        <img onClick={() => details(products.data[index]._id)} src={products.data[index].image} className="w-80 m-auto rounded" alt={"img"+(index)} /> 
-                    </div>
-                             )
-                    }       
-               
-            })}
-            <button  className="right" onClick={nextSlide} >{">"}</button>
-           
-        </div>
+                    {products.data?.map((obj, index) => {
 
-        <h2 className='font-bold text-light-pink text-xl mt-6'>Populaires</h2>
-        <div className="caroucel">
-            <button className="left" onClick={prevSlidePopulaire}> {"<"} </button>
+                        if (index < afficheFin && index >= afficheDebut) {
+                            return (
+                                <div key={index} id={index} className="cursor-pointer m-2 h-90 rounded overflow-hidden shadow-xl bg-light-pink hover:scale-110 duration-200">
+                                    <img onClick={() => details(products.data[index]._id)} src={products.data[index].image} className="w-80 m-auto rounded" alt={"img" + (index)} />
+                                </div>
+                            );
+                        }
 
-            
-            {productsPopulaire.data?.map((obj, index) => {
+                    })}
+                    <button className="right" onClick={nextSlide}>{">"}</button>
 
-                if( index<afficheFinPopulaire && index>=afficheDebutPopulaire ){ 
-                    // {console.log(productsPopulaire.data[index].image)}
-                    return (
-                    <div key={index} id={index} className="cursor-pointer m-2 h-90 rounded overflow-hidden shadow-xl bg-light-pink hover:scale-150 duration-200">
-                        <img onClick={() => details(productsPopulaire.data[index]._id)}  src={productsPopulaire.data[index].image} className="w-80 m-auto rounded" alt={"img"+(index)} /> 
-                    </div>
-                             )
-                    }       
-               
-            })}
-            <button  className="right" onClick={nextSlidePopulaire} >{">"}</button>
-           
-        </div>
-        
-        </div>
+                </div>
+
+                <h2 className='font-bold text-light-pink text-xl mt-6'>Populaires</h2>
+                <div className="caroucel">
+                    <button className="left" onClick={prevSlidePopulaire}> {"<"} </button>
+
+
+                    {productsPopulaire.data?.map((obj, index) => {
+
+                        if (index < afficheFinPopulaire && index >= afficheDebutPopulaire) {
+                            // {console.log(productsPopulaire.data[index].image)}
+                            return (
+                                <div key={index} id={index} className="cursor-pointer m-2 h-90 rounded overflow-hidden shadow-xl bg-light-pink hover:scale-110 duration-200">
+                                    <img onClick={() => details(productsPopulaire.data[index]._id)} src={productsPopulaire.data[index].image} className="w-80 m-auto rounded" alt={"img" + (index)} />
+                                </div>
+                            );
+                        }
+
+                    })}
+                    <button className="right" onClick={nextSlidePopulaire}>{">"}</button>
+
+                </div>
+
+            </div></>
     );
 };
 

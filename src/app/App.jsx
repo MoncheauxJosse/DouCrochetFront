@@ -12,6 +12,8 @@ import Routes from './routes/Routes';
 import { getToken } from './services/tokenServices';
 import Searchbar from './components/layouts/Searchbar';
 
+import CookieView from './views/CookieView';
+
 const contextClass = {
     success: 'bg-green-600',
     error: 'bg-red-600',
@@ -40,6 +42,8 @@ const App = () => {
 
     if (isLogin) return <Loader />;
 
+   
+
     return (
         <BrowserRouter>
             <div className="flex cursor-default min-h-screen flex-col bg-light-yellow ">
@@ -48,7 +52,7 @@ const App = () => {
                 <div className='lg:hidden flex mt-20 justify-center'>
                     <Searchbar />
                     </div>
-                <main className="lg:mt-24 flex flex-grow flex-col overflow-y-hidden bg-light-yellow">
+                <main className="lg:mt-16 flex flex-grow flex-col overflow-y-hidden bg-light-yellow">
                     <Routes />
                 
                 </main>
@@ -62,6 +66,7 @@ const App = () => {
                     autoClose={3000}
                 />
                 <div className='mt-4'>
+                <CookieView />
                     <Footer/>
                 </div>
             </div>

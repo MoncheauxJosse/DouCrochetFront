@@ -15,4 +15,7 @@ export const URL_BACK_PROFILE = '/users/profile'
 export const URL_BACK_CREATE_CATEGORY = '/products/create-category';
 export const URL_UPDATE_PRODUCT = '/products/update/'
 export const URL_BACK_ORDER_USER = '/support/return-product';
+export const URL_BACK_COMPLAINT = '/support/complaint';
 export const URL_BACK_UPDATE_USER = '/users/update/'
+export const URL_BACK_COOKIE = '/cookie/setcookie/';
+export const URL_BACK_GET_COOKIE = '/cookie/getcookie/';

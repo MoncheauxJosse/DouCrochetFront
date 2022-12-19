@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import ContacterView from './ContacterView'
 import ReturnView from './ReturnView'
+import Complaint from './ComplaintView'
 
 const ChoiceView = (choice) => {
 
@@ -19,7 +20,7 @@ const ChoiceView = (choice) => {
 
     return (
 
-        <div>Reclamation</div>
+        <div><Complaint/></div>
     )
 }else{
     return(<div></div>)
