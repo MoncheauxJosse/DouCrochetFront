@@ -17,6 +17,7 @@ import ProfileView from '../views/ProfileView';
 import SupportView from '../views/SupportView';
 import EditProductView from '../views/EditProductView';
 import SummaryView from '../views/summaryView';
+import retourProductAdminView from '../views/retourProductView';
 
 const Routes = () => {
     return (
@@ -54,6 +55,13 @@ const Routes = () => {
                         <AdminProductsView/>
                     </PrivateRoute>}    
             />
+                <Route
+                 path={URL.URL_ADMIN_RETOUR} 
+                 element={
+                    <PrivateRoute roles={[ROLE_ADMIN,ROLE_COMMERCIAL]}>
+                        <retourProductAdminView/>
+                    </PrivateRoute>}    
+                />
             <Route path={URL.URL_SUMMARY} element={<SummaryView/>}/>
             <Route path={URL.URL_CART} element={<CartView />} />
             <Route path={URL.URL_PRODUCTS} element={ <ProductsView /> }/>
