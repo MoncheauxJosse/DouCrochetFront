@@ -7,7 +7,7 @@ const AdminHomeView = () => {
   const user = useSelector(selectUser);
   console.log(user)
   return (
-    <div className='ml-5'>
+    <div className='mx-5 mt-2'>
       <div>
         <h2 className='text-5xl text-bold'>Bienvenue sur l'admin</h2>
       </div>
