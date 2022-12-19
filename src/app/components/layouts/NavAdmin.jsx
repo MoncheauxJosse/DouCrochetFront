@@ -3,11 +3,9 @@ import { FaUserAlt } from 'react-icons/fa';
 import { BsFillBagCheckFill } from 'react-icons/bs';
 import { BsFillBagPlusFill} from 'react-icons/bs';
 import {GrDocumentTransfer} from 'react-icons/gr';
-import { BsFillBagPlusFill } from 'react-icons/bs';
 import { BsFillCartFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import { URL_ADMIN_PRODUCTS, URL_CREATE_PRODUCT, URL_USERS, URL_ADMIN_RETOUR } from '../../constants/urls/urlFrontEnd';
-import { URL_ADMIN_ORDERS, URL_ADMIN_PRODUCTS, URL_CREATE_PRODUCT, URL_USERS } from '../../constants/urls/urlFrontEnd';
+import { URL_ADMIN_PRODUCTS, URL_CREATE_PRODUCT, URL_USERS, URL_ADMIN_RETOUR,URL_ADMIN_ORDERS } from '../../constants/urls/urlFrontEnd';
 
 export default function NavAdmin() {
   return (
