@@ -55,23 +55,21 @@ const ReturnView = () => {
             console.log("active getOrderUser")
             const fetchData = async () => {
               const OrderDataUser = await supportOrder(token);
-
               console.log(OrderDataUser)
-              setFacture(OrderDataUser)
+              setFacture(OrderDataUser)  
 
-
-             
             };
-               /*if(data.data.length==0||data.data.length!==count){
-            
+            /*if(data.data.length==0||data.data.length!==count){
+              
               fetchData();
               setCount(data.data.length)
-  
-              }*/
-              fetchData();
-  
+              
+            }*/
+            fetchData();
+            
           },[])
-
+          console.log(facture.data)  
+          
     return (
 
         <div  className="mt-2 bg-light-yellow flex h-full flex-col items-center justify-center">

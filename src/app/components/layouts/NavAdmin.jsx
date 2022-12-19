@@ -3,11 +3,9 @@ import { FaUserAlt } from 'react-icons/fa';
 import { BsFillBagCheckFill } from 'react-icons/bs';
 import { BsFillBagPlusFill} from 'react-icons/bs';
 import {GrDocumentTransfer} from 'react-icons/gr';
-import { BsFillBagPlusFill } from 'react-icons/bs';
 import { BsFillCartFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import { URL_ADMIN_PRODUCTS, URL_CREATE_PRODUCT, URL_USERS, URL_ADMIN_RETOUR } from '../../constants/urls/urlFrontEnd';
-import { URL_ADMIN_ORDERS, URL_ADMIN_PRODUCTS, URL_CREATE_PRODUCT, URL_USERS } from '../../constants/urls/urlFrontEnd';
+import { URL_ADMIN_ORDERS, URL_ADMIN_PRODUCTS, URL_CREATE_PRODUCT, URL_USERS, URL_ADMIN_RETOUR } from '../../constants/urls/urlFrontEnd';
 
 export default function NavAdmin() {
   return (
@@ -33,7 +31,7 @@ export default function NavAdmin() {
       <Link to={URL_ADMIN_RETOUR}>
         <div className='bg-light-pink rounded flex flex-col items-center transition hover:scale-110'>
             <div className='p-8 text-5xl'><GrDocumentTransfer className='text-light-yellow'/></div>
-            <span className='font-bold pb-8'>Gestion des retour</span>
+            <span className='font-bold pb-8'>Gestion des retours</span>
         </div>
       </Link>
       <Link to={URL_ADMIN_ORDERS}>
