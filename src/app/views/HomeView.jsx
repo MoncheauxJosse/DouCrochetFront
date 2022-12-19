@@ -137,18 +137,18 @@ const HomeView = () => {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper w-full h-full">
             <SwiperSlide className='relative'>
-                <div className='fadeIn absolute text-center flex justify-center items-center top-1/3 left-1/4 mobile:left-10'>
+                <img src={banner} alt="dou'crochet"/>
+                <div className='fadeIn absolute w-full text-center flex justify-center items-center top-1/3'>
                     <h2 className='text-4xl text-white xs:text-xl mobile:text-lg xl:text-5xl'>Bienvenue chez les Dou'Crochets !</h2>
                 </div>
-                <img src={banner} alt="dou'crochet"/>
             </SwiperSlide>
             <SwiperSlide>
-                <div className='fadeIn absolute text-center flex justify-center items-center top-1/3 left-1/4 mobile:left-10 xl:left-52 md:left-10 minipc:left-32 xl:left-40'>
+                <div className='fadeIn absolute w-full text-center flex justify-center items-center top-1/3'>
                     <h2 className='text-4xl text-white xs:text-xl mobile:text-lg xl:text-5xl'>Votre magasin de doudous fabriqués à la main</h2>
                 </div>
                 <img src={banner1} alt="dou'crochet"/></SwiperSlide>
             <SwiperSlide>
-                <div className='fadeIn absolute text-center flex justify-center items-center top-1/3 left-1/4 mobile:left-10'>
+                <div className='fadeIn absolute w-full text-center flex justify-center items-center top-1/3'>
                     <h2 className='text-4xl text-white xs:text-xl mobile:text-lg xl:text-5xl'>Les commandes se font à la demande</h2>
                 </div>
                 <img src={banner2} alt="dou'crochet"/></SwiperSlide>

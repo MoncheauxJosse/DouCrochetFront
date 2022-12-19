@@ -19,3 +19,4 @@ export const URL_BACK_COMPLAINT = '/support/complaint';
 export const URL_BACK_UPDATE_USER = '/users/update/'
 export const URL_BACK_COOKIE = '/cookie/setcookie/';
 export const URL_BACK_GET_COOKIE = '/cookie/getcookie/';
+export const URL_BACK_GET_ORDERS = './orders'

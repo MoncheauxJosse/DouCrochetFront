@@ -19,6 +19,7 @@ import EditProductView from '../views/EditProductView';
 import TermsofSales from '../views/TermsofSales';
 import SummaryView from '../views/summaryView';
 import NotFoundView from '../views/NotFoundView';
+import OrdersView from '../views/OrdersView';
 
 const Routes = () => {
     return (
@@ -54,6 +55,13 @@ const Routes = () => {
                  element={
                     <PrivateRoute roles={[ROLE_ADMIN,ROLE_COMMERCIAL]}>
                         <AdminProductsView/>
+                    </PrivateRoute>}    
+            />
+            <Route
+                 path={URL.URL_ADMIN_ORDERS} 
+                 element={
+                    <PrivateRoute roles={[ROLE_ADMIN,ROLE_COMMERCIAL]}>
+                        <OrdersView/>
                     </PrivateRoute>}    
             />
             <Route path={URL.URL_SUMMARY} element={<SummaryView/>}/>
