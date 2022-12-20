@@ -2,8 +2,15 @@ import  {URL_BACK_ORDER_USER,URL_BACK_COMPLAINT,URL_BACK_GET_RETURNS} from '../.
 import apiBackEnd from './api.Backend';
 
 export async function supportOrder(token) {
+    console.log("appel support")
+
 
     return apiBackEnd.get(URL_BACK_ORDER_USER+"/"+token)
+}
+
+export async function allProductOrder(factureId) {
+
+    return apiBackEnd.get(URL_BACK_ORDER_USER_PRODUCTS+"/"+factureId)
 }
 
 export const postReturn = async (body)=> {
