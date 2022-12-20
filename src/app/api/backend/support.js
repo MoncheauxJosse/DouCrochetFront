@@ -6,6 +6,11 @@ export async function supportOrder(token) {
     return apiBackEnd.get(URL_BACK_ORDER_USER+"/"+token)
 }
 
+export async function allProductOrder(factureId) {
+
+    return apiBackEnd.get(URL_BACK_ORDER_USER_PRODUCTS+"/"+factureId)
+}
+
 export const postReturn = async (body)=> {
 
     return apiBackEnd.post(URL_BACK_ORDER_USER, body)
