@@ -19,13 +19,12 @@ import EditProductView from '../views/EditProductView';
 import TermsofSales from '../views/TermsofSales';
 import SummaryView from '../views/summaryView';
 import NotFoundView from '../views/NotFoundView';
-import retourProductAdminView from '../views/retourProductView';
+import AdminBackProductView from '../views/AdminBackProductView';
 import OrdersView from '../views/OrdersView';
 
 const Routes = () => {
     return (
         <RoutesContainer>
-
             <Route path={URL.URL_HOME} element={<HomeView />} />
             <Route
                  path={URL.URL_CREATE_PRODUCT} 
@@ -62,7 +61,7 @@ const Routes = () => {
                  path={URL.URL_ADMIN_RETOUR} 
                  element={
                     <PrivateRoute roles={[ROLE_ADMIN,ROLE_COMMERCIAL]}>
-                        <retourProductAdminView/>
+                        <AdminBackProductView/>
                     </PrivateRoute>}    
                 />
             <Route
