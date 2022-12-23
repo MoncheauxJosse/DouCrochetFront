@@ -22,3 +22,4 @@ export const URL_BACK_UPDATE_USER = '/users/update/'
 export const URL_BACK_COOKIE = '/cookie/setcookie/';
 export const URL_BACK_GET_COOKIE = '/cookie/getcookie/';
 export const URL_BACK_GET_ORDERS = './orders'
+export const URL_BACK_MODIF_ORDERS_STATE = '/orders-state/state/';

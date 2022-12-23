@@ -3,8 +3,6 @@ import apiBackEnd from './api.Backend';
 
 export async function supportOrder(token) {
     console.log("appel support")
-
-
     return apiBackEnd.get(URL_BACK_ORDER_USER+"/"+token)
 }
 
