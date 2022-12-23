@@ -3,13 +3,14 @@ import { useFormik, FieldArray,Field } from 'formik';
 import * as Yup from 'yup'
 import { useSelector } from 'react-redux';
 import {selectUser,selectToken} from '../redux-store/authenticationSlice'
-import { supportOrder,postReturn } from '../api/backend/support';
+import { supportOrder,postReturn,allProductOrder } from '../api/backend/support';
 
 const ReturnView = () => {
 
     const token = useSelector(selectToken);
     const [preview, setPreview] = useState();
     const [facture, setFacture] = useState({data: []});
+    const [Products, setProducts] = useState({data: []});
     const formik= useFormik({
 
         initialValues: {
@@ -52,23 +53,26 @@ const ReturnView = () => {
 
           useEffect(() => {   
 
-            console.log("active getOrderUser")
             const fetchData = async () => {
+              console.log("active getOrderUser")
               const OrderDataUser = await supportOrder(token);
-
-              console.log(OrderDataUser)
-              setFacture(OrderDataUser)
-
-
-             
+              setFacture(OrderDataUser) 
+              
             };
-               /*if(data.data.length==0||data.data.length!==count){
-            
-              fetchData();
-              setCount(data.data.length)
-  
-              }*/
-              fetchData();
+
+               if(facture.data.length==0){
+                console.log("tableaux vide")
+                fetchData();
+              }
+
+              console.log(facture.data)
+              const fetchDataProduct = async () => {
+                console.log("active getAllProductOrder")
+                const allProducts = await allProductOrder(formik.factureId);
+                setProducts(allProducts)
+               
+              };
+
   
           },[])
 
