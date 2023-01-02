@@ -1,8 +1,11 @@
 import { URL_PROFILE } from "../constants/urls/urlFrontEnd";
 import { getPayloadToken } from "../services/tokenServices";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import CartItemValid from '../components/layouts/CartItemValid';
+import { paiementStripe } from "../api/backend/users";
+
+
 
 const SummaryView = ()=>{
     const token = getPayloadToken(localStorage.token)
@@ -16,6 +19,17 @@ const SummaryView = ()=>{
         }
         return somme.toFixed(2)
     }
+    
+    const redirectionStripe= ()=>{
+        paiementStripe().then((res)=>{
+            console.log(res);
+           window.location.href = res.data
+        }
+        )
+
+
+    }
+
 
     return (
         <div className="p-2 ml-40 mr-40">
@@ -74,7 +88,7 @@ const SummaryView = ()=>{
                   <span>Prix au total</span>
                   <span>{getTotal(cartItems)}€</span>
                 </div>
-            <button>Procéder au payement</button>
+            <button onClick={redirectionStripe}>Procéder au payement</button>
             </div>
         </div>
     )

@@ -23,3 +23,4 @@ export const URL_BACK_COOKIE = '/cookie/setcookie/';
 export const URL_BACK_GET_COOKIE = '/cookie/getcookie/';
 export const URL_BACK_GET_ORDERS = './orders';
 export const URL_BACK_RETURN_STATE = '/support/modifyState'
+export const URL_BACK_STRIPE = '/stripe/create-checkout-session'

@@ -21,6 +21,8 @@ import SummaryView from '../views/summaryView';
 import NotFoundView from '../views/NotFoundView';
 import AdminBackProductView from '../views/AdminBackProductView';
 import OrdersView from '../views/OrdersView';
+import PaymentSuccess from '../views/paiementSuccesView';
+
 
 const Routes = () => {
     return (
@@ -82,6 +84,7 @@ const Routes = () => {
             <Route path={URL.URL_REGISTER} element={<RegisterView/>}/>
             <Route path={URL.URL_SUPPORT} element={<SupportView/>}/>
             <Route path={URL.URL_CGU} element={<TermsofSales/>}/>
+            <Route path={URL.URL_PAIEMENT_SUCCESS}  element={<PaymentSuccess/>}/>
             <Route path='*' element={<NotFoundView />}/>
 
 
