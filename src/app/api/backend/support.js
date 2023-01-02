@@ -1,4 +1,4 @@
-import  {URL_BACK_ORDER_USER,URL_BACK_COMPLAINT,URL_BACK_GET_RETURNS} from '../../constants/urls/urlBackEnd';
+import  {URL_BACK_ORDER_USER,URL_BACK_COMPLAINT,URL_BACK_GET_RETURNS, URL_BACK_RETURN_STATE} from '../../constants/urls/urlBackEnd';
 import apiBackEnd from './api.Backend';
 
 export async function supportOrder(token) {
@@ -25,4 +25,10 @@ export const postComplaint = async (body)=> {
 export function supportReturns() {
 
     return apiBackEnd.get(URL_BACK_GET_RETURNS)
+}
+
+
+export async function supportState(id, body){
+    console.log(body)
+    return await apiBackEnd.post(URL_BACK_RETURN_STATE + id, body)
 }
