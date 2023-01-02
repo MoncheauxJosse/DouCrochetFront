@@ -1,5 +1,6 @@
-import {URL_BACK_DELETE, URL_BACK_MODIF, URL_GET_ROLES, URL_GET_USERS, URL_BACK_PROFILE, URL_BACK_UPDATE_USER, URL_BACK_COOKIE, URL_BACK_GET_COOKIE} from '../../constants/urls/urlBackEnd';
+import {URL_BACK_DELETE, URL_BACK_MODIF, URL_GET_ROLES, URL_GET_USERS, URL_BACK_PROFILE, URL_BACK_UPDATE_USER, URL_BACK_COOKIE, URL_BACK_GET_COOKIE, URL_BACK_STRIPE} from '../../constants/urls/urlBackEnd';
 import apiBackEnd from './api.Backend';
+
 
 export function getAll() {
     return apiBackEnd.get(URL_GET_USERS);
@@ -29,4 +30,8 @@ export function setCookie(){
 }
 export function getCookie(){
     return apiBackEnd.get(URL_BACK_GET_COOKIE)
+}
+export function paiementStripe(){
+    console.log("Stripe");
+    return apiBackEnd.post(URL_BACK_STRIPE)
 }
