@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectToken } from '../redux-store/authenticationSlice';
 import { useState } from 'react';
-import { navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const PaymentSuccess = () => {
   // Ajoutez une variable loading à l'état de votre composant
