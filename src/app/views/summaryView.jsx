@@ -1,26 +1,39 @@
 import { URL_PROFILE } from "../constants/urls/urlFrontEnd";
 import { getPayloadToken } from "../services/tokenServices";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import CartItemValid from '../components/layouts/CartItemValid';
+import { paiementStripe } from "../api/backend/users";
+
+
+
 
 const SummaryView = ()=>{
     const token = getPayloadToken(localStorage.token)
     const {cartItems} = useSelector((state) => state.cart)
 
+    
+
     const getTotal = (cart) => {
-        console.log("ca passe ", cart)
         let somme = 0
         for(let i = 0; i < cart.length; i++){
           somme = somme + (cart[i].quantity * cart[i].price)
         }
         return somme.toFixed(2)
     }
+    
+    const redirectionStripe= ()=>{
+        paiementStripe(token._id, cartItems).then((res)=>{
+            console.log(res);
+           window.location.href = res.data
+        }
+        )
+    }
 
     return (
         <div className="p-2 ml-40 mr-40">
             <div className="text-center text-3xl font-bold">
-            recapitulatif de votre commande
+            Récapitulatif de votre commande
             </div>
             <div className="pl-2 mt-5">
                 <div className="flex flex-row">
@@ -41,21 +54,23 @@ const SummaryView = ()=>{
                             {token.adresse.city}
                         </div>
                     </div>
-                    <div className="ml-10">
-                        <Link to={URL_PROFILE}><button>modifier</button></Link>
+                    <div className="ml-10 ">
+                        <Link to={URL_PROFILE}><button className="bg-light-pink font-semibold hover:bg-dark-pink py-3 text-sm text-white uppercase w-full px-3 rounded">modifier</button></Link>
 
                     </div>
                 </div>
             </div>
             <div className="bg-slate-300 w-full h-px mt-5"></div>
-            <div>
+            {/* <div>
             <div className='font-bold'>
                 Mode de payement
             </div>
-            <button>Ajouter</button>
-            <button>modifier</button>
+            <div className="flex ">
+                <button className="mr-3 bg-light-pink font-semibold hover:bg-dark-pink py-3 text-sm text-white uppercase w-full px-3 rounded">Ajouter</button>
+                <button className="bg-light-pink font-semibold hover:bg-dark-pink py-3 text-sm text-white uppercase w-full px-3 rounded">modifier</button>
             </div>
-            <div className="bg-slate-300 w-full h-px mt-5"></div>
+            </div> */}
+            {/* <div className="bg-slate-300 w-full h-px mt-5"></div> */}
                 <div className='font-bold text-center'>
                     verification et validation de la commande
                 </div>
@@ -74,7 +89,7 @@ const SummaryView = ()=>{
                   <span>Prix au total</span>
                   <span>{getTotal(cartItems)}€</span>
                 </div>
-            <button>Procéder au payement</button>
+            <button onClick={redirectionStripe} className="bg-light-pink font-semibold hover:bg-dark-pink py-3 text-sm text-white uppercase w-full px-3 rounded">Procéder au paiement</button>
             </div>
         </div>
     )

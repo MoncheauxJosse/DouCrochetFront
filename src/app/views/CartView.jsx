@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import CartItem from '../components/layouts/CartItem'
 import {URL_LOGIN, URL_PRODUCTS, URL_REGISTER, URL_SUMMARY} from '../constants/urls/urlFrontEnd'
 import { useNavigate } from 'react-router-dom';
+import { clearCart } from '../redux-store/cartSlice'
 
 export default function CartView() {
   const dispatch = useDispatch()
@@ -15,7 +16,6 @@ export default function CartView() {
   let multipleProduct = 'produits'
 
   const getTotal = (cart) => {
-      console.log("ca passe ", cart)
       let somme = 0
       for(let i = 0; i < cart.length; i++){
         somme = somme + (cart[i].quantity * cart[i].price)
@@ -81,7 +81,9 @@ export default function CartView() {
               Continuer mon shopping
             </a>
           </Link>
-        
+          <div className='flex justify-center'>
+            <button type="button" class=" text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900" onClick={()=>dispatch(clearCart(cartItems))}>Vider le panier</button>
+          </div>
         </div>
       )
   }else{

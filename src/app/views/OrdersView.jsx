@@ -76,13 +76,13 @@ const editOrderState = (_id, index) => {
         </tr>
       </thead>
       <tbody className="bg-white">
-        {orders.map((order, index) => (
+        {orders?.map((order, index) => (
               <tr key={order._id} className="users-list">
                 <td className="text-center border-b border-gray-200 ...">
-                  {order.user.firstname + " " + order.user.lastname}
+                  {order?.user?.firstname + " " + order?.user?.lastname}
                 </td>
                 <td className="text-center border-b border-gray-200 ...">
-                  {order.productLine[0].product}
+                  {order?.productLine?.product}
                 </td>
                 <td className="text-center border-b border-gray-200 ...">
                   {date}
@@ -90,7 +90,7 @@ const editOrderState = (_id, index) => {
                 <td className=" align-items: flex bg-white ">
                     <select className=" align-items: stretch; block w-2/3 p-1 rounded-md"
                       id = {index}
-                      defaultValue={order.order_state.state}
+                      defaultValue={order?.order_state?.state}
                     >
                       <option value="preparation" >
                         En cours de préparation

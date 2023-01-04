@@ -110,17 +110,17 @@ const Navbar = () => {
                         <Disclosure.Panel className="p-4 md:hidden ">
                             <hr />
                             <div className="p-4 flex flex-col space-y-3">
-                                    <Link to={URL_CART}>
+                                    <Link to={URL_PROFILE}>
                                         <div className='flex flex-col justify-center mx-2 text-2xl hover:text-light-yellow'>
                                             <FaUserAlt />
                                         </div>
                                     </Link>
-                                    {isLogged ? <Link to={URL_PROFILE}>
+                                   <Link to={URL_CART}>
                                     <div className='relative space-y-4 mx-2 text-2xl hover:text-light-yellow'>
                                         <BsCartFill />
                                         <span className="absolute bottom-3 left-3 text-center text-sm font-bold leading-none w-4 h-4 text-red-100 bg-red-600 rounded-full">{cartItems.length}</span>
                                     </div>
-                                </Link> : ''}
+                                </Link>
                                 <ConnectionBtn />
                                 {isLogged && role === "admin" && <Link to={URL_ADMIN_HOME}><button className='btn bg-light-yellow hover:bg-light-yellow-hover mr-8'>Admin</button></Link>}
                             </div>

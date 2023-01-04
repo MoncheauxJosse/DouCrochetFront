@@ -5,9 +5,6 @@ const cartSlice = createSlice({
     name: "cart", 
     initialState: {
         cartItems: [],
-        totalAmount: 0,
-        totalCount: 0,
-        subAmount: 0,
         status: "idle",
         error: null
     },
@@ -68,6 +65,9 @@ const cartSlice = createSlice({
           if(index !== -1){
             state.cartItems.splice(index, 1)
           }
+        }, 
+        clearCart: (state, action) => {
+          state.cartItems = []
         }
     },
 })
@@ -75,4 +75,4 @@ const cartSlice = createSlice({
  const cartReducer = cartSlice.reducer
  export default cartReducer;
  
-export const {addCartProduct, increment, decrement, removeCartItem} = cartSlice.actions;
+export const {addCartProduct, increment, decrement, removeCartItem, clearCart} = cartSlice.actions;

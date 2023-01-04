@@ -32,7 +32,7 @@ export default function NavAdmin() {
       <Link to={URL_ADMIN_RETOUR}>
         <div className='bg-light-pink rounded flex flex-col items-center transition hover:scale-110'>
             <div className='p-8 text-5xl'><GoFile className='text-light-yellow'/></div>
-            <span className='font-bold pb-8'>Gestion des retour</span>
+            <span className='font-bold pb-8'>Gestion des retours</span>
         </div>
       </Link>
       <Link to={URL_ADMIN_ORDERS}>
