@@ -35,8 +35,6 @@ const FormProduct = () =>{
           onSubmit: values => {
 
             let formData = new FormData();
-
-            console.log(formik.values.image)
             formData.append('image',formik.values.image)
             formData.append('name',formik.values.name)
             formData.append('price',formik.values.price)

@@ -15,7 +15,6 @@ const DetailProductView = () => {
     useEffect(() => {     
         const fetchDetail = async () => {
             let detail = await detailProduct(id);
-            console.log(detail);
 
             setDetail({
                 detail: detail.data,   
@@ -29,7 +28,6 @@ const DetailProductView = () => {
 
       const addToCart = (detail) => {
         dispatch(addCartProduct(detail))
-        console.log(detail)
     }
 
 if(loader.state==false)
@@ -60,11 +58,6 @@ if(loader.state==false)
                             <div className="pr-2">
                                 Quantité en stock
                             </div>
-                            {/* <select className="text-dark-pink" name="quantity">
-                                {detail.data?.map(product=>{
-                                    <option value={product.quantity}></option>
-                                })}
-                            </select> */}
                             <div>
                                 {detail.detail.quantity - (cartProduct?.quantity || 0)}
                             </div>

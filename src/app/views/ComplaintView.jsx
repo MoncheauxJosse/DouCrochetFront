@@ -33,8 +33,6 @@ const Complaint = () => {
         ); 
 
         useEffect(() => {   
-
-            console.log("active getOrderUser")
             const fetchData = async () => {
               
             };fetchData();

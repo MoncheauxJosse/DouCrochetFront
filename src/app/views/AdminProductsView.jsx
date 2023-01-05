@@ -14,13 +14,11 @@ const AdminProductsView = () => {
   useEffect(() => {
     getAll().then((productsData) => {
       setProducts(productsData.data);
-      console.log(productsData);
     });
     setLoader({ state: true });
   }, [reload]);
 
   const deleteOneProduct = (productid) => {
-    console.log(productid);
     deleteProduct(productid)
       .then((res) => {
         setReload(!reload);

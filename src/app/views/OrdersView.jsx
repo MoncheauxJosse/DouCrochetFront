@@ -20,19 +20,15 @@ export default function OrdersView() {
     });
     setLoader(true);
   }, []);
-console.log(orders)
 
 const editOrderState = (_id, index) => {
   const stateSelect = document.getElementById(index).value
-  console.log(stateSelect);
     modifOrderState(_id, {stateSelect}).then( response => {
-      console.log(response);
       setReload(prevState => !prevState);
       toast.success("Etat Modifié", {
         position: toast.POSITION.BOTTOM_LEFT,
       });
     }).catch(err => {
-      console.log(err);
       toast.error("Erreur dans la modification de l'état", {
         position: toast.POSITION.BOTTOM_LEFT,
       });

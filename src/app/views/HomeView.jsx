@@ -45,7 +45,6 @@ const HomeView = () => {
 
       const details = (e) => {
         const detailStorage = e
-        console.log(detailStorage)
         sessionStorage.setItem("detailStorage", detailStorage)
         navigate(URL_PRODUCT)
   }
@@ -55,7 +54,6 @@ const HomeView = () => {
         
         if(slideIndexPopulaire !== productsPopulaire.data.length){
 
-            console.log("longuer tableaux "+productsPopulaire.data.length)
             setProductsPopulaire(productsPopulaire)
             setSlideIndexPopulaire(slideIndexPopulaire + 1)
             setAfficheFinPopulaire(afficheFinPopulaire +1)

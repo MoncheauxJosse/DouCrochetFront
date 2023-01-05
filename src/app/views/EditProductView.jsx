@@ -33,7 +33,6 @@ const EditProductView = () => {
       };
 
   const handleSubmit = (data,setFieldValue) => {
-    console.log(data);
     let formdata = new FormData();
     formdata.append('image', data.image);
     formdata.append('name', data.produit);
@@ -46,11 +45,6 @@ const EditProductView = () => {
         setPreview(null)
         showChangeProductMessage();
      });
-    console.log(data.image + " handleSubmit");
-    console.log(data);
-
-    console.log("je passe par la");
-    console.log(products._id);
   };
 
   const showChangeProductMessage = () => {

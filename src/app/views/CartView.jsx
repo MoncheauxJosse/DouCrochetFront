@@ -10,7 +10,6 @@ import { clearCart } from '../redux-store/cartSlice'
 export default function CartView() {
   const dispatch = useDispatch()
   const {cartItems} = useSelector((state) => state.cart)
-  console.log(cartItems)
   const cartlength = cartItems.length;
   let oneProduct = 'produit'
   let multipleProduct = 'produits'

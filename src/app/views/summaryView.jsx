@@ -24,7 +24,6 @@ const SummaryView = ()=>{
     
     const redirectionStripe= ()=>{
         paiementStripe(token._id, cartItems).then((res)=>{
-            console.log(res);
            window.location.href = res.data
         }
         )

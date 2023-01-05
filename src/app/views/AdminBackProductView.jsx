@@ -21,7 +21,6 @@ const AdminBackProductView = () => {
         }
 
         fetchdata().then(data => {
-            console.log(data)
             setReturnProducts(data)
         })
         setLoader(true)
@@ -30,7 +29,6 @@ const AdminBackProductView = () => {
     const editReturn = (id, index)=>{
         const orderSelect = document.getElementById(index).value
         supportState(id, {orderSelect}).then( response => {
-            console.log(response);
             setReload(prevState => !prevState);
             toast.success("Etat support modifier", {
               position: toast.POSITION.BOTTOM_LEFT,

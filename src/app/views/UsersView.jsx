@@ -58,8 +58,6 @@ const UsersView = () => {
         position: toast.POSITION.BOTTOM_LEFT,
       });
     });
-// setReload(prevState => !prevState);
-    console.log("role modifier");
   }
 
   return (

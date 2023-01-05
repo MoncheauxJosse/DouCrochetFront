@@ -5,7 +5,6 @@ import {selectUser} from './../redux-store/authenticationSlice'
        
 const AdminHomeView = () => {
   const user = useSelector(selectUser);
-  console.log(user)
   return (
     <div className='mx-5 mt-2'>
       <div>
