@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import {getAll, modifOrderState} from "../api/backend/orders";
 import {format} from "date-fns";
 import { toast } from 'react-toastify';
+import { id } from 'date-fns/locale';
 
 export default function OrdersView() {
     const [orders, setOrders] = useState([]);
   const [reload, setReload] = useState(false);
   const [loader, setLoader] = useState(false);
-  const [date, setDate] = useState()
 
   useEffect(() => {
     const getOrders = async () => {
@@ -16,8 +16,6 @@ export default function OrdersView() {
     }
 
     getOrders().then(data => {
-      const dateToInput = format(new Date(data[0].order_date), 'dd-MM-yyyy').toString()
-      setDate(dateToInput)
       setOrders(data);
     });
     setLoader(true);
@@ -59,7 +57,7 @@ const editOrderState = (_id, index) => {
             scope="col"
             className="text-sm font-medium text-gray-900 px-6 py-4 border-r "
             >
-            Produit
+            N° de commande
           </th>
           <th
             scope="col"
@@ -82,10 +80,10 @@ const editOrderState = (_id, index) => {
                   {order?.user?.firstname + " " + order?.user?.lastname}
                 </td>
                 <td className="text-center border-b border-gray-200 ...">
-                  {order?.productLine?.product}
+                  {order?.ref}
                 </td>
                 <td className="text-center border-b border-gray-200 ...">
-                  {date}
+                  {format(new Date(order?.order_date), 'dd-MM-yyyy').toString()}
                 </td>
                 <td className=" align-items: flex bg-white ">
                     <select className=" align-items: stretch; block w-2/3 p-1 rounded-md"
