@@ -9,6 +9,7 @@ const ReturnView = () => {
 
     const token = useSelector(selectToken);
     const [preview, setPreview] = useState();
+    const [previewChoice, setPreviewChoice] = useState();
     const [facture, setFacture] = useState({data: []});
     const [products, setProducts] = useState({data: []});
     const [loader, setLoader] = useState(false);
@@ -19,7 +20,8 @@ const ReturnView = () => {
           description:"",
           image:null,
           userId:"",
-          factureId:""
+          factureId:"",
+          productSelect:[]
         },
 
         validationSchema: Yup.object().shape({
@@ -49,6 +51,12 @@ const ReturnView = () => {
         const loadImage = (e) => {
             const objectUrl = URL.createObjectURL(e)          
             setPreview(objectUrl)
+            return e
+          }
+
+          const loadImage2 = (e) => {
+            const objectUrl = URL.createObjectURL(e)          
+            setPreviewChoice(objectUrl)
             return e
           }
 
@@ -183,7 +191,26 @@ const ReturnView = () => {
 
        </div>
 
+       <div className="mb-2 flex justify-center">
+       <label htmlFor="Id" className='font-bold text-light-yellow'>selection Produit :</label>
 
+       <div className="mb-4">
+
+       <select id="productSelect" name="productSelect" onChange={(e) => { 
+        if(products.data[e.target.value]!=undefined){
+          formik.setFieldValue("productSelect",products.data[0].productLine[e.target.value].product)}  
+        
+        }}>
+          <option value="">Choisir ...</option>
+          {products.data?.map((obj, index) => {
+            return (
+            <option key={index} id={index} value={index} >{products.data[0].productLine[index].product.name} </option>
+            )
+            })}
+        </select>
+       </div>
+
+       </div>
 
         <div className='flex justify-center'>
        <button  className=" connect-button bg-light-yellow text-dark-pink btn group relative w-full" type="submit">Envoyer</button>
