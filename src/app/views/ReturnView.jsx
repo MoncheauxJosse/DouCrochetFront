@@ -9,8 +9,10 @@ const ReturnView = () => {
 
     const token = useSelector(selectToken);
     const [preview, setPreview] = useState();
+    const [previewChoice, setPreviewChoice] = useState();
     const [facture, setFacture] = useState({data: []});
-    const [Products, setProducts] = useState({data: []});
+    const [products, setProducts] = useState({data: []});
+    const [loader, setLoader] = useState(false);
     const formik= useFormik({
 
         initialValues: {
@@ -18,7 +20,8 @@ const ReturnView = () => {
           description:"",
           image:null,
           userId:"",
-          factureId:""
+          factureId:"",
+          productSelect:[]
         },
 
         validationSchema: Yup.object().shape({
@@ -51,6 +54,12 @@ const ReturnView = () => {
             return e
           }
 
+          const loadImage2 = (e) => {
+            const objectUrl = URL.createObjectURL(e)          
+            setPreviewChoice(objectUrl)
+            return e
+          }
+
           useEffect(() => {   
 
             const fetchData = async () => {
@@ -66,15 +75,33 @@ const ReturnView = () => {
               }
 
               console.log(facture.data)
+
               const fetchDataProduct = async () => {
                 console.log("active getAllProductOrder")
-                const allProducts = await allProductOrder(formik.factureId);
+                const allProducts = await allProductOrder(formik.values.factureId);
+                console.log("ajoute dans product")
                 setProducts(allProducts)
-               
+                setLoader(true)
               };
 
+              console.log("FactureId = ",formik.values.factureId)
+              if(formik.values.factureId!="" && loader!=true ){
+
+                fetchDataProduct()
+
+                console.log("facture choisie !")
+                
+              }
+
+              if(!loader){
+                setLoader(false)
+              }
+              
+              
+              console.log("les produits recuperé", products)
+
   
-          },[])
+          },[formik.values.factureId,loader==true])
 
     return (
 
@@ -148,8 +175,10 @@ const ReturnView = () => {
 
        <div className="mb-4">
 
-       <select id="factureId" name="factureId" onChange={(e) => {    
-        formik.setFieldValue("factureId",facture.data[e.target.value]._id)
+       <select id="factureId" name="factureId" onChange={(e) => { 
+        if(facture.data[e.target.value]!=undefined){
+          formik.setFieldValue("factureId",facture.data[e.target.value]._id)}  
+        
         }}>
           <option value="">Choisir ...</option>
           {facture.data?.map((obj, index) => {
@@ -162,7 +191,26 @@ const ReturnView = () => {
 
        </div>
 
+       <div className="mb-2 flex justify-center">
+       <label htmlFor="Id" className='font-bold text-light-yellow'>selection Produit :</label>
 
+       <div className="mb-4">
+
+       <select id="productSelect" name="productSelect" onChange={(e) => { 
+        if(products.data[e.target.value]!=undefined){
+          formik.setFieldValue("productSelect",products.data[0].productLine[e.target.value].product)}  
+        
+        }}>
+          <option value="">Choisir ...</option>
+          {products.data?.map((obj, index) => {
+            return (
+            <option key={index} id={index} value={index} >{products.data[0].productLine[index].product.name} </option>
+            )
+            })}
+        </select>
+       </div>
+
+       </div>
 
         <div className='flex justify-center'>
        <button  className=" connect-button bg-light-yellow text-dark-pink btn group relative w-full" type="submit">Envoyer</button>
