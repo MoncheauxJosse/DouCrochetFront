@@ -108,6 +108,7 @@ const ReturnView = () => {
   
           },[formik.values.factureId,loader==true])
 
+          console.log(formik.values)
     return (
 
         <div  className="mt-2 bg-light-yellow flex h-full flex-col items-center justify-center">
@@ -182,6 +183,7 @@ const ReturnView = () => {
 
        <select id="factureId" name="factureId" defaultValue="Choisir ..." onChange={(e) => { 
         if(facture.data[e.target.value]!=undefined){
+          formik.setFieldValue("productSelect",{image:""})
           formik.setFieldValue("factureId",facture.data[e.target.value]._id)}  
         
         }}>
@@ -207,7 +209,7 @@ const ReturnView = () => {
         }  
         
         }}>
-          <option value="">Choisir ...</option>
+          <option value="" selected={!formik.values.productSelect["_id"]}>Choisir ...</option>
           {products.data?.map((obj, index) => {
             return (
             <option key={index} id={index} value={index} >{products.data[0].productLine[index].product.name} </option>
