@@ -11,6 +11,7 @@ const ReturnView = () => {
     const [preview, setPreview] = useState();
     const [previewChoice, setPreviewChoice] = useState();
     const [facture, setFacture] = useState({data: []});
+    const [factureSelect, setFactureSelect] = useState();
     const [products, setProducts] = useState({data: []});
     const [loader, setLoader] = useState(false);
     const formik= useFormik({
@@ -21,7 +22,8 @@ const ReturnView = () => {
           image:null,
           userId:"",
           factureId:"",
-          productSelect:[]
+          productSelect:{
+            image:""}
         },
 
         validationSchema: Yup.object().shape({
@@ -84,9 +86,12 @@ const ReturnView = () => {
                 setLoader(true)
               };
 
+              
               console.log("FactureId = ",formik.values.factureId)
-              if(formik.values.factureId!="" && loader!=true ){
+              if(formik.values.factureId!="" && (loader!=true || formik.values.factureId != factureSelect ) ){
 
+                setFactureSelect(formik.values.factureId)
+                formik.values.productSelect.image = ""
                 fetchDataProduct()
 
                 console.log("facture choisie !")
@@ -175,7 +180,7 @@ const ReturnView = () => {
 
        <div className="mb-4">
 
-       <select id="factureId" name="factureId" onChange={(e) => { 
+       <select id="factureId" name="factureId" defaultValue="Choisir ..." onChange={(e) => { 
         if(facture.data[e.target.value]!=undefined){
           formik.setFieldValue("factureId",facture.data[e.target.value]._id)}  
         
@@ -183,7 +188,7 @@ const ReturnView = () => {
           <option value="">Choisir ...</option>
           {facture.data?.map((obj, index) => {
             return (
-            <option key={index} id={index} value={index} >{facture.data[index].order_bill}</option>
+            <option key={index} id={index} value={index} >{facture.data[index].order_date}</option>
             )
             })}
         </select>
@@ -198,7 +203,8 @@ const ReturnView = () => {
 
        <select id="productSelect" name="productSelect" onChange={(e) => { 
         if(products.data[e.target.value]!=undefined){
-          formik.setFieldValue("productSelect",products.data[0].productLine[e.target.value].product)}  
+          formik.setFieldValue("productSelect",products.data[0].productLine[e.target.value].product)
+        }  
         
         }}>
           <option value="">Choisir ...</option>
@@ -209,7 +215,10 @@ const ReturnView = () => {
             })}
         </select>
        </div>
+       </div>
 
+       <div className='flex justify-center'>
+       <img className="w-40" src={formik.values.productSelect.image} />
        </div>
 
         <div className='flex justify-center'>
